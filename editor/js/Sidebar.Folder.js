@@ -1,4 +1,4 @@
-import { UIPanel, UIRow, UISelect, UISpan, UIText } from './libs/ui.js';
+import { UIListbox, UIPanel, UIRow, UISelect, UISpan, UIText } from './libs/ui.js';
 
 import { FolderUtils } from "./FolderUtils.js"
 
@@ -14,6 +14,13 @@ function SidebarFolder( editor ) {
 	settings.setPaddingTop( '20px' );
 	container.add( settings );
 
+	// current
+	const currentRow = new UIRow();
+	const currentOption = new UIText("./");
+	currentRow.add( new UIText( strings.getKey( 'sidebar/folder/current' ) ).setWidth( '90px' ) );
+	currentRow.add( currentOption );
+	settings.add( currentRow );
+
 	// changeOption
 	const changeDefaults = {
 		'./' : './',
@@ -28,6 +35,13 @@ function SidebarFolder( editor ) {
 	changeRow.add( changeOption );
 	settings.add( changeRow );
 
+	// Files in that folder:
+	const filesRow = new UIRow();
+	const filesList = new UIListbox();
+	filesList.setItems( [ {name:"Loading Files..."} ] );
+	filesRow.add( filesList );
+	settings.add( filesRow );
+
 	// Utility methods:
 
 	function RefreshFolder() {
@@ -35,15 +49,22 @@ function SidebarFolder( editor ) {
 		FolderUtils.ShellExecute("ls -1 -p",(file_list) => {
 			var files = file_list.split("\n");
 			var ops = { };
-			ops["./"] = "./";
+			ops["../"] = "../";
+			var file_list = [];
 			var firstKey = null;
 			for (var i in files) {
 				var path = files[i].trim();
 				if (path == "") continue;
 				firstKey = path;
-				ops[path] = path;
+				file_list.push({
+					name : path
+				});
+				if (path.endsWith("/")) {
+					ops[path] = path;
+				}
 			}
 			changeOption.setOptions( ops );
+			filesList.setItems(file_list);
 		});
 	}
 

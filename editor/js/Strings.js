@@ -95,6 +95,7 @@ function Strings( config ) {
 			'sidebar/scene/fog': 'Fog',
 
 			'sidebar/folder': 'Folder',
+			'sidebar/folder/current': 'Current',
 			'sidebar/folder/change': 'Change',
 
 			'sidebar/properties/object': 'Object',
