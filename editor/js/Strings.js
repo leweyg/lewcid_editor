@@ -8,6 +8,9 @@ function Strings( config ) {
 
 			'menubar/file': 'File',
 			'menubar/file/new': 'New',
+			'menubar/file/open': 'Open',
+			'menubar/file/folder/open': 'Open Folder',
+			'menubar/file/folder/code': 'Code Folder',
 			'menubar/file/import': 'Import',
 			'menubar/file/export/geometry': 'Export Geometry',
 			'menubar/file/export/object': 'Export Object',
@@ -61,9 +64,9 @@ function Strings( config ) {
 
 			'menubar/status/autosave': 'autosave',
 
-			'menubar/play': 'Play',
-			'menubar/play/stop': 'Stop',
-			'menubar/play/play': 'Play',
+			'menubar/play': ' ► ',
+			'menubar/play/stop': ' ◾ ',
+			'menubar/play/play': '  ► ',
 
 			'menubar/examples': 'Examples',
 			'menubar/examples/Arkanoid': 'Arkanoid',

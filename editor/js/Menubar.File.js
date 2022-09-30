@@ -4,6 +4,8 @@ import { zipSync, strToU8 } from 'three/addons/libs/fflate.module.js';
 
 import { UIPanel, UIRow, UIHorizontalRule } from './libs/ui.js';
 
+import { FolderUtils } from './FolderUtils.js'
+
 function MenubarFile( editor ) {
 
 	const config = editor.config;
@@ -36,6 +38,42 @@ function MenubarFile( editor ) {
 
 	} );
 	options.add( option );
+
+	// Open
+
+	let openOption = new UIRow();
+	openOption.setClass( 'option' );
+	openOption.setTextContent( strings.getKey( 'menubar/file/open' ) );
+	openOption.onClick( function () {
+		FolderUtils.ShellExecute("ls",(result)=>{
+			if (confirm("Which file?\n" + result)) {
+				// todo
+				editor.clear();
+			}
+		});
+	} );
+	options.add( openOption );
+
+	// Folder Open
+
+	let openFolderOption = new UIRow();
+	openFolderOption.setClass( 'option' );
+	openFolderOption.setTextContent( strings.getKey( 'menubar/file/folder/open' ) );
+	openFolderOption.onClick( function () {
+		FolderUtils.ShellExecute("open ./",(result)=>{ });
+	} );
+	options.add( openFolderOption );
+
+	// Folder Code
+
+	let codeFolderOption = new UIRow();
+	codeFolderOption.setClass( 'option' );
+	codeFolderOption.setTextContent( strings.getKey( 'menubar/file/folder/code' ) );
+	codeFolderOption.onClick( function () {
+		FolderUtils.ShellExecute("code ./",(result)=>{ });
+	} );
+	options.add( codeFolderOption );
+
 
 	//
 
