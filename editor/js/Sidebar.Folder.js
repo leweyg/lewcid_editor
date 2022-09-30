@@ -14,38 +14,40 @@ function SidebarFolder( editor ) {
 	settings.setPaddingTop( '20px' );
 	container.add( settings );
 
-	// language
-
-	const options = {
+	// changeOption
+	const changeDefaults = {
+		'./' : './',
 		'home': 'home (~)',
 		'project': 'project',
 	};
+	const changeRow = new UIRow();
+	const changeOption = new UISelect().setWidth( '150px' );
+	changeOption.setOptions( changeDefaults );
+	changeOption.setValue( './' );
+	changeRow.add( new UIText( strings.getKey( 'sidebar/folder/change' ) ).setWidth( '90px' ) );
+	changeRow.add( changeOption );
+	settings.add( changeRow );
 
-	const languageRow = new UIRow();
-	const language = new UISelect().setWidth( '150px' );
-	language.setOptions( options );
-	language.setValue( 'home' );
+	// Utility methods:
 
+	function RefreshFolder() {
 
-	languageRow.add( new UIText( strings.getKey( 'sidebar/folder/change' ) ).setWidth( '90px' ) );
-	languageRow.add( language );
+		FolderUtils.ShellExecute("ls -1 -p",(file_list) => {
+			var files = file_list.split("\n");
+			var ops = { };
+			ops["./"] = "./";
+			var firstKey = null;
+			for (var i in files) {
+				var path = files[i].trim();
+				if (path == "") continue;
+				firstKey = path;
+				ops[path] = path;
+			}
+			changeOption.setOptions( ops );
+		});
+	}
 
-	settings.add( languageRow );
-
-	FolderUtils.ShellExecute("ls -1 -p",(file_list) => {
-		var files = file_list.split("\n");
-		var ops = { };
-		var firstKey = null;
-		for (var i in files) {
-			var path = files[i].trim();
-			if (path == "") continue;
-			firstKey = path;
-			ops[path] = path;
-		}
-		language.setOptions( ops );
-		language.setValue( firstKey );
-
-	});
+	RefreshFolder();
 
 	return container;
 
