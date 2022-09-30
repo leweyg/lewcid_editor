@@ -1,4 +1,4 @@
-import { UIListbox, UIPanel, UIRow, UISelect, UISpan, UIText } from './libs/ui.js';
+import { UIListbox, UIPanel, UIRow, UISelect, UISpan, UIText, UIInput } from './libs/ui.js';
 
 import { FolderUtils } from "./FolderUtils.js"
 
@@ -18,20 +18,28 @@ function SidebarFolder( editor ) {
 
 	// current
 	const currentRow = new UIRow();
-	const currentOption = new UIText(mCurrentPath);
+	const currentOption = new UIInput(mCurrentPath);
 	currentRow.add( new UIText( strings.getKey( 'sidebar/folder/current' ) ).setWidth( '90px' ) );
 	currentRow.add( currentOption );
+	currentOption.onChange(() => {
+		var to = currentOption.getValue();
+		if (to != mCurrentPath) {
+			mCurrentPath = to;
+			RefreshFolder();
+		}
+	});
 	settings.add( currentRow );
 
 	// changeOption
 	const changeDefaults = {
-		'loading' : "Loading " + mCurrentPath + "...",
+		'open' : "Open",
+		'add' : "Import",
 	};
 	const changeRow = new UIRow();
 	const changeOption = new UISelect().setWidth( '150px' );
 	changeOption.setOptions( changeDefaults );
-	changeOption.setValue( 'loading' );
-	changeRow.add( new UIText( strings.getKey( 'sidebar/folder/change' ) ).setWidth( '90px' ) );
+	changeOption.setValue( 'open' );
+	changeRow.add( new UIText( strings.getKey( 'sidebar/folder/double_click' ) ).setWidth( '90px' ) );
 	changeRow.add( changeOption );
 	settings.add( changeRow );
 
@@ -46,12 +54,10 @@ function SidebarFolder( editor ) {
 
 	function RefreshFolder() {
 
-		currentOption.setTextContent(mCurrentPath);
+		currentOption.setValue(mCurrentPath);
 
 		FolderUtils.ShellExecute("ls -1 -p",(file_list) => {
 			var files = file_list.split("\n");
-			var ops = { };
-			ops["../"] = "../";
 			var file_list = [];
 			for (var i in files) {
 				var path = files[i].trim();
@@ -70,12 +76,7 @@ function SidebarFolder( editor ) {
 				add_on_click(item);
 
 				file_list.push(item);
-
-				if (path.endsWith("/")) {
-					ops[path] = path;
-				}
 			}
-			changeOption.setOptions( ops );
 			filesList.setItems(file_list);
 		}, mCurrentPath );
 	}
