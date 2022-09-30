@@ -1268,8 +1268,8 @@ class ListboxItem extends UIDiv {
 
 		function onClick() {
 
-			if (item && (item.onclick)) {
-				item.onclick();
+			if (item && (item.onClick)) {
+				item.onClick();
 				return;
 			}
 

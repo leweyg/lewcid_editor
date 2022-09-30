@@ -4,7 +4,7 @@ import { FolderUtils } from "./FolderUtils.js"
 
 function SidebarFolder( editor ) {
 
-	var mCurrentPath = "../../";
+	var mCurrentPath = "../../examples/models/obj/";
 
 	const config = editor.config;
 	const strings = editor.strings;
@@ -65,12 +65,24 @@ function SidebarFolder( editor ) {
 
 				var item = {
 					name : path,
-					full_path : mCurrentPath + path
+					full_path : mCurrentPath + path,
+					is_folder : path.endsWith("/"),
 				};
 				function add_on_click(to) {
-					to.onclick = (() => {
-						mCurrentPath = to.full_path;
-						RefreshFolder();
+					to.onClick = (() => {
+						if (to.is_folder) {
+							// change folder:
+							mCurrentPath = to.full_path;
+							RefreshFolder();
+						} else {
+							// do import/open:
+							FolderUtils.DownloadBlob(to.full_path, (blob) => {
+								blob.name = to.full_path;
+								files = [ blob ];
+								editor.loader.loadFiles( files );
+							});
+							
+						}
 					});
 				}
 				add_on_click(item);
