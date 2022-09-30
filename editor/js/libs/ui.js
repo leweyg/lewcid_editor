@@ -1189,7 +1189,7 @@ class UIListbox extends UIDiv {
 
 			const item = this.items[ i ];
 
-			const listitem = new ListboxItem( this );
+			const listitem = new ListboxItem( this, item );
 			listitem.setId( item.id || `Listbox-${i}` );
 			listitem.setTextContent( item.name || item.type );
 			this.add( listitem );
@@ -1256,7 +1256,7 @@ class UIListbox extends UIDiv {
 
 class ListboxItem extends UIDiv {
 
-	constructor( parent ) {
+	constructor( parent, item ) {
 
 		super();
 
@@ -1267,6 +1267,11 @@ class ListboxItem extends UIDiv {
 		const scope = this;
 
 		function onClick() {
+
+			if (item && (item.onclick)) {
+				item.onclick();
+				return;
+			}
 
 			if ( scope.parent ) {
 

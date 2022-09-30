@@ -46,19 +46,31 @@ function SidebarFolder( editor ) {
 
 	function RefreshFolder() {
 
+		currentOption.setTextContent(mCurrentPath);
+
 		FolderUtils.ShellExecute("ls -1 -p",(file_list) => {
 			var files = file_list.split("\n");
 			var ops = { };
 			ops["../"] = "../";
 			var file_list = [];
-			var firstKey = null;
 			for (var i in files) {
 				var path = files[i].trim();
 				if (path == "") continue;
-				firstKey = path;
-				file_list.push({
-					name : path
-				});
+
+				var item = {
+					name : path,
+					full_path : mCurrentPath + path
+				};
+				function add_on_click(to) {
+					to.onclick = (() => {
+						mCurrentPath = to.full_path;
+						RefreshFolder();
+					});
+				}
+				add_on_click(item);
+
+				file_list.push(item);
+
 				if (path.endsWith("/")) {
 					ops[path] = path;
 				}
