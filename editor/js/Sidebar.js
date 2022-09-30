@@ -1,6 +1,7 @@
 import { UITabbedPanel, UISpan } from './libs/ui.js';
 
 import { SidebarScene } from './Sidebar.Scene.js';
+import { SidebarFolder } from './Sidebar.Folder.js';
 import { SidebarProperties } from './Sidebar.Properties.js';
 import { SidebarScript } from './Sidebar.Script.js';
 import { SidebarAnimation } from './Sidebar.Animation.js';
@@ -20,10 +21,12 @@ function Sidebar( editor ) {
 		new SidebarAnimation( editor ),
 		new SidebarScript( editor )
 	);
+	const folder = new SidebarFolder( editor );
 	const project = new SidebarProject( editor );
 	const settings = new SidebarSettings( editor );
 
 	container.addTab( 'scene', strings.getKey( 'sidebar/scene' ), scene );
+	container.addTab( 'folder', strings.getKey( 'sidebar/folder' ), folder );
 	container.addTab( 'project', strings.getKey( 'sidebar/project' ), project );
 	container.addTab( 'settings', strings.getKey( 'sidebar/settings' ), settings );
 	container.select( 'scene' );

@@ -94,6 +94,9 @@ function Strings( config ) {
 			'sidebar/scene/environment': 'Environment',
 			'sidebar/scene/fog': 'Fog',
 
+			'sidebar/folder': 'Folder',
+			'sidebar/folder/change': 'Change',
+
 			'sidebar/properties/object': 'Object',
 			'sidebar/properties/geometry': 'Geometry',
 			'sidebar/properties/material': 'Material',
