@@ -4,6 +4,8 @@ import { FolderUtils } from "./FolderUtils.js"
 
 function SidebarFolder( editor ) {
 
+	var mCurrentPath = "../../";
+
 	const config = editor.config;
 	const strings = editor.strings;
 
@@ -16,21 +18,19 @@ function SidebarFolder( editor ) {
 
 	// current
 	const currentRow = new UIRow();
-	const currentOption = new UIText("./");
+	const currentOption = new UIText(mCurrentPath);
 	currentRow.add( new UIText( strings.getKey( 'sidebar/folder/current' ) ).setWidth( '90px' ) );
 	currentRow.add( currentOption );
 	settings.add( currentRow );
 
 	// changeOption
 	const changeDefaults = {
-		'./' : './',
-		'home': 'home (~)',
-		'project': 'project',
+		'loading' : "Loading " + mCurrentPath + "...",
 	};
 	const changeRow = new UIRow();
 	const changeOption = new UISelect().setWidth( '150px' );
 	changeOption.setOptions( changeDefaults );
-	changeOption.setValue( './' );
+	changeOption.setValue( 'loading' );
 	changeRow.add( new UIText( strings.getKey( 'sidebar/folder/change' ) ).setWidth( '90px' ) );
 	changeRow.add( changeOption );
 	settings.add( changeRow );
@@ -38,7 +38,7 @@ function SidebarFolder( editor ) {
 	// Files in that folder:
 	const filesRow = new UIRow();
 	const filesList = new UIListbox();
-	filesList.setItems( [ {name:"Loading Files..."} ] );
+	filesList.setItems( [ {name:"Loading " + mCurrentPath + "..."} ] );
 	filesRow.add( filesList );
 	settings.add( filesRow );
 
@@ -65,7 +65,7 @@ function SidebarFolder( editor ) {
 			}
 			changeOption.setOptions( ops );
 			filesList.setItems(file_list);
-		});
+		}, mCurrentPath );
 	}
 
 	RefreshFolder();

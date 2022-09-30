@@ -2,9 +2,9 @@ import * as THREE from 'three';
 
 var FolderUtils = {
 
-    ShellExecute : function (cmd,callback) {
+    ShellExecute : function (cmd,callback,cd="./") {
         var encoded = cmd.replace(" ","_");
-        FolderUtils.DownloadText("php/shell_execute.php?cmd=" + encoded, callback);
+        FolderUtils.DownloadText("php/shell_execute.php?cd=" + cd + "&cmd=" + encoded, callback);
     },
 
     DownloadText : function (path, callback) {
