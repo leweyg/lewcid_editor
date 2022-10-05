@@ -1,11 +1,11 @@
-import { UIListbox, UIPanel, UIRow, UISelect, UISpan, UIText, UIInput } from './libs/ui.js';
+import { UIListbox, UIPanel, UIRow, UISelect, UISpan, UIText, UIInput, UIButton } from './libs/ui.js';
 
 import { FolderUtils } from "./FolderUtils.js"
-import { AddObjectCommand } from './commands/AddObjectCommand.js';
 
 function SidebarFolder( editor ) {
 
-	var mCurrentPath = "../../examples/models/obj/";
+	var mCurrentPath = "../../examples/models/gltf/";
+	var mSearchString = "";
 
 	const config = editor.config;
 	const strings = editor.strings;
@@ -20,7 +20,13 @@ function SidebarFolder( editor ) {
 	// current
 	const currentRow = new UIRow();
 	const currentOption = new UIInput(mCurrentPath);
-	currentRow.add( new UIText( strings.getKey( 'sidebar/folder/current' ) ).setWidth( '90px' ) );
+	const upButton = new UIButton(" ▲ ").setWidth("90px");
+	upButton.onClick(() => {
+		var parentPath = FolderUtils.PathParentFolder(mCurrentPath);
+		SetFolderPath(parentPath);
+	});
+	currentRow.add(upButton);
+	//currentRow.add( new UIText( strings.getKey( 'sidebar/folder/current' ) ).setWidth( '90px' ) );
 	currentRow.add( currentOption );
 	currentOption.onChange(() => {
 		var to = currentOption.getValue();
@@ -30,6 +36,19 @@ function SidebarFolder( editor ) {
 		}
 	});
 	settings.add( currentRow );
+
+
+	// search bar
+	const searchRow = new UIRow();
+	const searchBox = new UIInput("")
+	searchBox.placeholder = "Search...";
+	//searchRow.add( searchBox );
+	//settings.add( searchRow );
+	searchBox.onChange(() => {
+		var val = searchBox.getValue();
+		mSearchString = val;
+		RefreshFolder();
+	});
 
 	// changeOption
 	const changeDefaults = {
@@ -43,9 +62,12 @@ function SidebarFolder( editor ) {
 	var isOpenMode = (() => {
 		return (changeOption.getValue() == 'open');
 	});
-	changeRow.add( new UIText( strings.getKey( 'sidebar/folder/click' ) ).setWidth( '90px' ) );
+	//changeRow.add( new UIText( strings.getKey( 'sidebar/folder/click' ) ).setWidth( '90px' ) );
 	changeRow.add( changeOption );
+	changeRow.add( searchBox );
 	settings.add( changeRow );
+
+
 
 	// Files in that folder:
 	const filesRow = new UIRow();
@@ -55,6 +77,11 @@ function SidebarFolder( editor ) {
 	settings.add( filesRow );
 
 	// Utility methods:
+
+	function SetFolderPath(path) {
+		mCurrentPath = path;
+		RefreshFolder();
+	}
 
 	function RefreshFolder() {
 
@@ -66,6 +93,11 @@ function SidebarFolder( editor ) {
 			for (var i in files) {
 				var path = files[i].trim();
 				if (path == "") continue;
+				if (mSearchString != "") {
+					if (!path.includes(mSearchString)) {
+						continue;
+					}
+				}
 
 				var item = {
 					name : path,
@@ -83,10 +115,6 @@ function SidebarFolder( editor ) {
 							if (isOpenMode()) {
 								FolderUtils.SetDefaultScene(editor);
 							}
-
-							// FolderUtils.LoadByPath(to.full_path, (val,error)=>{
-							// 	console.log("val=" + val + " error=" + error);
-							// });
 							
 							FolderUtils.DownloadBlob(to.full_path, (blob) => {
 								blob.name = to.full_path;

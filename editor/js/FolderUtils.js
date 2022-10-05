@@ -9,6 +9,19 @@ var FolderUtils = {
         FolderUtils.DownloadText("php/shell_execute.php?cd=" + cd + "&cmd=" + encoded, callback);
     },
 
+    PathParentFolder : function(path) {
+        if (path.endsWith("/")) {
+            path = path.substring(0,path.length-1);
+            var ending = path.lastIndexOf("/");
+            if (ending > 0) {
+                path = path.substring(0,ending+1);
+                return path;
+            }
+        }
+        console.error("TODO");
+        return path;
+    },
+
     SetDefaultScene : function(editor) {
         editor.clear();
         FolderUtils.AddDefaultLight(editor);
