@@ -1,6 +1,7 @@
 import { UIListbox, UIPanel, UIRow, UISelect, UISpan, UIText, UIInput } from './libs/ui.js';
 
 import { FolderUtils } from "./FolderUtils.js"
+import { AddObjectCommand } from './commands/AddObjectCommand.js';
 
 function SidebarFolder( editor ) {
 
@@ -80,12 +81,16 @@ function SidebarFolder( editor ) {
 						} else {
 							// do import/open:
 							if (isOpenMode()) {
-								editor.clear();
+								FolderUtils.SetDefaultScene(editor);
 							}
+
+							// FolderUtils.LoadByPath(to.full_path, (val,error)=>{
+							// 	console.log("val=" + val + " error=" + error);
+							// });
+							
 							FolderUtils.DownloadBlob(to.full_path, (blob) => {
 								blob.name = to.full_path;
-								files = [ blob ];
-								editor.loader.loadFiles( files );
+								editor.loader.loadFile( blob );
 							});
 							
 						}
