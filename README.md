@@ -5,8 +5,8 @@ like a traditional file-based 3D editor, while maintining it's online capabiliti
 
 Based on [three.js](https://threejs.org/)'s [editor source code](https://github.com/mrdoob/three.js)
 
-## Features
-- **Browser-based 3D Editor**: most existing three.js editor features such 3D scene import/authoring/export functions including models/lights/scripts etc.
+## Features (ALL IN PROGRESS)
+- **Browser-based 3D Editor**: most existing three.js editor features such 3D scene import/authoring/export (GLTF/OBJ/FBX/etc.) including models/lights/scripts etc.
 - **'File / Open'** menu item Opens file on your local computer.
 - **'File / Save'** menu item Opens file on your local computer.
 - **'File / Explore or Code'** items like open in local file explorer or vscode.
