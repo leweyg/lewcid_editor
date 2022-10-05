@@ -97,6 +97,7 @@ function Strings( config ) {
 			'sidebar/folder': 'Folder',
 			'sidebar/folder/current': 'Path',
 			'sidebar/folder/change': 'Change',
+			'sidebar/folder/click': 'Click',
 			'sidebar/folder/double_click': 'Double Click',
 
 			'sidebar/properties/object': 'Object',

@@ -39,7 +39,10 @@ function SidebarFolder( editor ) {
 	const changeOption = new UISelect().setWidth( '150px' );
 	changeOption.setOptions( changeDefaults );
 	changeOption.setValue( 'open' );
-	changeRow.add( new UIText( strings.getKey( 'sidebar/folder/double_click' ) ).setWidth( '90px' ) );
+	var isOpenMode = (() => {
+		return (changeOption.getValue() == 'open');
+	});
+	changeRow.add( new UIText( strings.getKey( 'sidebar/folder/click' ) ).setWidth( '90px' ) );
 	changeRow.add( changeOption );
 	settings.add( changeRow );
 
@@ -76,6 +79,9 @@ function SidebarFolder( editor ) {
 							RefreshFolder();
 						} else {
 							// do import/open:
+							if (isOpenMode()) {
+								editor.clear();
+							}
 							FolderUtils.DownloadBlob(to.full_path, (blob) => {
 								blob.name = to.full_path;
 								files = [ blob ];
