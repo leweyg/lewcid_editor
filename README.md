@@ -3,13 +3,15 @@
 Lewcid Editor is an adaptation of the three.js editor to run locally,
 like a traditional file-based 3D editor, while maintining it's online capabilities.
 
-[Based on the three.js editor](https://threejs.org/) 
+Based on [three.js](https://threejs.org/)'s [editor source code](https://github.com/mrdoob/three.js)
 
 ## Features
-- Most Three.js Features: 3D scene import/authoring/export functions including models/lights/scripts etc.
-- 'File / Open' menu item Opens file on your local computer.
-- 'Folder' tab to quick browse/open/instance large folders of files.
-- 'File / Folder' items like open in local file explorer or vscode.
+- **Browser-based 3D Editor**: most existing three.js editor features such 3D scene import/authoring/export functions including models/lights/scripts etc.
+- **'File / Open'** menu item Opens file on your local computer.
+- **'File / Save'** menu item Opens file on your local computer.
+- **'File / Explore or Code'** items like open in local file explorer or vscode.
+- **'Folder tab'** to quick browse/open/instance large folders of files.
+
 
 ## Short term setup:
 - Clone the git locally and run './editor_unix.sh' for Mac/Linux, or similar for Windows.
