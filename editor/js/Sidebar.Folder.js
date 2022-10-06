@@ -76,6 +76,21 @@ function SidebarFolder( editor ) {
 	filesRow.add( filesList );
 	settings.add( filesRow );
 
+	// Global callbacks:
+
+	var focusOnNextCommand = false;
+	editor.signals.historyChanged.add( (cmd)=> {
+		if ((!cmd) || (!(cmd.object))) return;
+
+		if (!focusOnNextCommand) {
+			return;
+		}
+		focusOnNextCommand = false;
+
+		//alert("Next command hit!");
+		editor.focus(cmd.object);
+	});
+
 	// Utility methods:
 
 	function SetFolderPath(path) {
@@ -118,6 +133,7 @@ function SidebarFolder( editor ) {
 							
 							FolderUtils.DownloadBlob(to.full_path, (blob) => {
 								blob.name = to.full_path;
+								focusOnNextCommand = true;
 								editor.loader.loadFile( blob );
 							});
 							
