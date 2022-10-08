@@ -27,6 +27,14 @@ var FolderUtils = {
         FolderUtils.AddDefaultLight(editor);
     },
 
+    ImportByPath : function(path,callback_blob) {
+        FolderUtils.DownloadBlob(path, (blob) => {
+            blob.name = path;
+            if (callback_blob) callback_blob(blob);
+            editor.loader.loadFile( blob );
+        });
+    },
+
     AddDefaultLight : function(editor) {
         const color = 0xffffff;
         const intensity = 1;

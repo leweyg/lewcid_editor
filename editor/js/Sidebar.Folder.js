@@ -131,10 +131,8 @@ function SidebarFolder( editor ) {
 								FolderUtils.SetDefaultScene(editor);
 							}
 							
-							FolderUtils.DownloadBlob(to.full_path, (blob) => {
-								blob.name = to.full_path;
+							FolderUtils.ImportByPath(to.full_path, (blob) => {
 								focusOnNextCommand = true;
-								editor.loader.loadFile( blob );
 							});
 							
 						}
