@@ -1,7 +1,7 @@
 # Lewcid Editor
 
 Lewcid Editor is an adaptation of the three.js editor to run locally,
-like a traditional file-based 3D editor, while maintining it's online capabilities.
+like a traditional file-based 3D editor, while maintining it's online capabilities. It is listed as this bug on the main three.js website: https://github.com/mrdoob/three.js/issues/24766 
 
 Based on [three.js](https://threejs.org/)'s [editor source code](https://github.com/mrdoob/three.js)
 
