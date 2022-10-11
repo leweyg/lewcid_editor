@@ -27,7 +27,23 @@ var FolderUtils = {
         FolderUtils.AddDefaultLight(editor);
     },
 
-    ImportByPath : function(path,callback_blob) {
+    ImportByPath : async function(path,callback_blob) {
+        if (path.endsWith(".obj")) {
+            const { MTLLoader } = await import( 'three/addons/loaders/MTLLoader.js' );
+			const { OBJLoader } = await import( 'three/addons/loaders/OBJLoader.js' );
+
+            var mtlPath = path.replace(".obj",".mtl");
+            new MTLLoader()
+                .load(mtlPath, function (materials) {
+                    materials.preload();
+                    new OBJLoader()
+                        .setMaterials(materials)
+                        .load(path, function (object) {
+                            editor.execute( new AddObjectCommand( editor, object ) );
+                        });
+                });
+            return;
+        }
         FolderUtils.DownloadBlob(path, (blob) => {
             blob.name = path;
             if (callback_blob) callback_blob(blob);
