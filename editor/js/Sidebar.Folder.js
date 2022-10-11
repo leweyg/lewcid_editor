@@ -20,7 +20,7 @@ function SidebarFolder( editor ) {
 	// current
 	const currentRow = new UIRow();
 	const currentOption = new UIInput(mCurrentPath);
-	const upButton = new UIButton(" ▲ ").setWidth("90px");
+	const upButton = new UIButton(" ▲Up ").setWidth("90px");
 	upButton.onClick(() => {
 		var parentPath = FolderUtils.PathParentFolder(mCurrentPath);
 		SetFolderPath(parentPath);

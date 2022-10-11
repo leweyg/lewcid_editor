@@ -64,9 +64,9 @@ function Strings( config ) {
 
 			'menubar/status/autosave': 'autosave',
 
-			'menubar/play': ' ► ',
-			'menubar/play/stop': ' ◾ ',
-			'menubar/play/play': '  ► ',
+			'menubar/play': ' ►Play ',
+			'menubar/play/stop': ' ◾Stop ',
+			'menubar/play/play': '  ►Play ',
 
 			'menubar/examples': 'Examples',
 			'menubar/examples/Arkanoid': 'Arkanoid',
