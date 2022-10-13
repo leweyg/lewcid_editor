@@ -95,6 +95,20 @@ function SidebarSettingsShortcuts( editor ) {
 
 	}
 
+	function redraw() {
+		editor.setViewportCamera(editor.camera.uuid);
+	}
+
+	function startMove(dir) {
+		dir.applyQuaternion( editor.camera.quaternion );
+		editor.camera.position.add(dir);
+		redraw();
+	}
+
+	function endMove(dir) {
+
+	}
+
 	document.addEventListener( 'keydown', function ( event ) {
 
 		switch ( event.key.toLowerCase() ) {
@@ -114,6 +128,25 @@ function SidebarSettingsShortcuts( editor ) {
 				const parent = object.parent;
 				if ( parent !== null ) editor.execute( new RemoveObjectCommand( editor, object ) );
 
+				break;
+
+			case 'w':
+				startMove(new THREE.Vector3( 0, 0, -1 ));
+				break;
+			case 'a':
+				startMove(new THREE.Vector3(-1, 0,  0 ));
+				break;
+			case 's':
+				startMove(new THREE.Vector3( 0, 0,  1 ));
+				break;
+			case 'd':
+				startMove(new THREE.Vector3( 1, 0,  0 ));
+				break;
+			case 'q':
+				startMove(new THREE.Vector3( 0, 1,  0 ));
+				break;
+			case 'z':
+				startMove(new THREE.Vector3( 0,-1,  0 ));
 				break;
 
 			case config.getKey( 'settings/shortcuts/translate' ):
