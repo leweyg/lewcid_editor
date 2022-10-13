@@ -2379,5 +2379,33 @@
         "offset": 0,
         "path": "rocket_topB"
       }
+    ],
+    "metadata": {
+      "version": 0.2,
+        "type": "lewcid_object"
+    },
+    "children":[
+        {
+            "source":"corridor_corner.obj",
+            "user_data":"corridor_corner"
+        },
+        {
+            "user_data":"corridor",
+            "source":"corridor.obj",
+            "position":[1, 0, 0],
+            "rotation_degrees":[0, 90, 0]
+        },
+        {
+            "user_data":"corridor",
+            "source":"corridor.obj",
+            "position":[2, 0, 0],
+            "rotation_degrees":[0, 90, 0]
+        },
+        {
+            "source":"corridor_corner.obj",
+            "user_data":"corridor_corner",
+            "position":[3, 0, 0],
+            "rotation_degrees":[0, 180, 0]
+        }
     ]
   }

@@ -4,8 +4,8 @@ import { FolderUtils } from "./FolderUtils.js"
 
 function SidebarFolder( editor ) {
 
-	var mCurrentPath = "../../examples/models/gltf/";
-	//var mCurrentPath = "../../editor/hosted/space_dest/game/";
+	//var mCurrentPath = "../../examples/models/gltf/";
+	var mCurrentPath = "../../examples/models/obj/spacekit/";
 	var mSearchString = "";
 
 	const config = editor.config;
