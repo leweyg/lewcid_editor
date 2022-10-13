@@ -18,6 +18,10 @@ var FolderUtils = {
                 return path;
             }
         }
+        if (path.includes("/")) {
+            var ending = path.lastIndexOf("/");
+            return path.substring(0,ending+1);
+        }
         console.error("TODO");
         return path;
     },
@@ -27,7 +31,7 @@ var FolderUtils = {
         FolderUtils.AddDefaultLight(editor);
     },
 
-    ImportByPath : async function(path,callback_blob) {
+    ImportByPath_OBJ : async function(path,callback_blob,noAutoEditorAdd=false) {
         if (path.endsWith(".obj")) {
             const { MTLLoader } = await import( 'three/addons/loaders/MTLLoader.js' );
 			const { OBJLoader } = await import( 'three/addons/loaders/OBJLoader.js' );
@@ -39,10 +43,68 @@ var FolderUtils = {
                     new OBJLoader()
                         .setMaterials(materials)
                         .load(path, function (object) {
-                            editor.execute( new AddObjectCommand( editor, object ) );
+                            var isAutoAdd = !noAutoEditorAdd;
+                            if (isAutoAdd) {
+                                editor.execute( new AddObjectCommand( editor, object ) );
+                            }
+                            if (callback_blob) callback_blob(object);
                         });
                 });
             return;
+        }
+    },
+
+    lewcidObject_sceneFromJsonObject : function(jsonObj,folderPath) {
+        var el = new THREE.Group();
+        if (jsonObj.position) {
+            var p = jsonObj.position;
+            el.position.set(p[0],p[1],p[2]);
+        }
+        if (jsonObj.rotation) {
+            var p = jsonObj.rotation;
+            el.rotation.set(p[0],p[1],p[2]);
+        }
+        if (jsonObj.rotation_degrees) {
+            var p = jsonObj.rotation_degrees;
+            var s = 3.14159 / 180.0;
+            el.rotation.set(p[0]*s,p[1]*s,p[2]*s);
+        }
+        if (jsonObj.source) {
+            var url = folderPath + jsonObj.source;
+            FolderUtils.ImportByPath_OBJ(url, (childObj) => {
+                el.add(childObj);
+            }, /*noAutoEditorAdd=*/true );
+        }
+        if (jsonObj.children) {
+            for (var childIndex in jsonObj.children) {
+                var child = jsonObj.children[childIndex];
+                var res = FolderUtils.lewcidObject_sceneFromJsonObject(child,folderPath);
+                el.add(res);
+            }
+        }
+        return el;
+    },
+
+    ImportByPath_lewcidJSON : async function(path,callback_blob) {
+        const { MTLLoader } = await import( 'three/addons/loaders/MTLLoader.js' );
+        const { OBJLoader } = await import( 'three/addons/loaders/OBJLoader.js' );
+
+        FolderUtils.DownloadJSON(path, (jsonObject) => {
+            var folderRoot = FolderUtils.PathParentFolder(path);
+            var sceneObject = FolderUtils.lewcidObject_sceneFromJsonObject(jsonObject,folderRoot);
+
+            editor.execute( new AddObjectCommand( editor, sceneObject ) );
+            if (callback_blob) callback_blob(sceneObject);
+        });
+
+    },
+
+    ImportByPath : async function(path,callback_blob) {
+        if (path.endsWith(".obj")) {
+            return await FolderUtils.ImportByPath_OBJ(path, callback_blob);
+        }
+        if (path.endsWith(".json")) {
+            return FolderUtils.ImportByPath_lewcidJSON(path,callback_blob);
         }
         FolderUtils.DownloadBlob(path, (blob) => {
             blob.name = path;
