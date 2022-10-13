@@ -5,6 +5,7 @@ import { FolderUtils } from "./FolderUtils.js"
 function SidebarFolder( editor ) {
 
 	var mCurrentPath = "../../examples/models/gltf/";
+	//var mCurrentPath = "../../editor/hosted/space_dest/game/";
 	var mSearchString = "";
 
 	const config = editor.config;
@@ -83,6 +84,9 @@ function SidebarFolder( editor ) {
 		if ((!cmd) || (!(cmd.object))) return;
 
 		if (!focusOnNextCommand) {
+			return;
+		}
+		if (cmd.object.type == "DirectionalLight") {
 			return;
 		}
 		focusOnNextCommand = false;
