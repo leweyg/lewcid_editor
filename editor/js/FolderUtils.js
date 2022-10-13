@@ -26,6 +26,14 @@ var FolderUtils = {
         return path;
     },
 
+    PathWithoutFolder : function(path) {
+        if (path.includes("/")) {
+            var ending = path.lastIndexOf("/");
+            return path.substring(ending+1);
+        }
+        return path;
+    },
+
     SetDefaultScene : function(editor) {
         editor.clear();
         FolderUtils.AddDefaultLight(editor);
@@ -56,6 +64,10 @@ var FolderUtils = {
 
     lewcidObject_sceneFromJsonObject : function(jsonObj,folderPath) {
         var el = new THREE.Group();
+        el.userData = jsonObj;
+        if (jsonObj.name) {
+            el.name = jsonObj.name;
+        }
         if (jsonObj.position) {
             var p = jsonObj.position;
             el.position.set(p[0],p[1],p[2]);
@@ -72,12 +84,16 @@ var FolderUtils = {
         if (jsonObj.source) {
             var url = folderPath + jsonObj.source;
             FolderUtils.ImportByPath_OBJ(url, (childObj) => {
+                childObj.name = FolderUtils.PathWithoutFolder(jsonObj.source);
                 el.add(childObj);
             }, /*noAutoEditorAdd=*/true );
         }
         if (jsonObj.children) {
             for (var childIndex in jsonObj.children) {
                 var child = jsonObj.children[childIndex];
+                if (!child.name) {
+                    child.name = "child" + childIndex;
+                }
                 var res = FolderUtils.lewcidObject_sceneFromJsonObject(child,folderPath);
                 el.add(res);
             }
@@ -91,6 +107,9 @@ var FolderUtils = {
 
         FolderUtils.DownloadJSON(path, (jsonObject) => {
             var folderRoot = FolderUtils.PathParentFolder(path);
+            if (!jsonObject.name) {
+                jsonObject.name = FolderUtils.PathWithoutFolder(path);
+            }
             var sceneObject = FolderUtils.lewcidObject_sceneFromJsonObject(jsonObject,folderRoot);
 
             editor.execute( new AddObjectCommand( editor, sceneObject ) );
