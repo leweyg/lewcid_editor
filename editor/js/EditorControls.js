@@ -97,20 +97,23 @@ class EditorControls extends THREE.EventDispatcher {
 
 		this.rotate = function ( delta ) {
 
-			vector.copy( object.position ).sub( center );
+			//vector.copy( object.position ).sub( center );
+			vector.set(0,0,-1);
+			vector.applyQuaternion(object.quaternion);
 
 			spherical.setFromVector3( vector );
 
 			spherical.theta += delta.x * scope.rotationSpeed;
-			spherical.phi += delta.y * scope.rotationSpeed;
+			spherical.phi += delta.y * -scope.rotationSpeed;
 
 			spherical.makeSafe();
 
 			vector.setFromSpherical( spherical );
 
-			object.position.copy( center ).add( vector );
+			vector.add( object.position );
+			object.lookAt( vector );
+			
 
-			object.lookAt( center );
 
 			scope.dispatchEvent( changeEvent );
 
