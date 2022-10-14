@@ -113,7 +113,7 @@ function SidebarFolder( editor ) {
 				var path = files[i].trim();
 				if (path == "") continue;
 				if (mSearchString != "") {
-					if (!path.includes(mSearchString)) {
+					if (!path.toLowerCase().includes(mSearchString)) {
 						continue;
 					}
 				}
