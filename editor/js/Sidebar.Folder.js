@@ -159,6 +159,7 @@ function SidebarFolder( editor ) {
 		var file_path = urlParams.get("file_path");
 		if (!file_path) return;
 		FolderUtils.SetDefaultScene(editor);
+		document.title = FolderUtils.PathWithoutFolder(file_path) + " - lewcid editor";
 		FolderUtils.ImportByPath(file_path, (obj) => {
 			// editor.focus(obj);
 		});
