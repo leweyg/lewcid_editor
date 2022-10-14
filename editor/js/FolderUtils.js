@@ -106,9 +106,30 @@ var FolderUtils = {
             });
     },
 
+    lewcidObject_CleanUserData : function(obj) {
+        var ans = {};
+        var toInclude = ["name","source","userData"];
+        for (var i in toInclude) {
+            var prop = toInclude[i];
+            if (prop in obj) {
+                ans[prop] = obj[prop];
+            }
+        }
+        var toExclude = {
+            "children":0,
+            "position":0,
+            "rotation":0,
+            "rotation_degrees":0};
+        for (var prop in obj) {
+            if (prop in toExclude) continue;
+            ans[prop] = obj[prop];
+        }
+        return ans;
+    },
+
     lewcidObject_sceneFromJsonObject : function(jsonObj,folderPath) {
         var el = new THREE.Group();
-        el.userData = jsonObj;
+        el.userData = FolderUtils.lewcidObject_CleanUserData( jsonObj );
         if (jsonObj.name) {
             el.name = jsonObj.name;
         }
@@ -128,17 +149,17 @@ var FolderUtils = {
         if (jsonObj.source) {
             var url = folderPath + jsonObj.source;
             FolderUtils.ImportByPath_OBJ(url, (childObj) => {
-                childObj.name = FolderUtils.PathWithoutFolder(jsonObj.source);
+                if (!childObj.name) childObj.name = FolderUtils.PathWithoutFolder(jsonObj.source);
                 el.add(childObj);
             }, /*noAutoEditorAdd=*/true );
         }
         if (jsonObj.children) {
             for (var childIndex in jsonObj.children) {
                 var child = jsonObj.children[childIndex];
-                if (!child.name) {
-                    child.name = "child" + childIndex;
-                }
                 var res = FolderUtils.lewcidObject_sceneFromJsonObject(child,folderPath);
+                if (!res.name) {
+                    res.name = "child" + childIndex;
+                }
                 el.add(res);
             }
         }
@@ -146,9 +167,6 @@ var FolderUtils = {
     },
 
     ImportByPath_lewcidJSON : async function(path,callback_blob) {
-        const { MTLLoader } = await import( 'three/addons/loaders/MTLLoader.js' );
-        const { OBJLoader } = await import( 'three/addons/loaders/OBJLoader.js' );
-
         FolderUtils.DownloadJSON(path, (jsonObject) => {
             var folderRoot = FolderUtils.PathParentFolder(path);
             if (!jsonObject.name) {
