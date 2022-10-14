@@ -45,7 +45,7 @@ function SidebarFolder( editor ) {
 	searchBox.placeholder = "Search...";
 	//searchRow.add( searchBox );
 	//settings.add( searchRow );
-	searchBox.onChange(() => {
+	searchBox.onInput(() => {
 		var val = searchBox.getValue();
 		mSearchString = val;
 		RefreshFolder();
