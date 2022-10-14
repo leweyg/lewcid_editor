@@ -166,6 +166,44 @@ var FolderUtils = {
         return el;
     },
 
+    lewcidObject_ExportToObjectFromSceneRecursive : function(scene) {
+        var ans = {};
+        if (scene.name) {
+            ans.name = scene.name;
+        }
+        if (scene.position) {
+            var v = scene.position;
+            ans.position = [ v.x, v.y, v.z ];
+        }
+        if (scene.rotation) {
+            var v = scene.rotation;
+            ans.rotation = [ v.x, v.y, v.z ];
+        }
+        if (scene.userData) {
+            ans.userData = scene.userData;
+        }
+        if (scene.userData && scene.userData.source) {
+            ans.source = scene.userData.source;
+        } else if (scene.children && scene.children.length>0) {
+            ans.children = [];
+            for (var i in scene.children) {
+                var from = scene.children[i];
+                var to = FolderUtils.lewcidObject_ExportToObjectFromSceneRecursive(from);
+                ans.children.push(to);
+            }
+        }
+        return ans;
+    },
+
+    lewcidObject_ExportToObjectFromEditor : function() {
+        var root = FolderUtils.lewcidObject_ExportToObjectFromSceneRecursive(editor.scene);
+        root.metadata = {
+            "version": 0.2,
+            "type": "lewcid_object"
+        };
+        return root;
+    },
+
     ImportByPath_lewcidJSON : async function(path,callback_blob) {
         FolderUtils.DownloadJSON(path, (jsonObject) => {
             var folderRoot = FolderUtils.PathParentFolder(path);

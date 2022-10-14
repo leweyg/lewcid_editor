@@ -254,6 +254,7 @@ self.addEventListener( 'fetch', async function ( event ) {
 	const request = event.request;
 
 	if ( request.url.startsWith( 'chrome-extension' ) ) return;
+	if ( request.method == "POST" ) return;
 
 	event.respondWith( networkFirst( request ) );
 
@@ -275,6 +276,8 @@ async function networkFirst( request ) {
 
 		}
 
+		if (request.method == "POST") return response;
+		
 		const cache = await caches.open( cacheName );
 		cache.put( request, response.clone() );
 		return response;

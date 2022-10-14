@@ -62,13 +62,15 @@ function MenubarFile( editor ) {
 	saveOption.setClass( 'option' );
 	saveOption.setTextContent( strings.getKey( 'menubar/file/save' ) );
 	saveOption.onClick( function () {
-		var saveTo = FolderUtils.GetFilePathInURL();
+		var testExtension = ".out.json"; // TODO: make this ""
+		var saveTo = FolderUtils.GetFilePathInURL() + testExtension;
 		if (!saveTo) {
 			alert("Select a scene in the 'Folder' tab first.");
 			return;
 		}
-		var testObj = JSON.stringify( {"hello":"world"} );
-		FolderUtils.ShellSaveToFile(saveTo,testObj,(responce)=>{
+		var contentObj = FolderUtils.lewcidObject_ExportToObjectFromEditor();
+		var contentText = JSON.stringify(contentObj);
+		FolderUtils.ShellSaveToFile(saveTo,contentText,(responce)=>{
 			alert("Saved = " + responce);
 		});
 	} );
