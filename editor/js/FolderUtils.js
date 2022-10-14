@@ -53,6 +53,14 @@ var FolderUtils = {
         return path;
     },
 
+    PathDisplayName : function(path) {
+        path = FolderUtils.PathWithoutFolder(path);
+        if (path.includes(".")) {
+            path = path.substring(0,path.lastIndexOf("."));
+        }
+        return path;
+    },
+
     SetDefaultScene : function(editor) {
         editor.clear();
         FolderUtils.AddDefaultLight(editor);
@@ -70,7 +78,7 @@ var FolderUtils = {
                     new OBJLoader()
                         .setMaterials(materials)
                         .load(path, function (object) {
-                            object.name = FolderUtils.PathWithoutFolder(path);
+                            object.name = FolderUtils.PathDisplayName(path);
                             object.userData = {
                                 source : FolderUtils.PathWithoutFolder(path)
                             };
@@ -79,6 +87,8 @@ var FolderUtils = {
                                 FolderUtils.EnsureMainSceneNode(editor,(parent)=>{
                                     parent.add(object);
                                 });
+                                editor.selected = object;
+                                editor.signals.objectSelected.dispatch( object );
                             }
                             if (callback_blob) callback_blob(object);
                         });
@@ -165,7 +175,7 @@ var FolderUtils = {
         if (jsonObj.source) {
             var url = folderPath + jsonObj.source;
             FolderUtils.ImportByPath_OBJ(url, (childObj) => {
-                if (!childObj.name) childObj.name = FolderUtils.PathWithoutFolder(jsonObj.source);
+                if (!childObj.name) childObj.name = FolderUtils.PathDisplayName(jsonObj.source);
                 el.add(childObj);
             }, /*noAutoEditorAdd=*/true );
         }
