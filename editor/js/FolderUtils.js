@@ -108,13 +108,19 @@ var FolderUtils = {
 
     lewcidObject_CleanUserData : function(obj) {
         var ans = {};
-        var toInclude = ["name","source","userData"];
+        if (obj.userData) {
+            for (var prop in obj.userData) {
+                ans[prop] = obj.userData[prop];
+            }
+        }
+        var toInclude = ["source"];
         for (var i in toInclude) {
             var prop = toInclude[i];
             if (prop in obj) {
                 ans[prop] = obj[prop];
             }
         }
+        /*  
         var toExclude = {
             "children":0,
             "position":0,
@@ -124,6 +130,7 @@ var FolderUtils = {
             if (prop in toExclude) continue;
             ans[prop] = obj[prop];
         }
+        */
         return ans;
     },
 
@@ -166,6 +173,16 @@ var FolderUtils = {
         return el;
     },
 
+    lewcidObject_CleanUserDataForExport : function(data) {
+        var ans = {};
+        var toExclude = {"source":true,};
+        for (var prop in data) {
+            if (prop in toExclude) continue;
+            ans[prop] = data[prop];
+        }
+        return ans;
+    },
+
     lewcidObject_ExportToObjectFromSceneRecursive : function(scene) {
         var ans = {};
         if (scene.name) {
@@ -180,7 +197,7 @@ var FolderUtils = {
             ans.rotation = [ v.x, v.y, v.z ];
         }
         if (scene.userData) {
-            ans.userData = scene.userData;
+            ans.userData = FolderUtils.lewcidObject_CleanUserDataForExport( scene.userData );
         }
         if (scene.userData && scene.userData.source) {
             ans.source = scene.userData.source;
@@ -196,7 +213,9 @@ var FolderUtils = {
     },
 
     lewcidObject_ExportToObjectFromEditor : function() {
-        var root = FolderUtils.lewcidObject_ExportToObjectFromSceneRecursive(editor.scene);
+        var sceneRoot = editor.scene;
+        var toExport = sceneRoot.children[1]; // after the light
+        var root = FolderUtils.lewcidObject_ExportToObjectFromSceneRecursive(toExport);
         root.metadata = {
             "version": 0.2,
             "type": "lewcid_object"

@@ -62,7 +62,7 @@ function MenubarFile( editor ) {
 	saveOption.setClass( 'option' );
 	saveOption.setTextContent( strings.getKey( 'menubar/file/save' ) );
 	saveOption.onClick( function () {
-		var testExtension = ".out.json"; // TODO: make this ""
+		var testExtension = ""; //".out.json"; // TODO: make this ""
 		var saveTo = FolderUtils.GetFilePathInURL() + testExtension;
 		if (!saveTo) {
 			alert("Select a scene in the 'Folder' tab first.");
