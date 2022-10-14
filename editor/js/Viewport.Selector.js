@@ -15,17 +15,9 @@ class Selector {
 
 				const object = intersects[ 0 ].object;
 
-				if ( object.userData.object !== undefined ) {
+				const better = this.refineSelection( object );
 
-					// helper
-
-					this.select( object.userData.object );
-
-				} else {
-
-					this.select( object );
-
-				}
+				this.select( better );
 
 			} else {
 
@@ -35,6 +27,21 @@ class Selector {
 
 		} );
 
+	}
+
+	refineSelection ( object ) {
+		if ( object.userData.object !== undefined ) {
+			// select based on userData.object:
+			return object.userData.object;
+		}
+		var better = object;
+		for (var parent = object; parent; parent = parent.parent) {
+			// find top most parent which is a "source":
+			if (parent.userData && parent.userData.source) {
+				better = parent;
+			}
+		}
+		return better;
 	}
 
 	select( object ) {
