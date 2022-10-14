@@ -9,6 +9,21 @@ var FolderUtils = {
         FolderUtils.DownloadText("php/shell_execute.php?cd=" + cd + "&cmd=" + encoded, callback);
     },
 
+    GetFilePathInURL : function() {
+		var queryString = window.location.search;
+		var urlParams = new URLSearchParams(queryString);
+		var file_path = urlParams.get("file_path");
+		if (!file_path) return;
+        return file_path;
+    },
+
+    SetFilePathInURL : function(path) {
+        var current = window.location.pathname;
+        var toUrl = current + "?file_path=" + path;
+        var name = FolderUtils.PathWithoutFolder(path);
+        window.history.pushState({},name,toUrl);
+    },
+
     PathParentFolder : function(path) {
         if (path.endsWith("/")) {
             path = path.substring(0,path.length-1);

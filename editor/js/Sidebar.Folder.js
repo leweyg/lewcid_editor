@@ -133,6 +133,7 @@ function SidebarFolder( editor ) {
 							// do import/open:
 							if (isOpenMode()) {
 								FolderUtils.SetDefaultScene(editor);
+								FolderUtils.SetFilePathInURL(to.full_path);
 							}
 							
 							FolderUtils.ImportByPath(to.full_path, (blob) => {
@@ -151,6 +152,21 @@ function SidebarFolder( editor ) {
 	}
 
 	RefreshFolder();
+
+	function checkUrlParameters() {
+		var queryString = window.location.search;
+		var urlParams = new URLSearchParams(queryString);
+		var file_path = urlParams.get("file_path");
+		if (!file_path) return;
+		FolderUtils.SetDefaultScene(editor);
+		FolderUtils.ImportByPath(file_path, (obj) => {
+			// editor.focus(obj);
+		});
+	}
+
+	window.onload = (() => {
+		checkUrlParameters();
+	});
 
 	return container;
 
