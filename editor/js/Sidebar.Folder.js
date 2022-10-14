@@ -106,8 +106,7 @@ function SidebarFolder( editor ) {
 
 		currentOption.setValue(mCurrentPath);
 
-		FolderUtils.ShellExecute("ls -1 -p",(file_list) => {
-			var files = file_list.split("\n");
+		FolderUtils.GetFilesInPath(mCurrentPath,(files) => {
 			var file_list = [];
 			for (var i in files) {
 				var path = files[i].trim();
@@ -150,7 +149,7 @@ function SidebarFolder( editor ) {
 				file_list.push(item);
 			}
 			filesList.setItems(file_list);
-		}, mCurrentPath );
+		} );
 	}
 
 	RefreshFolder();

@@ -62,6 +62,10 @@ function MenubarFile( editor ) {
 	saveOption.setClass( 'option' );
 	saveOption.setTextContent( strings.getKey( 'menubar/file/save' ) );
 	saveOption.onClick( function () {
+		if (!FolderUtils.IsLocalHost()) {
+            alert("Save is not supported on web!\n\nPlease clone and host locally.");
+            return;
+        }
 		var testExtension = ""; //".out.json"; // TODO: make this ""
 		var saveTo = FolderUtils.GetFilePathInURL() + testExtension;
 		if (!saveTo) {

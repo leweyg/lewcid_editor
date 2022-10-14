@@ -5,8 +5,32 @@ import { AddObjectCommand } from './commands/AddObjectCommand.js';
 var FolderUtils = {
 
     ShellExecute : function (cmd,callback,cd="./") {
+        if (!FolderUtils.IsLocalHost()) {
+            alert("Not supported on web!");
+            if (callback) callback(null);
+            return;
+        }
         var encoded = cmd.replace(" ","_");
         FolderUtils.DownloadText("php/shell_execute.php?cd=" + cd + "&cmd=" + encoded, callback);
+    },
+
+    IsLocalHost : function() {
+        return window.location.href.includes("localhost:");
+    },
+
+    GetFilesInPath : function(path,callback) {
+        if (FolderUtils.IsLocalHost()) {
+            FolderUtils.ShellExecute("ls -1 -p",(file_list) => {
+                var files = file_list.split("\n");
+                return callback(files);
+            }, path);
+        } else {
+            var hackForNowPath = "../../examples/models/obj/spacekit/file_list.txt";
+            FolderUtils.DownloadText(hackForNowPath, (txt)=>{
+                var files = txt.split("\n");
+                return callback(files);
+            });
+        }
     },
 
     GetFilePathInURL : function() {
