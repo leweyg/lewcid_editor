@@ -67,6 +67,9 @@ var FolderUtils = {
                         .setMaterials(materials)
                         .load(path, function (object) {
                             object.name = FolderUtils.PathWithoutFolder(path);
+                            object.userData = {
+                                source : FolderUtils.PathWithoutFolder(path)
+                            };
                             var isAutoAdd = !noAutoEditorAdd;
                             if (isAutoAdd) {
                                 editor.execute( new AddObjectCommand( editor, object ) );
