@@ -24,6 +24,10 @@ var FolderUtils = {
         window.history.pushState({},name,toUrl);
     },
 
+    SetTitleFromPath : function(path) {
+        document.title = FolderUtils.PathWithoutFolder(path) + " - lewcid editor";
+    },
+
     PathParentFolder : function(path) {
         if (path.endsWith("/")) {
             path = path.substring(0,path.length-1);

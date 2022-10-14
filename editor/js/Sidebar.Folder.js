@@ -134,6 +134,7 @@ function SidebarFolder( editor ) {
 							if (isOpenMode()) {
 								FolderUtils.SetDefaultScene(editor);
 								FolderUtils.SetFilePathInURL(to.full_path);
+								FolderUtils.SetTitleFromPath(to.full_path);
 							}
 							
 							FolderUtils.ImportByPath(to.full_path, (blob) => {
@@ -159,7 +160,7 @@ function SidebarFolder( editor ) {
 		var file_path = urlParams.get("file_path");
 		if (!file_path) return;
 		FolderUtils.SetDefaultScene(editor);
-		document.title = FolderUtils.PathWithoutFolder(file_path) + " - lewcid editor";
+		FolderUtils.SetTitleFromPath(file_path);
 		FolderUtils.ImportByPath(file_path, (obj) => {
 			// editor.focus(obj);
 		});
