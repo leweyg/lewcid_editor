@@ -194,14 +194,17 @@ var FolderUtils = {
 
     lewcidObject_ExportToObjectFromSceneRecursive : function(scene) {
         var ans = {};
+        
         if (scene.name) {
             ans.name = scene.name;
         }
-        if (scene.position) {
+        const posZero = new THREE.Vector3();
+        if (scene.position && !scene.position.equals(posZero)) {
             var v = scene.position;
             ans.position = [ v.x, v.y, v.z ];
         }
-        if (scene.rotation) {
+        const eulerZero = new THREE.Euler();
+        if (scene.rotation && !scene.rotation.equals(eulerZero)) {
             var v = scene.rotation;
             ans.rotation = [ v.x, v.y, v.z ];
         }
