@@ -41,6 +41,7 @@ function MenubarFile( editor ) {
 
 	// Open
 
+	/*
 	let openOption = new UIRow();
 	openOption.setClass( 'option' );
 	openOption.setTextContent( strings.getKey( 'menubar/file/open' ) );
@@ -53,6 +54,25 @@ function MenubarFile( editor ) {
 		});
 	} );
 	options.add( openOption );
+	*/
+
+	// Save
+
+	let saveOption = new UIRow();
+	saveOption.setClass( 'option' );
+	saveOption.setTextContent( strings.getKey( 'menubar/file/save' ) );
+	saveOption.onClick( function () {
+		var saveTo = FolderUtils.GetFilePathInURL();
+		if (!saveTo) {
+			alert("Select a scene in the 'Folder' tab first.");
+			return;
+		}
+		var testObj = JSON.stringify( {"hello":"world"} );
+		FolderUtils.ShellSaveToFile(saveTo,testObj,(responce)=>{
+			alert("Saved = " + responce);
+		});
+	} );
+	options.add( saveOption );
 
 	// Folder Open
 

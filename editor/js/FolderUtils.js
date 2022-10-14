@@ -244,6 +244,19 @@ var FolderUtils = {
         rawFile.send(null);
     },
 
+    ShellSaveToFile : function(path,content,callback) {
+        var url = "php/save_to_file.php?path=" + path;
+        var rawFile = new XMLHttpRequest();
+        rawFile.overrideMimeType("application/json");
+        rawFile.open("POST", url, true);
+        rawFile.onreadystatechange = function() {
+            if (rawFile.readyState === 4 && rawFile.status == "200") {
+                callback(rawFile.responseText);
+            }
+        }
+        rawFile.send(content);
+    },
+
     DownloadText : function (path, callback) {
         var rawFile = new XMLHttpRequest();
         rawFile.overrideMimeType("application/json");

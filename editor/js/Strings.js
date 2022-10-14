@@ -9,6 +9,7 @@ function Strings( config ) {
 			'menubar/file': 'File',
 			'menubar/file/new': 'New',
 			'menubar/file/open': 'Open',
+			'menubar/file/save': 'Save',
 			'menubar/file/folder/open': 'Open Folder',
 			'menubar/file/folder/code': 'Code Folder',
 			'menubar/file/import': 'Import',
