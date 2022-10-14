@@ -25,7 +25,7 @@ var FolderUtils = {
                 return callback(files);
             }, path);
         } else {
-            var hackForNowPath = "../../examples/models/obj/spacekit/file_list.txt";
+            var hackForNowPath = "../examples/models/obj/spacekit/file_list.txt";
             FolderUtils.DownloadText(hackForNowPath, (txt)=>{
                 var files = txt.split("\n");
                 return callback(files);
@@ -38,6 +38,12 @@ var FolderUtils = {
 		var urlParams = new URLSearchParams(queryString);
 		var file_path = urlParams.get("file_path");
 		if (!file_path) return;
+        if (!FolderUtils.IsLocalHost()) {
+            if (file_path.startsWith("../../")) {
+                // not needed on web:
+                file_path = file_path.substring("../".length);
+            }
+        }
         return file_path;
     },
 
