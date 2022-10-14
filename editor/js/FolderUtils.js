@@ -62,6 +62,34 @@ var FolderUtils = {
         }
     },
 
+
+    ImportByPath_MTL : async function(path,callback_blob,noAutoEditorAdd=false) {
+        const { MTLLoader } = await import( 'three/addons/loaders/MTLLoader.js' );
+
+        var mtlPath = path.replace(".obj",".mtl");
+        new MTLLoader()
+            .load(mtlPath, function (materials) {
+                materials.preload();
+                var group = new THREE.Group();
+                group.name = FolderUtils.PathWithoutFolder(path);
+                var matList = materials.materials;
+                
+                var matOffset = 0;
+                for (var matIndex in matList) {
+                    var material = matList[matIndex];
+                    const geometry = new THREE.SphereGeometry( 1.0, 8, 8 );
+                    const sphere = new THREE.Mesh( geometry, material );
+                    sphere.position.set( matOffset, 0, 0 );
+                    matOffset += 2.0;
+                    sphere.name = matIndex;
+                    group.add(sphere);
+                }
+
+                editor.execute( new AddObjectCommand( editor, group ) );
+                if (callback_blob) callback_blob(group);
+            });
+    },
+
     lewcidObject_sceneFromJsonObject : function(jsonObj,folderPath) {
         var el = new THREE.Group();
         el.userData = jsonObj;
@@ -121,6 +149,9 @@ var FolderUtils = {
     ImportByPath : async function(path,callback_blob) {
         if (path.endsWith(".obj")) {
             return await FolderUtils.ImportByPath_OBJ(path, callback_blob);
+        }
+        if (path.endsWith(".mtl")) {
+            return await FolderUtils.ImportByPath_MTL(path, callback_blob);
         }
         if (path.endsWith(".json")) {
             return FolderUtils.ImportByPath_lewcidJSON(path,callback_blob);
