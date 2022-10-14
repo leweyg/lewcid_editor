@@ -110,8 +110,8 @@ class TransformControls extends Object3D {
 		defineProperty( 'enabled', true );
 		defineProperty( 'axis', null );
 		defineProperty( 'mode', 'translate' );
-		defineProperty( 'translationSnap', null );
-		defineProperty( 'rotationSnap', null );
+		defineProperty( 'translationSnap', 0.5 );
+		defineProperty( 'rotationSnap', 3.14159 / 8.0 );
 		defineProperty( 'scaleSnap', null );
 		defineProperty( 'space', 'world' );
 		defineProperty( 'size', 1 );
