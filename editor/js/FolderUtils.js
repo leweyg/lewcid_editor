@@ -167,6 +167,10 @@ var FolderUtils = {
             var p = jsonObj.rotation;
             el.rotation.set(p[0],p[1],p[2]);
         }
+        if (jsonObj.scale) {
+            var p = jsonObj.scale;
+            el.scale.set(p[0],p[1],p[2]);
+        }
         if (jsonObj.rotation_degrees) {
             var p = jsonObj.rotation_degrees;
             var s = 3.14159 / 180.0;
@@ -217,6 +221,11 @@ var FolderUtils = {
         if (scene.rotation && !scene.rotation.equals(eulerZero)) {
             var v = scene.rotation;
             ans.rotation = [ v.x, v.y, v.z ];
+        }
+        const scaleOne = new THREE.Vector3(1,1,1);
+        if (scene.scale && !scene.scale.equals(scaleOne)) {
+            var v = scene.scale;
+            ans.scale = [ v.x, v.y, v.z ];
         }
         if (scene.userData) {
             ans.userData = FolderUtils.lewcidObject_CleanUserDataForExport( scene.userData );
