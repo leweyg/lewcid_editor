@@ -135,10 +135,11 @@ function SidebarFolder( editor ) {
 								FolderUtils.SetDefaultScene(editor);
 								FolderUtils.SetFilePathInURL(to.full_path);
 								FolderUtils.SetTitleFromPath(to.full_path);
+								focusOnNextCommand = true;
 							}
 							
 							FolderUtils.ImportByPath(to.full_path, (blob) => {
-								focusOnNextCommand = true;
+								
 							});
 							
 						}
