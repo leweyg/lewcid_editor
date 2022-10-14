@@ -76,7 +76,9 @@ var FolderUtils = {
                             };
                             var isAutoAdd = !noAutoEditorAdd;
                             if (isAutoAdd) {
-                                editor.execute( new AddObjectCommand( editor, object ) );
+                                FolderUtils.EnsureMainSceneNode(editor,(parent)=>{
+                                    parent.add(object);
+                                });
                             }
                             if (callback_blob) callback_blob(object);
                         });
@@ -220,8 +222,7 @@ var FolderUtils = {
     },
 
     lewcidObject_ExportToObjectFromEditor : function() {
-        var sceneRoot = editor.scene;
-        var toExport = sceneRoot.children[1]; // after the light
+        var toExport = FolderUtils.EnsureMainSceneNode(editor);
         var root = FolderUtils.lewcidObject_ExportToObjectFromSceneRecursive(toExport);
         root.metadata = {
             "version": 0.2,
@@ -306,6 +307,33 @@ var FolderUtils = {
             }
         }
         rawFile.send(null);
+    },
+
+    CreateMainSceneNode : function(callback) {
+        var gp = new THREE.Group();
+        gp.name = "MainScene";
+        if (callback) callback(gp);
+        editor.execute( new AddObjectCommand( editor, gp ) );
+        return gp;
+    },
+
+    FindMainSceneNode : function() {
+        var top = editor.scene;
+        for (var ndx in top.children) {
+            var child = top.children[ndx];
+            if (child.name == "DefaultLight") continue;
+            return child;
+        }
+        return undefined;
+    },
+
+    EnsureMainSceneNode : function(editor,callback) {
+        var top = FolderUtils.FindMainSceneNode();
+        if (top) {
+            if (callback) callback(top);
+            return top;
+        }
+        return FolderUtils.CreateMainSceneNode(callback);
     },
 
     ShellSaveToFile : function(path,content,callback) {
