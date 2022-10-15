@@ -188,12 +188,7 @@ var FolderUtils = {
         return ans;
     },
 
-    lewcidObject_sceneFromJsonObject : function(jsonObj,folderPath) {
-        var el = new THREE.Group();
-        el.userData = FolderUtils.lewcidObject_CleanUserData( jsonObj );
-        if (jsonObj.name) {
-            el.name = jsonObj.name;
-        }
+    lewcidObject_ApplyTransformToScene : function(el,jsonObj) {
         if (jsonObj.position) {
             var p = jsonObj.position;
             el.position.set(p[0],p[1],p[2]);
@@ -211,6 +206,15 @@ var FolderUtils = {
             var s = 3.14159 / 180.0;
             el.rotation.set(p[0]*s,p[1]*s,p[2]*s);
         }
+    },
+
+    lewcidObject_sceneFromJsonObject : function(jsonObj,folderPath) {
+        var el = new THREE.Group();
+        el.userData = FolderUtils.lewcidObject_CleanUserData( jsonObj );
+        if (jsonObj.name) {
+            el.name = jsonObj.name;
+        }
+        FolderUtils.lewcidObject_ApplyTransformToScene(el, jsonObj);
         if (jsonObj.source) {
             var url = folderPath + jsonObj.source;
             FolderUtils.ImportByPath_OBJ(url, (childObj) => {
@@ -306,6 +310,10 @@ var FolderUtils = {
             var sceneObject = FolderUtils.lewcidObject_sceneFromJsonObject(jsonObject,folderRoot);
 
             editor.execute( new AddObjectCommand( editor, sceneObject ) );
+            if (jsonObject.metadata && jsonObject.metadata.camera) {
+                FolderUtils.lewcidObject_ApplyTransformToScene(editor.camera, jsonObject.metadata.camera);
+            }
+
             if (callback_blob) callback_blob(sceneObject);
         });
 
@@ -337,7 +345,7 @@ var FolderUtils = {
         light.target.name = 'DirectionalLight Target';
 
         light.position.set( 5, 10, 7.5 );
-
+        
         editor.execute( new AddObjectCommand( editor, light ) );
     },
 
@@ -388,6 +396,7 @@ var FolderUtils = {
         for (var ndx in top.children) {
             var child = top.children[ndx];
             if (child.name == "DefaultLight") continue;
+            if (child.name == "DefaultLight2") continue;
             return child;
         }
         return undefined;
