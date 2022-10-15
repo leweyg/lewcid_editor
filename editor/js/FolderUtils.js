@@ -156,10 +156,10 @@ var FolderUtils = {
                 var matOffset = 0;
                 for (var matIndex in matList) {
                     var material = matList[matIndex];
-                    const geometry = new THREE.SphereGeometry( 1.0, 8, 8 );
+                    const geometry = new THREE.SphereGeometry( 0.5, 8, 8 );
                     const sphere = new THREE.Mesh( geometry, material );
                     sphere.position.set( matOffset, 0, 0 );
-                    matOffset += 2.0;
+                    matOffset += 1.0;
                     sphere.name = matIndex;
                     group.add(sphere);
                 }
