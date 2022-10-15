@@ -5,8 +5,12 @@ import { FolderUtils } from "./FolderUtils.js"
 function SidebarFolder( editor ) {
 
 	//var mCurrentPath = "../../examples/models/gltf/";
-	var mCurrentPath = "../../examples/models/obj/spacekit/";
+	var mCurrentPath = "../examples/models/obj/spacekit/";
 	var mSearchString = "";
+
+	if (FolderUtils.IsLocalHost()) {
+		mCurrentPath = "../" + mCurrentPath;
+	}
 
 	const config = editor.config;
 	const strings = editor.strings;
@@ -155,9 +159,7 @@ function SidebarFolder( editor ) {
 	RefreshFolder();
 
 	function checkUrlParameters() {
-		var queryString = window.location.search;
-		var urlParams = new URLSearchParams(queryString);
-		var file_path = urlParams.get("file_path");
+		var file_path = FolderUtils.GetFilePathInURL();
 		if (!file_path) return;
 		FolderUtils.SetDefaultScene(editor);
 		FolderUtils.SetTitleFromPath(file_path);
