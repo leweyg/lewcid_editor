@@ -241,12 +241,7 @@ var FolderUtils = {
         return ans;
     },
 
-    lewcidObject_ExportToObjectFromSceneRecursive : function(scene) {
-        var ans = {};
-        
-        if (scene.name) {
-            ans.name = scene.name;
-        }
+    lewcidObject_ExportTransformFrom : function(ans,scene) {
         const posZero = new THREE.Vector3();
         if (scene.position && !scene.position.equals(posZero)) {
             var v = scene.position;
@@ -262,6 +257,15 @@ var FolderUtils = {
             var v = scene.scale;
             ans.scale = [ v.x, v.y, v.z ];
         }
+    },
+
+    lewcidObject_ExportToObjectFromSceneRecursive : function(scene) {
+        var ans = {};
+        
+        if (scene.name) {
+            ans.name = scene.name;
+        }
+        FolderUtils.lewcidObject_ExportTransformFrom(ans, scene);
         if (scene.userData) {
             ans.userData = FolderUtils.lewcidObject_CleanUserDataForExport( scene.userData );
         }
@@ -285,6 +289,11 @@ var FolderUtils = {
             "version": 0.2,
             "type": "lewcid_object"
         };
+        if (editor.camera) {
+            var cam = {};
+            root.metadata.camera = cam;
+            FolderUtils.lewcidObject_ExportTransformFrom(cam, editor.camera);
+        }
         return root;
     },
 
