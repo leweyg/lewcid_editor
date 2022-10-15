@@ -117,6 +117,11 @@ var FolderUtils = {
                                 FolderUtils.EnsureMainSceneNode(editor,(parent)=>{
                                     parent.add(object);
                                 });
+                                if (editor.selected) {
+                                    object.position.copy(editor.selected.position);
+                                    object.rotation.copy(editor.selected.rotation);
+                                    object.scale.copy(editor.selected.scale);
+                                }
                                 editor.selected = object;
                                 editor.signals.objectSelected.dispatch( object );
                             }
