@@ -78,8 +78,10 @@ function SidebarFolder( editor ) {
 	const currentOption = new UIInput(mCurrentPath);
 	const upButton = new UIButton(" ▲Up ").setWidth("90px");
 	upButton.onClick(() => {
-		var parentPath = FolderUtils.PathParentFolder(mCurrentPath);
-		SetFolderPath(parentPath);
+		if (mCurrentPath != "../") {
+			var parentPath = FolderUtils.PathParentFolder(mCurrentPath);
+			SetFolderPath(parentPath);
+		}
 	});
 	currentRow.add(upButton);
 	//currentRow.add( new UIText( strings.getKey( 'sidebar/folder/current' ) ).setWidth( '90px' ) );
