@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 
 import { AddObjectCommand } from './commands/AddObjectCommand.js';
+import { Viewport } from './Viewport.js';
 
 var FolderUtils = {
 
@@ -12,6 +13,12 @@ var FolderUtils = {
         }
         var encoded = cmd.replace(" ","_");
         FolderUtils.DownloadText("php/shell_execute.php?cd=" + cd + "&cmd=" + encoded, callback);
+    },
+
+    EditorRefresh : function() {
+        if (editor && editor.viewport && editor.viewport.render) {
+            editor.viewport.render();
+        }
     },
 
     IsLocalHost : function() {
@@ -124,6 +131,8 @@ var FolderUtils = {
                                 }
                                 editor.selected = object;
                                 editor.signals.objectSelected.dispatch( object );
+                            } else {
+                                FolderUtils.EditorRefresh();
                             }
                             if (callback_blob) callback_blob(object);
                         });
@@ -345,7 +354,7 @@ var FolderUtils = {
         light.target.name = 'DirectionalLight Target';
 
         light.position.set( 5, 10, 7.5 );
-        
+
         editor.execute( new AddObjectCommand( editor, light ) );
     },
 

@@ -28,6 +28,13 @@ function Viewport( editor ) {
 	container.add( new ViewportCamera( editor ) );
 	container.add( new ViewportInfo( editor ) );
 
+	// editor.viewport API:
+	editor.viewport = {
+		render : (() => {
+			render(); // calls the local method below.
+		})
+	};
+
 	//
 
 	let renderer = null;
