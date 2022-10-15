@@ -1,5 +1,5 @@
-_spacekit_metadata.json
-_spacekit_scene.json
+a_spacekit_minimal.json
+a_spacekit_scene.json
 alien.mtl
 alien.obj
 astronautA.mtl
