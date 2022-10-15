@@ -1,1 +1,3428 @@
-{"name":"_spacekit_scene.json","userData":{},"children":[{"name":"Housing","position":[1.5,0,-1],"userData":{},"children":[{"name":"terrain","position":[-0.5,0,1],"userData":{},"source":"terrain.obj"},{"name":"corridor_end","position":[2,0,0],"rotation":[0,1.5707963267948966,0],"userData":{},"source":"corridor_end.obj"},{"name":"corridor_window","position":[1,0,0],"rotation":[0,1.5707963267948966,0],"userData":{},"source":"corridor_window.obj"},{"name":"corridor_window","position":[0,0,1],"userData":{},"source":"corridor_window.obj"},{"name":"corridor_end","position":[0,0,2],"userData":{},"source":"corridor_end.obj"},{"name":"corridor_end","position":[-1,0,0],"rotation":[0,-1.5707963267948966,0],"userData":{},"source":"corridor_end.obj"},{"name":"corridor_split","rotation":[0,1.5707963267948966,0],"userData":{},"source":"corridor_split.obj"},{"name":"astronautB","position":[0.5,0,2.5],"rotation":[0,-0.5053037697345542,0],"userData":{},"source":"astronautB.obj"}]},{"name":"terrain_roadStraight","position":[0,0,-1],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"terrain_roadSplit","position":[-0.4988745416092035,0,-1.5086420967308816],"rotation":[0,3.141592653589793,0],"userData":{},"source":"terrain_roadSplit.obj"},{"name":"terrain_roadCorner","position":[-2.5,0,-2.5],"rotation":[0,1.5707963267948966,0],"userData":{},"source":"terrain_roadCorner.obj"},{"name":"terrain_roadCorner","position":[-1.5,0,-2.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_roadCorner.obj"},{"name":"terrain_roadStraight","position":[-1,0,-2],"rotation":[0,1.570795000005679,0],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"terrain_roadStraight","position":[0,0,2],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"terrain_roadStraight","position":[0,0,1],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"terrain","position":[1,0,1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[2,0,0],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[2,0,1],"userData":{},"source":"terrain.obj"},{"name":"rover","position":[0,0,1.5],"userData":{},"source":"rover.obj"},{"name":"terrain_roadStraight","position":[0,0,3],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"terrain","position":[1,0,2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[2,0,2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0,2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0,1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0,0],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[1,0,3],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[2,0,3],"userData":{},"source":"terrain.obj"},{"name":"rocks_smallA","position":[1,0,2],"userData":{},"source":"rocks_smallA.obj"},{"name":"terrain","position":[3,0,3],"userData":{},"source":"terrain.obj"},{"name":"rock_largeB","position":[3.5,0,2],"scale":[2,2,2],"userData":{},"source":"rock_largeB.obj"},{"name":"satelliteDish","position":[3.5,1,2],"rotation":[0,-0.7853975,0],"userData":{},"source":"satelliteDish.obj"},{"name":"terrain_sideCliff","position":[-1,0,0.5],"rotation":[0,1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"machine_generator","position":[-1,0,-1],"userData":{},"source":"machine_generator.obj"},{"name":"terrain","position":[-1,0,-1],"userData":{},"source":"terrain.obj"},{"name":"terrain_sideCorner","position":[-1.5,0,0.5],"rotation":[-3.141592653589793,0.000002653589793355844,-3.141592653589793],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"terrain_sideCornerInner","position":[-2.5,0,0.5],"rotation":[-3.141592653589793,0.000002653589793355844,-3.141592653589793],"userData":{},"source":"terrain_sideCornerInner.obj"},{"name":"terrain_sideCorner","position":[-2.5,0,-0.5],"rotation":[-3.141592653589793,0.000002653589793355844,-3.141592653589793],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"terrain_sideCorner","position":[-2.5,0,-0.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"terrain_sideCornerInner","position":[-2.5,0,0.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCornerInner.obj"},{"name":"terrain_sideCorner","position":[-4.5,0,0.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"terrain_sideCliff","position":[-4.5,0,0],"rotation":[-3.141592653589793,0.000002653589793355844,-3.141592653589793],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-5,0,2.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-5,0,1.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-3.5,0,3],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-2.5,0,3],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-1.5,0,3],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-1,0,1.5],"rotation":[0,1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCorner","position":[-4.5,0,2.5],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"terrain_sideCorner","position":[-1.5,0,2.5],"rotation":[0,1.570795000005679,0],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"terrain","position":[-4,0.5,1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-4,0.5,2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-3,0.5,1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-3,0.5,2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-2,0.5,1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-2,0.5,2],"userData":{},"source":"terrain.obj"},{"name":"platform_large","position":[-3.5,0.5,1.5],"userData":{},"source":"platform_large.obj"},{"name":"machine_wireless","position":[-2,0.5,2],"userData":{},"source":"machine_wireless.obj"},{"name":"craft_speederA","position":[-3.5,0.5,2],"userData":{},"source":"craft_speederA.obj"},{"name":"rock","position":[-2,0.5,1],"userData":{},"source":"rock.obj"},{"name":"terrain","position":[-1,0,4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-2,0,4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-3,0,4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-4,0,4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-5,0,4],"userData":{},"source":"terrain.obj"},{"name":"terrain_roadCorner","position":[0.5,0,-1.5],"rotation":[3.141592653589793,-0.000002653589793355844,3.141592653589793],"userData":{},"source":"terrain_roadCorner.obj"},{"name":"terrain_roadStraight","position":[1,0,-3],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"terrain_roadStraight","position":[1,0.5,-5],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"terrain_sideEnd","position":[0,0,-4],"userData":{},"source":"terrain_sideEnd.obj"},{"name":"terrain_ramp","position":[1,0,-4],"userData":{},"source":"terrain_ramp.obj"},{"name":"terrain_sideCliff","position":[0,0,-4.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-0.5,0,-6],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-1.5,0,-6],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCornerInner","position":[0.5,0,-6.5],"userData":{},"source":"terrain_sideCornerInner.obj"},{"name":"terrain","position":[0,0,-3],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-1,0,-3],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-1,0,-4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-1,0,-5],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-2,0,-4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-2,0,-5],"userData":{},"source":"terrain.obj"},{"name":"barrels_rail","position":[-1,0,-4.5],"userData":{},"source":"barrels_rail.obj"},{"name":"rocks_smallA","position":[-1,0,-3.5],"userData":{},"source":"rocks_smallA.obj"},{"name":"rail","position":[0,0,-3],"userData":{},"source":"rail.obj"},{"name":"rail","position":[2,0,-3],"userData":{},"source":"rail.obj"},{"name":"terrain_roadEnd","position":[1,0.5,-6],"userData":{},"source":"terrain_roadEnd.obj"},{"name":"terrain_sideEnd","position":[2,0,-4],"scale":[-1,1,1],"userData":{},"source":"terrain_sideEnd.obj"},{"name":"terrain_sideCliff","position":[2,0,-5.5],"rotation":[0,1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCornerInner","position":[1.5,0,-6.5],"rotation":[0,1.570795000005679,0],"userData":{},"source":"terrain_sideCornerInner.obj"},{"name":"terrain_sideCliff","position":[3.5,0,-6],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[4.5,0,-6],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain","position":[2,0,-3],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[2,0,-2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0,-5],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0,-5],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0,-4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0,-4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0,-3],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0,-3],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0,-2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0,-2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0,-2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0,-3],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0,-4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0,-5],"userData":{},"source":"terrain.obj"},{"name":"terrain_sideCliff","position":[5.5,0,-6],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"pipe_ring","position":[4,1,-6],"userData":{},"source":"pipe_ring.obj"},{"name":"pipe_supportHigh","position":[4,0,-6],"userData":{},"source":"pipe_supportHigh.obj"},{"name":"pipe_rampLarge","position":[4,0.5,-4],"userData":{},"source":"pipe_rampLarge.obj"},{"name":"pipe_ring","position":[4,0.5,-3],"userData":{},"source":"pipe_ring.obj"},{"name":"pipe_supportLow","position":[4,0,-3],"userData":{},"source":"pipe_supportLow.obj"},{"name":"pipe_cornerRound","position":[4,1,-7],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"pipe_cornerRound.obj"},{"name":"pipe_ring","position":[3,1,-7],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"pipe_ring.obj"},{"name":"pipe_supportLow","position":[3,0.5,-7],"userData":{},"source":"pipe_supportLow.obj"},{"name":"terrain","position":[5,0.5,-7],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0.5,-7],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0.5,-7],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[2,0.5,-7],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[1,0.5,-7],"userData":{},"source":"terrain.obj"},{"name":"terrain_roadStraight","position":[-3,0,-3],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"terrain_roadStraight","position":[-4,0,-3],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"terrain_roadStraight","position":[-5,0,-3],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"terrain","position":[-3,0,-4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-3,0,-5],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-3,0,-2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-4,0,-1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-4,0,-2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-5,0,-1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-5,0,-2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-4,0,-4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-5,0,-4],"userData":{},"source":"terrain.obj"},{"name":"structure","position":[-2.5,0,-5],"userData":{},"source":"structure.obj"},{"name":"rail_corner","position":[-3,0,-4.5],"rotation":[-3.141592653589793,0.000002653589793355844,-3.141592653589793],"userData":{},"source":"rail_corner.obj"},{"name":"platform_high","position":[-4,-0.5,-4],"userData":{},"source":"platform_high.obj"},{"name":"terrain","position":[-4,0,-5],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-5,0,-5],"userData":{},"source":"terrain.obj"},{"name":"rocks_smallB","position":[-4,0,-5],"userData":{},"source":"rocks_smallB.obj"},{"name":"terrain_sideCliff","position":[-2.5,0,-6],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-3.5,0,-6],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCorner","position":[-4.5,0,-6.5],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"machine_generatorLarge","position":[-5.5,0,-4.5],"rotation":[0,1.570795000005679,0],"userData":{},"source":"machine_generatorLarge.obj"},{"name":"terrain","position":[-6,0,-4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-6,0,-5],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-6,0,-2],"userData":{},"source":"terrain.obj"},{"name":"terrain_roadStraight","position":[-6,0,-3],"rotation":[0,1.570795000005679,0],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"platform_low","position":[-6,0,-2],"userData":{},"source":"platform_low.obj"},{"name":"terrain","position":[-6,0,-1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-6,0,0],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-6,0,1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-6,0,2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-6,0,3],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-6,0,4],"userData":{},"source":"terrain.obj"},{"name":"terrain_roadStraight","position":[0,0,4],"userData":{},"source":"terrain_roadStraight.obj"},{"name":"terrain","position":[1,0,4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[2,0,4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0,4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0,-1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0,-1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0,0],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0,0],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0,1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0,1],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0,2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0,2],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0,3],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0,3],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0,4],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0,4],"userData":{},"source":"terrain.obj"},{"name":"turret_single","position":[1,0,4],"userData":{},"source":"turret_single.obj"},{"name":"bones","position":[3,0,-4],"userData":{},"source":"bones.obj"},{"name":"rock_crystals","position":[-4,0,-1.5],"userData":{},"source":"rock_crystals.obj"},{"name":"terrain_sideCliff","position":[-5,0,-6.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"pipe_straight","position":[2,1,-7],"rotation":[0,1.570795000005679,0],"userData":{},"source":"pipe_straight.obj"},{"name":"pipe_ring","position":[1,1,-7],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"pipe_ring.obj"},{"name":"pipe_supportLow","position":[1,0.5,-7],"userData":{},"source":"pipe_supportLow.obj"},{"name":"monorail_trackSupport","position":[1,0.5,-6],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"monorail_trackSupport","position":[1,1,-6],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"monorail_trackSupport","position":[1,1.5,-6],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"monorail_trackStraight","position":[1,2,-6],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackStraight","position":[1,2,-5],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackStraight","position":[1,2,-4],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackCornerSmall","position":[1,2,-3],"rotation":[0,1.570795000005679,0],"userData":{},"source":"monorail_trackCornerSmall.obj"},{"name":"monorail_trackStraight","position":[2,2,-3],"rotation":[0,1.570795000005679,0],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackStraight","position":[3,2,-3],"rotation":[0,1.570795000005679,0],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackStraight","position":[4,2,-3],"rotation":[0,1.570795000005679,0],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackStraight","position":[5,2,-3],"rotation":[0,1.570795000005679,0],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackSupport","position":[5,1.5,-3],"rotation":[0,1.570795000005679,0],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"monorail_trackSupport","position":[5,1,-3],"rotation":[0,1.570795000005679,0],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"monorail_trackSupport","position":[5,0.5,-3],"rotation":[0,1.570795000005679,0],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"monorail_trackSupport","position":[5,0,-3],"rotation":[0,1.570795000005679,0],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"terrain","position":[0,0.5,-7],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-1,0.5,-7],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-2,0.5,-7],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-3,0.5,-7],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-4,0.5,-7],"userData":{},"source":"terrain.obj"},{"name":"pipe_rampSmall","position":[-1,0.5,-7],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"pipe_rampSmall.obj"},{"name":"pipe_end","position":[-2,0.5,-7],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"pipe_end.obj"},{"name":"rail","position":[-1,0.5,-7],"rotation":[3.141592653589793,-0.0000026535841143323648,3.141592653589793],"userData":{},"source":"rail.obj"},{"name":"rail","position":[-3,0.5,-7],"rotation":[3.141592653589793,-0.0000026535841143323648,3.141592653589793],"userData":{},"source":"rail.obj"},{"name":"rocks_smallB","position":[-3,0.5,-7.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"rocks_smallB.obj"},{"name":"crater","position":[-4,0.5,-7],"userData":{},"source":"crater.obj"},{"name":"terrain","position":[-4,0.5,-8],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-3,0.5,-8],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-2,0.5,-8],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-1,0.5,-8],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[0,0.5,-8],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[1,0.5,-8],"userData":{},"source":"terrain.obj"},{"name":"rocks_smallA","position":[-1.5,0.5,-8],"userData":{},"source":"rocks_smallA.obj"},{"name":"terrain_sideCliff","position":[-5,0,-7.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain","position":[-6,0,-6],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-6,0,-7],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-6,0,-8],"userData":{},"source":"terrain.obj"},{"name":"terrain_sideCorner","position":[-4.5,0,-8.5],"rotation":[0,-1.5707923463993516,0],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"terrain_sideCornerInner","position":[-3.5,0,-8.5],"rotation":[0,-1.5707923463993516,0],"userData":{},"source":"terrain_sideCornerInner.obj"},{"name":"terrain_sideCorner","position":[-3.5,0,-9.5],"rotation":[0,-1.5707923463993516,0],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"hangar_smallB","position":[-4.5,0,-10],"rotation":[0,-1.5707923463993516,0],"userData":{},"source":"hangar_smallB.obj"},{"name":"terrain","position":[-6,0,-9],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-6,0,-10],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-5,0,-10],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-5,0,-11],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-6,0,-11],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-3,0.5,-9],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-3,0.5,-10],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-3,0.5,-11],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-3,0.5,-12],"userData":{},"source":"terrain.obj"},{"name":"terrain_sideCliff","position":[-4,0,-10.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-4,0,-11.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain","position":[-6,0,-12],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-5,0,-12],"userData":{},"source":"terrain.obj"},{"name":"crater","position":[-5.5,0,-9.5],"userData":{},"source":"crater.obj"},{"name":"terrain_sideCorner","position":[-1.5,0.5,-9.5],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"terrain_sideCliff","position":[-2,0.5,-9.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-0.5,0.5,-9],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[0.5,0.5,-9],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[1.5,0.5,-9],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[-2,0.5,-10.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCorner","position":[-1.5,0.5,-11.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"terrain_sideCliff","position":[-1.5,0.5,-12],"rotation":[-3.141592653589793,0.000002653589793355844,-3.141592653589793],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain","position":[-1,1,-10],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[-1,1,-11],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[0,1,-11],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[0,1,-10],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[1,1,-10],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[1,1,-11],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"terrain.obj"},{"name":"terrain_sideCliff","position":[-0.5,0.5,-12],"rotation":[3.141592653589793,-0.0000026535841143323648,3.141592653589793],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[0.5,0.5,-12],"rotation":[3.141592653589793,-0.0000026535841143323648,3.141592653589793],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCorner","position":[1.5,0.5,-11.5],"rotation":[3.141592653589793,-0.0000026535841143323648,3.141592653589793],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"terrain_sideCliff","position":[2,0.5,-11.5],"rotation":[-1.2246484239927751e-16,1.5707923463993516,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCliff","position":[2,0.5,-10.5],"rotation":[-1.2246484239927751e-16,1.5707923463993516,0],"userData":{},"source":"terrain_sideCliff.obj"},{"name":"terrain_sideCorner","position":[1.5,0.5,-9.5],"rotation":[-1.2246484239927751e-16,1.5707923463993516,0],"userData":{},"source":"terrain_sideCorner.obj"},{"name":"terrain","position":[2,0.5,-8],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0.5,-8],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0.5,-8],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0.5,-9],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0.5,-9],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0.5,-9],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0.5,-8],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0.5,-10],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0.5,-11],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0.5,-11],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0.5,-10],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0.5,-11],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0.5,-10],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[3,0.5,-12],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[4,0.5,-12],"userData":{},"source":"terrain.obj"},{"name":"terrain","position":[5,0.5,-12],"userData":{},"source":"terrain.obj"},{"name":"monorail_trackStraight","position":[1,2,-7],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackStraight","position":[1,2,-8],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackCornerLarge","position":[0.5,2,-9.5],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"monorail_trackCornerLarge.obj"},{"name":"monorail_trackStraight","position":[-1,2,-10],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackCornerSmall","position":[-3,2,-10],"rotation":[0,1.570795000005679,0],"userData":{},"source":"monorail_trackCornerSmall.obj"},{"name":"monorail_trackStraight","position":[-3,2,-11],"rotation":[0,5.679012815562601e-12,0],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackStraight","position":[-3,2,-12],"rotation":[0,5.679012815562601e-12,0],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackStraight","position":[-2,2,-10],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"monorail_trackStraight.obj"},{"name":"monorail_trackSupport","position":[-3,1.5,-12],"rotation":[0,5.679012815562601e-12,0],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"monorail_trackSupport","position":[-3,1,-12],"rotation":[0,5.679012815562601e-12,0],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"monorail_trackSupport","position":[-3,0.5,-12],"rotation":[0,5.679012815562601e-12,0],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"monorail_trackSupport","position":[-1,1.5,-10],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"monorail_trackSupport","position":[-1,1,-10],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"monorail_trackSupport.obj"},{"name":"rail","position":[-1,1,-10],"rotation":[0,1.5707923463993516,0],"userData":{},"source":"rail.obj"},{"name":"rock_largeA","position":[0.5,1,-10.5],"rotation":[0,1.5707923463993516,0],"scale":[1.7128305514748536,1.7128305514748536,1.7128305514748536],"userData":{},"source":"rock_largeA.obj"},{"name":"rocket_baseA","position":[4,0.5,-9],"userData":{},"source":"rocket_baseA.obj"},{"name":"rocket_fuelB","position":[4,1.5,-9],"userData":{},"source":"rocket_fuelB.obj"},{"name":"rocket_sidesA","position":[4,2.5,-9],"userData":{},"source":"rocket_sidesA.obj"},{"name":"rocket_finsB","position":[4,3.5,-9],"userData":{},"source":"rocket_finsB.obj"},{"name":"rocket_topA","position":[4,4,-9],"userData":{},"source":"rocket_topA.obj"},{"name":"monorail_trainCargo","position":[1,2,-7],"userData":{},"source":"monorail_trainCargo.obj"},{"name":"monorail_trainCargo","position":[1,2,-8],"userData":{},"source":"monorail_trainCargo.obj"},{"name":"monorail_trainPassenger","position":[1,2,-6],"userData":{},"source":"monorail_trainPassenger.obj"},{"name":"monorail_trainFront","position":[1,2,-5],"userData":{},"source":"monorail_trainFront.obj"},{"name":"desk_computer","position":[-2.5,0,-5],"userData":{},"source":"desk_computer.obj"},{"name":"desk_chair","position":[-2.5,0,-4.5],"userData":{},"source":"desk_chair.obj"},{"name":"rover","position":[-3.5,0,-3],"rotation":[0,-1.570795000005679,0],"userData":{},"source":"rover.obj"},{"name":"terrain_roadStraight","userData":{},"source":"terrain_roadStraight.obj"},{"name":"rail","position":[1,0,3],"rotation":[0,1.570795000005679,0],"userData":{},"source":"rail.obj"},{"name":"astronautA","position":[-2.5,0.5,0],"rotation":[-3.141592653589793,0.0000026535897933581798,3.141592653589793],"userData":{},"source":"astronautA.obj"}],"metadata":{"version":0.2,"type":"lewcid_object"}}
+{
+  "name": "_spacekit_scene.json",
+  "userData": {},
+  "children": [
+    {
+      "name": "Housing",
+      "position": [
+        1.5,
+        0,
+        -1
+      ],
+      "userData": {},
+      "children": [
+        {
+          "name": "terrain",
+          "position": [
+            -0.5,
+            0,
+            1
+          ],
+          "userData": {},
+          "source": "terrain.obj"
+        },
+        {
+          "name": "corridor_end",
+          "position": [
+            2,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            1.5707963267948966,
+            0
+          ],
+          "userData": {},
+          "source": "corridor_end.obj"
+        },
+        {
+          "name": "corridor_window",
+          "position": [
+            1,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            1.5707963267948966,
+            0
+          ],
+          "userData": {},
+          "source": "corridor_window.obj"
+        },
+        {
+          "name": "corridor_window",
+          "position": [
+            0,
+            0,
+            1
+          ],
+          "userData": {},
+          "source": "corridor_window.obj"
+        },
+        {
+          "name": "corridor_end",
+          "position": [
+            0,
+            0,
+            2
+          ],
+          "userData": {},
+          "source": "corridor_end.obj"
+        },
+        {
+          "name": "corridor_end",
+          "position": [
+            -1,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            -1.5707963267948966,
+            0
+          ],
+          "userData": {},
+          "source": "corridor_end.obj"
+        },
+        {
+          "name": "corridor_split",
+          "rotation": [
+            0,
+            1.5707963267948966,
+            0
+          ],
+          "userData": {},
+          "source": "corridor_split.obj"
+        },
+        {
+          "name": "astronautB",
+          "position": [
+            0.5,
+            0,
+            2.5
+          ],
+          "rotation": [
+            0,
+            -0.5053037697345542,
+            0
+          ],
+          "userData": {},
+          "source": "astronautB.obj"
+        }
+      ]
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        0,
+        0,
+        -1
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "terrain_roadSplit",
+      "position": [
+        -0.4988745416092035,
+        0,
+        -1.5086420967308816
+      ],
+      "rotation": [
+        0,
+        3.141592653589793,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_roadSplit.obj"
+    },
+    {
+      "name": "terrain_roadCorner",
+      "position": [
+        -2.5,
+        0,
+        -2.5
+      ],
+      "rotation": [
+        0,
+        1.5707963267948966,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_roadCorner.obj"
+    },
+    {
+      "name": "terrain_roadCorner",
+      "position": [
+        -1.5,
+        0,
+        -2.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_roadCorner.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        -1,
+        0,
+        -2
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        0,
+        0,
+        2
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        0,
+        0,
+        1
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        1,
+        0,
+        1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        2,
+        0,
+        0
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        2,
+        0,
+        1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "rover",
+      "position": [
+        0,
+        0,
+        1.5
+      ],
+      "userData": {},
+      "source": "rover.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        0,
+        0,
+        3
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        1,
+        0,
+        2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        2,
+        0,
+        2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0,
+        2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0,
+        1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0,
+        0
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        1,
+        0,
+        3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        2,
+        0,
+        3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "rocks_smallA",
+      "position": [
+        1,
+        0,
+        2
+      ],
+      "userData": {},
+      "source": "rocks_smallA.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0,
+        3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "rock_largeB",
+      "position": [
+        3.5,
+        0,
+        2
+      ],
+      "scale": [
+        2,
+        2,
+        2
+      ],
+      "userData": {},
+      "source": "rock_largeB.obj"
+    },
+    {
+      "name": "satelliteDish",
+      "position": [
+        3.5,
+        1,
+        2
+      ],
+      "rotation": [
+        0,
+        -0.7853975,
+        0
+      ],
+      "userData": {},
+      "source": "satelliteDish.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -1,
+        0,
+        0.5
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "machine_generator",
+      "position": [
+        -1,
+        0,
+        -1
+      ],
+      "userData": {},
+      "source": "machine_generator.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -1,
+        0,
+        -1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        -1.5,
+        0,
+        0.5
+      ],
+      "rotation": [
+        -3.141592653589793,
+        0.000002653589793355844,
+        -3.141592653589793
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "terrain_sideCornerInner",
+      "position": [
+        -2.5,
+        0,
+        0.5
+      ],
+      "rotation": [
+        -3.141592653589793,
+        0.000002653589793355844,
+        -3.141592653589793
+      ],
+      "userData": {},
+      "source": "terrain_sideCornerInner.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        -2.5,
+        0,
+        -0.5
+      ],
+      "rotation": [
+        -3.141592653589793,
+        0.000002653589793355844,
+        -3.141592653589793
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        -2.5,
+        0,
+        -0.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "terrain_sideCornerInner",
+      "position": [
+        -2.5,
+        0,
+        0.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCornerInner.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        -4.5,
+        0,
+        0.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -4.5,
+        0,
+        0
+      ],
+      "rotation": [
+        -3.141592653589793,
+        0.000002653589793355844,
+        -3.141592653589793
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -5,
+        0,
+        2.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -5,
+        0,
+        1.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -3.5,
+        0,
+        3
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -2.5,
+        0,
+        3
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -1.5,
+        0,
+        3
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -1,
+        0,
+        1.5
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        -4.5,
+        0,
+        2.5
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        -1.5,
+        0,
+        2.5
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -4,
+        0.5,
+        1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -4,
+        0.5,
+        2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0.5,
+        1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0.5,
+        2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -2,
+        0.5,
+        1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -2,
+        0.5,
+        2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "platform_large",
+      "position": [
+        -3.5,
+        0.5,
+        1.5
+      ],
+      "userData": {},
+      "source": "platform_large.obj"
+    },
+    {
+      "name": "machine_wireless",
+      "position": [
+        -2,
+        0.5,
+        2
+      ],
+      "userData": {},
+      "source": "machine_wireless.obj"
+    },
+    {
+      "name": "craft_speederA",
+      "position": [
+        -3.5,
+        0.5,
+        2
+      ],
+      "userData": {},
+      "source": "craft_speederA.obj"
+    },
+    {
+      "name": "rock",
+      "position": [
+        -2,
+        0.5,
+        1
+      ],
+      "userData": {},
+      "source": "rock.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -1,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -2,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -4,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -5,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain_roadCorner",
+      "position": [
+        0.5,
+        0,
+        -1.5
+      ],
+      "rotation": [
+        3.141592653589793,
+        -0.000002653589793355844,
+        3.141592653589793
+      ],
+      "userData": {},
+      "source": "terrain_roadCorner.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        1,
+        0,
+        -3
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        1,
+        0.5,
+        -5
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "terrain_sideEnd",
+      "position": [
+        0,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "terrain_sideEnd.obj"
+    },
+    {
+      "name": "terrain_ramp",
+      "position": [
+        1,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "terrain_ramp.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        0,
+        0,
+        -4.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -0.5,
+        0,
+        -6
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -1.5,
+        0,
+        -6
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCornerInner",
+      "position": [
+        0.5,
+        0,
+        -6.5
+      ],
+      "userData": {},
+      "source": "terrain_sideCornerInner.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        0,
+        0,
+        -3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -1,
+        0,
+        -3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -1,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -1,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -2,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -2,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "barrels_rail",
+      "position": [
+        -1,
+        0,
+        -4.5
+      ],
+      "userData": {},
+      "source": "barrels_rail.obj"
+    },
+    {
+      "name": "rocks_smallA",
+      "position": [
+        -1,
+        0,
+        -3.5
+      ],
+      "userData": {},
+      "source": "rocks_smallA.obj"
+    },
+    {
+      "name": "rail",
+      "position": [
+        0,
+        0,
+        -3
+      ],
+      "userData": {},
+      "source": "rail.obj"
+    },
+    {
+      "name": "rail",
+      "position": [
+        2,
+        0,
+        -3
+      ],
+      "userData": {},
+      "source": "rail.obj"
+    },
+    {
+      "name": "terrain_roadEnd",
+      "position": [
+        1,
+        0.5,
+        -6
+      ],
+      "userData": {},
+      "source": "terrain_roadEnd.obj"
+    },
+    {
+      "name": "terrain_sideEnd",
+      "position": [
+        2,
+        0,
+        -4
+      ],
+      "scale": [
+        -1,
+        1,
+        1
+      ],
+      "userData": {},
+      "source": "terrain_sideEnd.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        2,
+        0,
+        -5.5
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCornerInner",
+      "position": [
+        1.5,
+        0,
+        -6.5
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCornerInner.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        3.5,
+        0,
+        -6
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        4.5,
+        0,
+        -6
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        2,
+        0,
+        -3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        2,
+        0,
+        -2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0,
+        -3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0,
+        -3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0,
+        -2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0,
+        -2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0,
+        -2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0,
+        -3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        5.5,
+        0,
+        -6
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "pipe_ring",
+      "position": [
+        4,
+        1,
+        -6
+      ],
+      "userData": {},
+      "source": "pipe_ring.obj"
+    },
+    {
+      "name": "pipe_supportHigh",
+      "position": [
+        4,
+        0,
+        -6
+      ],
+      "userData": {},
+      "source": "pipe_supportHigh.obj"
+    },
+    {
+      "name": "pipe_rampLarge",
+      "position": [
+        4,
+        0.5,
+        -4
+      ],
+      "userData": {},
+      "source": "pipe_rampLarge.obj"
+    },
+    {
+      "name": "pipe_ring",
+      "position": [
+        4,
+        0.5,
+        -3
+      ],
+      "userData": {},
+      "source": "pipe_ring.obj"
+    },
+    {
+      "name": "pipe_supportLow",
+      "position": [
+        4,
+        0,
+        -3
+      ],
+      "userData": {},
+      "source": "pipe_supportLow.obj"
+    },
+    {
+      "name": "pipe_cornerRound",
+      "position": [
+        4,
+        1,
+        -7
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "pipe_cornerRound.obj"
+    },
+    {
+      "name": "pipe_ring",
+      "position": [
+        3,
+        1,
+        -7
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "pipe_ring.obj"
+    },
+    {
+      "name": "pipe_supportLow",
+      "position": [
+        3,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "pipe_supportLow.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        2,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        1,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        -3,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        -4,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        -5,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0,
+        -2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -4,
+        0,
+        -1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -4,
+        0,
+        -2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -5,
+        0,
+        -1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -5,
+        0,
+        -2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -4,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -5,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "structure",
+      "position": [
+        -2.5,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "structure.obj"
+    },
+    {
+      "name": "rail_corner",
+      "position": [
+        -3,
+        0,
+        -4.5
+      ],
+      "rotation": [
+        -3.141592653589793,
+        0.000002653589793355844,
+        -3.141592653589793
+      ],
+      "userData": {},
+      "source": "rail_corner.obj"
+    },
+    {
+      "name": "platform_high",
+      "position": [
+        -4,
+        -0.5,
+        -4
+      ],
+      "userData": {},
+      "source": "platform_high.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -4,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -5,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "rocks_smallB",
+      "position": [
+        -4,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "rocks_smallB.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -2.5,
+        0,
+        -6
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -3.5,
+        0,
+        -6
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        -4.5,
+        0,
+        -6.5
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "machine_generatorLarge",
+      "position": [
+        -5.5,
+        0,
+        -4.5
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "machine_generatorLarge.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        -2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        -6,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "platform_low",
+      "position": [
+        -6,
+        0,
+        -2
+      ],
+      "userData": {},
+      "source": "platform_low.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        -1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        0
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        0,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        1,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        2,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0,
+        -1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0,
+        -1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0,
+        0
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0,
+        0
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0,
+        1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0,
+        1
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0,
+        2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0,
+        2
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0,
+        3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0,
+        3
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "turret_single",
+      "position": [
+        1,
+        0,
+        4
+      ],
+      "userData": {},
+      "source": "turret_single.obj"
+    },
+    {
+      "name": "bones",
+      "position": [
+        3,
+        0,
+        -4
+      ],
+      "userData": {},
+      "source": "bones.obj"
+    },
+    {
+      "name": "rock_crystals",
+      "position": [
+        -4,
+        0,
+        -1.5
+      ],
+      "userData": {},
+      "source": "rock_crystals.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -5,
+        0,
+        -6.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "pipe_straight",
+      "position": [
+        2,
+        1,
+        -7
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "pipe_straight.obj"
+    },
+    {
+      "name": "pipe_ring",
+      "position": [
+        1,
+        1,
+        -7
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "pipe_ring.obj"
+    },
+    {
+      "name": "pipe_supportLow",
+      "position": [
+        1,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "pipe_supportLow.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        1,
+        0.5,
+        -6
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        1,
+        1,
+        -6
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        1,
+        1.5,
+        -6
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        1,
+        2,
+        -6
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        1,
+        2,
+        -5
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        1,
+        2,
+        -4
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackCornerSmall",
+      "position": [
+        1,
+        2,
+        -3
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackCornerSmall.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        2,
+        2,
+        -3
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        3,
+        2,
+        -3
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        4,
+        2,
+        -3
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        5,
+        2,
+        -3
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        5,
+        1.5,
+        -3
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        5,
+        1,
+        -3
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        5,
+        0.5,
+        -3
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        5,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        0,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -1,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -2,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -4,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "pipe_rampSmall",
+      "position": [
+        -1,
+        0.5,
+        -7
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "pipe_rampSmall.obj"
+    },
+    {
+      "name": "pipe_end",
+      "position": [
+        -2,
+        0.5,
+        -7
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "pipe_end.obj"
+    },
+    {
+      "name": "rail",
+      "position": [
+        -1,
+        0.5,
+        -7
+      ],
+      "rotation": [
+        3.141592653589793,
+        -0.0000026535841143323648,
+        3.141592653589793
+      ],
+      "userData": {},
+      "source": "rail.obj"
+    },
+    {
+      "name": "rail",
+      "position": [
+        -3,
+        0.5,
+        -7
+      ],
+      "rotation": [
+        3.141592653589793,
+        -0.0000026535841143323648,
+        3.141592653589793
+      ],
+      "userData": {},
+      "source": "rail.obj"
+    },
+    {
+      "name": "rocks_smallB",
+      "position": [
+        -3,
+        0.5,
+        -7.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "rocks_smallB.obj"
+    },
+    {
+      "name": "crater",
+      "position": [
+        -4,
+        0.5,
+        -7
+      ],
+      "userData": {},
+      "source": "crater.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -4,
+        0.5,
+        -8
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0.5,
+        -8
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -2,
+        0.5,
+        -8
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -1,
+        0.5,
+        -8
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        0,
+        0.5,
+        -8
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        1,
+        0.5,
+        -8
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "rocks_smallA",
+      "position": [
+        -1.5,
+        0.5,
+        -8
+      ],
+      "userData": {},
+      "source": "rocks_smallA.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -5,
+        0,
+        -7.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        -6
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        -7
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        -8
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        -4.5,
+        0,
+        -8.5
+      ],
+      "rotation": [
+        0,
+        -1.5707923463993516,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "terrain_sideCornerInner",
+      "position": [
+        -3.5,
+        0,
+        -8.5
+      ],
+      "rotation": [
+        0,
+        -1.5707923463993516,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCornerInner.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        -3.5,
+        0,
+        -9.5
+      ],
+      "rotation": [
+        0,
+        -1.5707923463993516,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "hangar_smallB",
+      "position": [
+        -4.5,
+        0,
+        -10
+      ],
+      "rotation": [
+        0,
+        -1.5707923463993516,
+        0
+      ],
+      "userData": {},
+      "source": "hangar_smallB.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        -9
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        -10
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -5,
+        0,
+        -10
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -5,
+        0,
+        -11
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        -11
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0.5,
+        -9
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0.5,
+        -10
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0.5,
+        -11
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -3,
+        0.5,
+        -12
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -4,
+        0,
+        -10.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -4,
+        0,
+        -11.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -6,
+        0,
+        -12
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -5,
+        0,
+        -12
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "crater",
+      "position": [
+        -5.5,
+        0,
+        -9.5
+      ],
+      "userData": {},
+      "source": "crater.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        -1.5,
+        0.5,
+        -9.5
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -2,
+        0.5,
+        -9.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -0.5,
+        0.5,
+        -9
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        0.5,
+        0.5,
+        -9
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        1.5,
+        0.5,
+        -9
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -2,
+        0.5,
+        -10.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        -1.5,
+        0.5,
+        -11.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -1.5,
+        0.5,
+        -12
+      ],
+      "rotation": [
+        -3.141592653589793,
+        0.000002653589793355844,
+        -3.141592653589793
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -1,
+        1,
+        -10
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        -1,
+        1,
+        -11
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        0,
+        1,
+        -11
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        0,
+        1,
+        -10
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        1,
+        1,
+        -10
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        1,
+        1,
+        -11
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        -0.5,
+        0.5,
+        -12
+      ],
+      "rotation": [
+        3.141592653589793,
+        -0.0000026535841143323648,
+        3.141592653589793
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        0.5,
+        0.5,
+        -12
+      ],
+      "rotation": [
+        3.141592653589793,
+        -0.0000026535841143323648,
+        3.141592653589793
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        1.5,
+        0.5,
+        -11.5
+      ],
+      "rotation": [
+        3.141592653589793,
+        -0.0000026535841143323648,
+        3.141592653589793
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        2,
+        0.5,
+        -11.5
+      ],
+      "rotation": [
+        -1.2246484239927751e-16,
+        1.5707923463993516,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCliff",
+      "position": [
+        2,
+        0.5,
+        -10.5
+      ],
+      "rotation": [
+        -1.2246484239927751e-16,
+        1.5707923463993516,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCliff.obj"
+    },
+    {
+      "name": "terrain_sideCorner",
+      "position": [
+        1.5,
+        0.5,
+        -9.5
+      ],
+      "rotation": [
+        -1.2246484239927751e-16,
+        1.5707923463993516,
+        0
+      ],
+      "userData": {},
+      "source": "terrain_sideCorner.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        2,
+        0.5,
+        -8
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0.5,
+        -8
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0.5,
+        -8
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0.5,
+        -9
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0.5,
+        -9
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0.5,
+        -9
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0.5,
+        -8
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0.5,
+        -10
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0.5,
+        -11
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0.5,
+        -11
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0.5,
+        -10
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0.5,
+        -11
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0.5,
+        -10
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        3,
+        0.5,
+        -12
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        4,
+        0.5,
+        -12
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "terrain",
+      "position": [
+        5,
+        0.5,
+        -12
+      ],
+      "userData": {},
+      "source": "terrain.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        1,
+        2,
+        -7
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        1,
+        2,
+        -8
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackCornerLarge",
+      "position": [
+        0.5,
+        2,
+        -9.5
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackCornerLarge.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        -1,
+        2,
+        -10
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackCornerSmall",
+      "position": [
+        -3,
+        2,
+        -10
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackCornerSmall.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        -3,
+        2,
+        -11
+      ],
+      "rotation": [
+        0,
+        5.679012815562601e-12,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        -3,
+        2,
+        -12
+      ],
+      "rotation": [
+        0,
+        5.679012815562601e-12,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackStraight",
+      "position": [
+        -2,
+        2,
+        -10
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackStraight.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        -3,
+        1.5,
+        -12
+      ],
+      "rotation": [
+        0,
+        5.679012815562601e-12,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        -3,
+        1,
+        -12
+      ],
+      "rotation": [
+        0,
+        5.679012815562601e-12,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        -3,
+        0.5,
+        -12
+      ],
+      "rotation": [
+        0,
+        5.679012815562601e-12,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        -1,
+        1.5,
+        -10
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "monorail_trackSupport",
+      "position": [
+        -1,
+        1,
+        -10
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "monorail_trackSupport.obj"
+    },
+    {
+      "name": "rail",
+      "position": [
+        -1,
+        1,
+        -10
+      ],
+      "rotation": [
+        0,
+        1.5707923463993516,
+        0
+      ],
+      "userData": {},
+      "source": "rail.obj"
+    },
+    {
+      "name": "rock_largeA",
+      "position": [
+        0.5,
+        1,
+        -10.5
+      ],
+      "rotation": [
+        0,
+        1.5707923463993516,
+        0
+      ],
+      "scale": [
+        1.7128305514748536,
+        1.7128305514748536,
+        1.7128305514748536
+      ],
+      "userData": {},
+      "source": "rock_largeA.obj"
+    },
+    {
+      "name": "rocket_baseA",
+      "position": [
+        4,
+        0.5,
+        -9
+      ],
+      "userData": {},
+      "source": "rocket_baseA.obj"
+    },
+    {
+      "name": "rocket_fuelB",
+      "position": [
+        4,
+        1.5,
+        -9
+      ],
+      "userData": {},
+      "source": "rocket_fuelB.obj"
+    },
+    {
+      "name": "rocket_sidesA",
+      "position": [
+        4,
+        2.5,
+        -9
+      ],
+      "userData": {},
+      "source": "rocket_sidesA.obj"
+    },
+    {
+      "name": "rocket_finsB",
+      "position": [
+        4,
+        3.5,
+        -9
+      ],
+      "userData": {},
+      "source": "rocket_finsB.obj"
+    },
+    {
+      "name": "rocket_topA",
+      "position": [
+        4,
+        4,
+        -9
+      ],
+      "userData": {},
+      "source": "rocket_topA.obj"
+    },
+    {
+      "name": "monorail_trainCargo",
+      "position": [
+        1,
+        2,
+        -7
+      ],
+      "userData": {},
+      "source": "monorail_trainCargo.obj"
+    },
+    {
+      "name": "monorail_trainCargo",
+      "position": [
+        1,
+        2,
+        -8
+      ],
+      "userData": {},
+      "source": "monorail_trainCargo.obj"
+    },
+    {
+      "name": "monorail_trainPassenger",
+      "position": [
+        1,
+        2,
+        -6
+      ],
+      "userData": {},
+      "source": "monorail_trainPassenger.obj"
+    },
+    {
+      "name": "monorail_trainFront",
+      "position": [
+        1,
+        2,
+        -5
+      ],
+      "userData": {},
+      "source": "monorail_trainFront.obj"
+    },
+    {
+      "name": "desk_computer",
+      "position": [
+        -2.5,
+        0,
+        -5
+      ],
+      "userData": {},
+      "source": "desk_computer.obj"
+    },
+    {
+      "name": "desk_chair",
+      "position": [
+        -2.5,
+        0,
+        -4.5
+      ],
+      "userData": {},
+      "source": "desk_chair.obj"
+    },
+    {
+      "name": "rover",
+      "position": [
+        -3.5,
+        0,
+        -3
+      ],
+      "rotation": [
+        0,
+        -1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "rover.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
+    },
+    {
+      "name": "rail",
+      "position": [
+        1,
+        0,
+        3
+      ],
+      "rotation": [
+        0,
+        1.570795000005679,
+        0
+      ],
+      "userData": {},
+      "source": "rail.obj"
+    },
+    {
+      "name": "astronautA",
+      "position": [
+        -2.5,
+        0.5,
+        0
+      ],
+      "rotation": [
+        -3.141592653589793,
+        0.0000026535897933581798,
+        3.141592653589793
+      ],
+      "userData": {},
+      "source": "astronautA.obj"
+    }
+  ],
+  "metadata": {
+    "version": 0.2,
+    "type": "lewcid_object",
+    "camera": {
+      "position": [
+        0,
+        5.638995354837289,
+        11.277990709674578
+      ],
+      "rotation": [
+        -0.4636476090008061,
+        0,
+        0
+      ]
+    }
+  }
+}

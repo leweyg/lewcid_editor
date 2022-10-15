@@ -73,7 +73,7 @@ function MenubarFile( editor ) {
 			return;
 		}
 		var contentObj = FolderUtils.lewcidObject_ExportToObjectFromEditor();
-		var contentText = JSON.stringify(contentObj);
+		var contentText = JSON.stringify(contentObj,null,2);
 		FolderUtils.ShellSaveToFile(saveTo,contentText,(responce)=>{
 			alert("Saved = " + responce);
 		});
