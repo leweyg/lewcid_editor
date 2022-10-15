@@ -5,7 +5,7 @@ function Config() {
 	const storage = {
 		'language': 'en',
 
-		'autosave': true,
+		'autosave': false,
 
 		'project/title': '',
 		'project/editable': false,
