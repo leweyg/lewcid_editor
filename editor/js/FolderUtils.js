@@ -335,7 +335,7 @@ var FolderUtils = {
         if (path.endsWith(".mtl")) {
             return await FolderUtils.ImportByPath_MTL(path, callback_blob);
         }
-        if (path.endsWith(".json")) {
+        if (path.endsWith(".json") || path.endsWith(".path_scene")) {
             return FolderUtils.ImportByPath_lewcidJSON(path,callback_blob);
         }
         FolderUtils.DownloadBlob(path, (blob) => {
