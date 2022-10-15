@@ -49,10 +49,16 @@ function SidebarFolder( editor ) {
 	searchBox.placeholder = "Search...";
 	//searchRow.add( searchBox );
 	//settings.add( searchRow );
-	searchBox.onInput(() => {
+	function updateFromSearchBox() {
 		var val = searchBox.getValue();
 		mSearchString = val;
 		RefreshFolder();
+	}
+	searchBox.onInput(() => {
+		updateFromSearchBox();
+	});
+	searchBox.onClick(() => {
+		updateFromSearchBox();
 	});
 
 	// changeOption
@@ -99,6 +105,14 @@ function SidebarFolder( editor ) {
 		editor.focus(cmd.object);
 	});
 
+	// object selection
+	editor.signals.objectSelected.add((obj) => {
+		if (!obj) return;
+		if ((mSearchString=="") && obj.userData && obj.userData.source) {
+			searchBox.setValue( FolderUtils.PathDisplayName(obj.userData.source) );
+		}
+	});
+
 	// Utility methods:
 
 	function SetFolderPath(path) {
@@ -116,7 +130,7 @@ function SidebarFolder( editor ) {
 				var path = files[i].trim();
 				if (path == "") continue;
 				if (mSearchString != "") {
-					if (!path.toLowerCase().includes(mSearchString)) {
+					if (!path.toLowerCase().includes(mSearchString.toLowerCase())) {
 						continue;
 					}
 				}
