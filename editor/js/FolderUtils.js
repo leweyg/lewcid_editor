@@ -25,6 +25,30 @@ var FolderUtils = {
         return window.location.href.includes("localhost:");
     },
 
+    __CachedFileTree : null,
+    GetFilesInFileTreeRecursive : function(path,fileTree) {
+        if (path.startsWith("../")) {
+            // assume from the editor direction:
+            path = path.substring( "../".length );
+        }
+        if (path == "") {
+            var ans = [];
+            for (var k in fileTree) {
+                ans.push(k);
+            }
+            return ans;
+        }
+        while (path.includes("/")) {
+            var ndx = path.indexOf("/");
+            var left = path.substring(0,ndx+1);
+            var right = path.substring(ndx+1);
+            if (left in fileTree) {
+                var subTree = fileTree[left];
+                return FolderUtils.GetFilesInFileTreeRecursive(right, subTree);
+            }
+            return FolderUtils.GetFilesInFileTreeRecursive("", subTree);
+        }
+    },
     GetFilesInPath : function(path,callback) {
         if (FolderUtils.IsLocalHost()) {
             FolderUtils.ShellExecute("ls -1 -p",(file_list) => {
@@ -32,13 +56,21 @@ var FolderUtils = {
                 return callback(files);
             }, path);
         } else {
-            var hackForNowPath = "../examples/models/obj/spacekit/file_list.txt";
-            FolderUtils.DownloadText(hackForNowPath, (txt)=>{
-                var files = txt.split("\n");
-                return callback(files);
-            });
+            if (!FolderUtils.__CachedFileTree) {
+                var hackForNowPath = "../file_tree.json";
+                FolderUtils.DownloadJSON(hackForNowPath, (fileTree)=>{
+                    if (!("editor/" in fileTree)) {
+                        fileTree["editor/"] = {};
+                    }
+                    FolderUtils.__CachedFileTree = fileTree;
+                    callback( FolderUtils.GetFilesInFileTreeRecursive(path, fileTree) );
+                });
+            } else {
+                callback( FolderUtils.GetFilesInFileTreeRecursive(path, FolderUtils.__CachedFileTree) );
+            }
         }
     },
+
 
     BuildFileListLocal : function(path, callback) {
         FolderUtils.GetFilesInPath(path, (list) => {

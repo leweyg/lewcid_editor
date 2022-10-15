@@ -57,7 +57,7 @@ function SidebarFolder( editor ) {
 					var folder = "../examples/models/";
 
 					FolderUtils.BuildFileListLocal(folder,(res) => {
-						var fullRes = {examples:{models:res}};
+						var fullRes = {"examples/":{"models/":res}};
 						var fullText = JSON.stringify(fullRes, null, 2);
 						var savePath = "../file_tree.json";
 						FolderUtils.ShellSaveToFile(savePath, fullText, (res)=>{
