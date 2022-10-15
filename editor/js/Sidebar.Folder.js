@@ -175,11 +175,15 @@ function SidebarFolder( editor ) {
 	function checkUrlParameters() {
 		var file_path = FolderUtils.GetFilePathInURL();
 		if (!file_path) return;
+		
 		FolderUtils.SetDefaultScene(editor);
 		FolderUtils.SetTitleFromPath(file_path);
 		FolderUtils.ImportByPath(file_path, (obj) => {
 			// editor.focus(obj);
 		});
+
+		mCurrentPath = FolderUtils.PathParentFolder(file_path);
+		RefreshFolder();
 	}
 
 	window.onload = (() => {
