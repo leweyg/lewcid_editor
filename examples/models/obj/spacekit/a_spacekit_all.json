@@ -1,0 +1,1381 @@
+{
+    "children": [
+      {
+        "name": "Bones",
+        "source": "bones.obj",
+        "position": [
+          -12,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Crater",
+        "source": "crater.obj",
+        "position": [
+          -10,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Crater Large",
+        "source": "craterLarge.obj",
+        "position": [
+          -8,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Meteor",
+        "source": "meteor.obj",
+        "position": [
+          -6,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Meteor B",
+        "source": "meteor_detailed.obj",
+        "position": [
+          -4,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Half",
+        "source": "meteor_half.obj",
+        "position": [
+          -2,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Standard",
+        "source": "rock.obj",
+        "position": [
+          0,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Crystals",
+        "source": "rock_crystals.obj",
+        "position": [
+          2,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Crystals Large A",
+        "source": "rock_crystalsLargeA.obj",
+        "position": [
+          4,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Crystals Large B",
+        "source": "rock_crystalsLargeB.obj",
+        "position": [
+          6,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Large A",
+        "source": "rock_largeA.obj",
+        "position": [
+          8,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Large B",
+        "source": "rock_largeB.obj",
+        "position": [
+          10,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Small A",
+        "source": "rocks_smallA.obj",
+        "position": [
+          12,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Small B",
+        "source": "rocks_smallB.obj",
+        "position": [
+          14,
+          0,
+          3
+        ]
+      },
+      {
+        "name": "Standard",
+        "source": "terrain.obj",
+        "position": [
+          -12,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Ramp",
+        "source": "terrain_ramp.obj",
+        "position": [
+          -10,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Ramp Large",
+        "source": "terrain_rampLarge.obj",
+        "position": [
+          -8,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Ramp Large B",
+        "source": "terrain_rampLarge_detailed.obj",
+        "position": [
+          -4,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Side",
+        "source": "terrain_side.obj",
+        "position": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Side Cliff",
+        "source": "terrain_sideCliff.obj",
+        "position": [
+          2,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Side Corner",
+        "source": "terrain_sideCorner.obj",
+        "position": [
+          4,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Side Corner Inner",
+        "source": "terrain_sideCornerInner.obj",
+        "position": [
+          6,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Side End",
+        "source": "terrain_sideEnd.obj",
+        "position": [
+          8,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Corner",
+        "source": "terrain_roadCorner.obj",
+        "position": [
+          -12,
+          0,
+          -3
+        ]
+      },
+      {
+        "name": "Cross",
+        "source": "terrain_roadCross.obj",
+        "position": [
+          -10,
+          0,
+          -3
+        ]
+      },
+      {
+        "name": "End",
+        "source": "terrain_roadEnd.obj",
+        "position": [
+          -8,
+          0,
+          -3
+        ]
+      },
+      {
+        "name": "Split",
+        "source": "terrain_roadSplit.obj",
+        "position": [
+          -6,
+          0,
+          -3
+        ]
+      },
+      {
+        "name": "Straight",
+        "source": "terrain_roadStraight.obj",
+        "position": [
+          -4,
+          0,
+          -3
+        ]
+      },
+      {
+        "name": "Standard",
+        "source": "structure.obj",
+        "position": [
+          -12,
+          0,
+          -6
+        ]
+      },
+      {
+        "name": "Closed",
+        "source": "structure_closed.obj",
+        "position": [
+          -10,
+          0,
+          -6
+        ]
+      },
+      {
+        "name": "Detailed",
+        "source": "structure_detailed.obj",
+        "position": [
+          -8,
+          0,
+          -6
+        ]
+      },
+      {
+        "name": "Diagonal",
+        "source": "structure_diagonal.obj",
+        "position": [
+          -6,
+          0,
+          -6
+        ]
+      },
+      {
+        "name": "High",
+        "source": "supports_high.obj",
+        "position": [
+          -4,
+          0,
+          -6
+        ]
+      },
+      {
+        "name": "Low",
+        "source": "supports_low.obj",
+        "position": [
+          -2,
+          0,
+          -6
+        ]
+      },
+      {
+        "name": "Center",
+        "source": "platform_center.obj",
+        "position": [
+          -12,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "Corner",
+        "source": "platform_corner.obj",
+        "position": [
+          -10,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "Corner Open",
+        "source": "platform_cornerOpen.obj",
+        "position": [
+          -8,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "Corner Round",
+        "source": "platform_cornerRound.obj",
+        "position": [
+          -6,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "End",
+        "source": "platform_end.obj",
+        "position": [
+          -4,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "High",
+        "source": "platform_high.obj",
+        "position": [
+          -2,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "Large",
+        "source": "platform_large.obj",
+        "position": [
+          0,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "Long",
+        "source": "platform_long.obj",
+        "position": [
+          4,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "Low",
+        "source": "platform_low.obj",
+        "position": [
+          8,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "Side",
+        "source": "platform_side.obj",
+        "position": [
+          10,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "Small",
+        "source": "platform_small.obj",
+        "position": [
+          12,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "Small Diagonal",
+        "source": "platform_smallDiagonal.obj",
+        "position": [
+          14,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "Straight",
+        "source": "platform_straight.obj",
+        "position": [
+          16,
+          0,
+          -9
+        ]
+      },
+      {
+        "name": "Stairs",
+        "source": "stairs.obj",
+        "position": [
+          -12,
+          0,
+          -12
+        ]
+      },
+      {
+        "name": "Corner",
+        "source": "stairs_corner.obj",
+        "position": [
+          -10,
+          0,
+          -12
+        ]
+      },
+      {
+        "name": "Short",
+        "source": "stairs_short.obj",
+        "position": [
+          -8,
+          0,
+          -12
+        ]
+      },
+      {
+        "name": "Standard",
+        "source": "rail.obj",
+        "position": [
+          -12,
+          0,
+          -15
+        ]
+      },
+      {
+        "name": "Corner",
+        "source": "rail_corner.obj",
+        "position": [
+          -10,
+          0,
+          -15
+        ]
+      },
+      {
+        "name": "End",
+        "source": "rail_end.obj",
+        "position": [
+          -8,
+          0,
+          -15
+        ]
+      },
+      {
+        "name": "Middle",
+        "source": "rail_middle.obj",
+        "position": [
+          -6,
+          0,
+          -15
+        ]
+      },
+      {
+        "name": "Standard",
+        "source": "corridor.obj",
+        "position": [
+          -12,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Corner",
+        "source": "corridor_corner.obj",
+        "position": [
+          -10,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Corner Round",
+        "source": "corridor_cornerRound.obj",
+        "position": [
+          -8,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Corner Round Window",
+        "source": "corridor_cornerRoundWindow.obj",
+        "position": [
+          -6,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Cross",
+        "source": "corridor_cross.obj",
+        "position": [
+          -4,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Detailed",
+        "source": "corridor_detailed.obj",
+        "position": [
+          -2,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "End",
+        "source": "corridor_end.obj",
+        "position": [
+          0,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Open",
+        "source": "corridor_open.obj",
+        "position": [
+          2,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Roof",
+        "source": "corridor_roof.obj",
+        "position": [
+          4,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Split",
+        "source": "corridor_split.obj",
+        "position": [
+          6,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Wall",
+        "source": "corridor_wall.obj",
+        "position": [
+          8,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Wall Corner",
+        "source": "corridor_wallCorner.obj",
+        "position": [
+          10,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Window",
+        "source": "corridor_window.obj",
+        "position": [
+          12,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Window Closed",
+        "source": "corridor_windowClosed.obj",
+        "position": [
+          14,
+          0,
+          -18
+        ]
+      },
+      {
+        "name": "Large A",
+        "source": "hangar_largeA.obj",
+        "position": [
+          -12,
+          0,
+          -21
+        ]
+      },
+      {
+        "name": "Large B",
+        "source": "hangar_largeB.obj",
+        "position": [
+          -8,
+          0,
+          -21
+        ]
+      },
+      {
+        "name": "Round A",
+        "source": "hangar_roundA.obj",
+        "position": [
+          -4,
+          0,
+          -21
+        ]
+      },
+      {
+        "name": "Round B",
+        "source": "hangar_roundB.obj",
+        "position": [
+          0,
+          0,
+          -21
+        ]
+      },
+      {
+        "name": "Round Glass",
+        "source": "hangar_roundGlass.obj",
+        "position": [
+          4,
+          0,
+          -21
+        ]
+      },
+      {
+        "name": "Small A",
+        "source": "hangar_smallA.obj",
+        "position": [
+          8,
+          0,
+          -21
+        ]
+      },
+      {
+        "name": "Small B",
+        "source": "hangar_smallB.obj",
+        "position": [
+          12,
+          0,
+          -21
+        ]
+      },
+      {
+        "name": "Standard",
+        "source": "barrel.obj",
+        "position": [
+          -12,
+          0,
+          -24
+        ]
+      },
+      {
+        "name": "Barrels",
+        "source": "barrels.obj",
+        "position": [
+          -10,
+          0,
+          -24
+        ]
+      },
+      {
+        "name": "Rail",
+        "source": "barrels_rail.obj",
+        "position": [
+          -8,
+          0,
+          -24
+        ]
+      },
+      {
+        "name": "Alien",
+        "source": "alien.obj",
+        "position": [
+          -12,
+          0,
+          -27
+        ]
+      },
+      {
+        "name": "Astronaut A",
+        "source": "astronautA.obj",
+        "position": [
+          -10,
+          0,
+          -27
+        ]
+      },
+      {
+        "name": "Astronaut B",
+        "source": "astronautB.obj",
+        "position": [
+          -8,
+          0,
+          -27
+        ]
+      },
+      {
+        "name": "Chimney",
+        "source": "chimney.obj",
+        "position": [
+          -12,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Chimney  Detailed",
+        "source": "chimney_detailed.obj",
+        "position": [
+          -8,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Barrel",
+        "source": "machine_barrel.obj",
+        "position": [
+          -4,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Barrel Large",
+        "source": "machine_barrelLarge.obj",
+        "position": [
+          -2,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Generator",
+        "source": "machine_generator.obj",
+        "position": [
+          0,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Generator Large",
+        "source": "machine_generatorLarge.obj",
+        "position": [
+          2,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Wireless",
+        "source": "machine_wireless.obj",
+        "position": [
+          6,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Wireless Cable",
+        "source": "machine_wirelessCable.obj",
+        "position": [
+          8,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Rover",
+        "source": "rover.obj",
+        "position": [
+          10,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Satellite Dish",
+        "source": "satelliteDish.obj",
+        "position": [
+          12,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Satellite Dish  Detailed",
+        "source": "satelliteDish_detailed.obj",
+        "position": [
+          14,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Satellite Dish Large",
+        "source": "satelliteDish_large.obj",
+        "position": [
+          16,
+          0,
+          -30
+        ]
+      },
+      {
+        "name": "Chair",
+        "source": "desk_chair.obj",
+        "position": [
+          -12,
+          0,
+          -33
+        ]
+      },
+      {
+        "name": "Chair Arms",
+        "source": "desk_chairArms.obj",
+        "position": [
+          -10,
+          0,
+          -33
+        ]
+      },
+      {
+        "name": "Chair Stool",
+        "source": "desk_chairStool.obj",
+        "position": [
+          -8,
+          0,
+          -33
+        ]
+      },
+      {
+        "name": "Computer",
+        "source": "desk_computer.obj",
+        "position": [
+          -6,
+          0,
+          -33
+        ]
+      },
+      {
+        "name": "Computer Corner",
+        "source": "desk_computerCorner.obj",
+        "position": [
+          -4,
+          0,
+          -33
+        ]
+      },
+      {
+        "name": "Computer Screen",
+        "source": "desk_computerScreen.obj",
+        "position": [
+          -2,
+          0,
+          -33
+        ]
+      },
+      {
+        "name": "Double",
+        "source": "turret_double.obj",
+        "position": [
+          -12,
+          0,
+          -36
+        ]
+      },
+      {
+        "name": "Single",
+        "source": "turret_single.obj",
+        "position": [
+          -10,
+          0,
+          -36
+        ]
+      },
+      {
+        "name": "Gun",
+        "source": "weapon_gun.obj",
+        "position": [
+          -8,
+          0,
+          -36
+        ]
+      },
+      {
+        "name": "Rifle",
+        "source": "weapon_rifle.obj",
+        "position": [
+          -6,
+          0,
+          -36
+        ]
+      },
+      {
+        "name": "Corner",
+        "source": "pipe_corner.obj",
+        "position": [
+          -12,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Corner Diagonal",
+        "source": "pipe_cornerDiagonal.obj",
+        "position": [
+          -10,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Corner Round",
+        "source": "pipe_cornerRound.obj",
+        "position": [
+          -8,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Corner Round Large",
+        "source": "pipe_cornerRoundLarge.obj",
+        "position": [
+          -6,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Cross",
+        "source": "pipe_cross.obj",
+        "position": [
+          -2,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "End",
+        "source": "pipe_end.obj",
+        "position": [
+          0,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Entrance",
+        "source": "pipe_entrance.obj",
+        "position": [
+          2,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Open",
+        "source": "pipe_open.obj",
+        "position": [
+          4,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Ramp Large",
+        "source": "pipe_rampLarge.obj",
+        "position": [
+          6,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Ramp Small",
+        "source": "pipe_rampSmall.obj",
+        "position": [
+          10,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Ring",
+        "source": "pipe_ring.obj",
+        "position": [
+          14,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Ring High",
+        "source": "pipe_ringHigh.obj",
+        "position": [
+          16,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Ring High End",
+        "source": "pipe_ringHighEnd.obj",
+        "position": [
+          20,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Ring Support",
+        "source": "pipe_ringSupport.obj",
+        "position": [
+          24,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Split",
+        "source": "pipe_split.obj",
+        "position": [
+          28,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Straight",
+        "source": "pipe_straight.obj",
+        "position": [
+          30,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Support High",
+        "source": "pipe_supportHigh.obj",
+        "position": [
+          32,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Support Low",
+        "source": "pipe_supportLow.obj",
+        "position": [
+          34,
+          0,
+          -39
+        ]
+      },
+      {
+        "name": "Corner Large",
+        "source": "monorail_trackCornerLarge.obj",
+        "position": [
+          -12,
+          0,
+          -42
+        ]
+      },
+      {
+        "name": "Corner Small",
+        "source": "monorail_trackCornerSmall.obj",
+        "position": [
+          -8,
+          0,
+          -42
+        ]
+      },
+      {
+        "name": "Slope",
+        "source": "monorail_trackSlope.obj",
+        "position": [
+          -6,
+          0,
+          -42
+        ]
+      },
+      {
+        "name": "Straight",
+        "source": "monorail_trackStraight.obj",
+        "position": [
+          -4,
+          0,
+          -42
+        ]
+      },
+      {
+        "name": "Support",
+        "source": "monorail_trackSupport.obj",
+        "position": [
+          -2,
+          0,
+          -42
+        ]
+      },
+      {
+        "name": "Support Corner",
+        "source": "monorail_trackSupportCorner.obj",
+        "position": [
+          0,
+          0,
+          -42
+        ]
+      },
+      {
+        "name": "Box",
+        "source": "monorail_trainBox.obj",
+        "position": [
+          -12,
+          0,
+          -45
+        ]
+      },
+      {
+        "name": "Cargo",
+        "source": "monorail_trainCargo.obj",
+        "position": [
+          -10,
+          0,
+          -45
+        ]
+      },
+      {
+        "name": "End",
+        "source": "monorail_trainEnd.obj",
+        "position": [
+          -8,
+          0,
+          -45
+        ]
+      },
+      {
+        "name": "Flat",
+        "source": "monorail_trainFlat.obj",
+        "position": [
+          -6,
+          0,
+          -45
+        ]
+      },
+      {
+        "name": "Front",
+        "source": "monorail_trainFront.obj",
+        "position": [
+          -4,
+          0,
+          -45
+        ]
+      },
+      {
+        "name": "Passenger",
+        "source": "monorail_trainPassenger.obj",
+        "position": [
+          -2,
+          0,
+          -45
+        ]
+      },
+      {
+        "name": "Complex",
+        "source": "gate_complex.obj",
+        "position": [
+          -12,
+          0,
+          -48
+        ]
+      },
+      {
+        "name": "Simple",
+        "source": "gate_simple.obj",
+        "position": [
+          -10,
+          0,
+          -48
+        ]
+      },
+      {
+        "name": "Cargo A",
+        "source": "craft_cargoA.obj",
+        "position": [
+          -12,
+          0,
+          -51
+        ]
+      },
+      {
+        "name": "Cargo B",
+        "source": "craft_cargoB.obj",
+        "position": [
+          -8,
+          0,
+          -51
+        ]
+      },
+      {
+        "name": "Miner",
+        "source": "craft_miner.obj",
+        "position": [
+          -4,
+          0,
+          -51
+        ]
+      },
+      {
+        "name": "Racer",
+        "source": "craft_racer.obj",
+        "position": [
+          0,
+          0,
+          -51
+        ]
+      },
+      {
+        "name": "Speeder A",
+        "source": "craft_speederA.obj",
+        "position": [
+          4,
+          0,
+          -51
+        ]
+      },
+      {
+        "name": "Speeder B",
+        "source": "craft_speederB.obj",
+        "position": [
+          8,
+          0,
+          -51
+        ]
+      },
+      {
+        "name": "Speeder C",
+        "source": "craft_speederC.obj",
+        "position": [
+          12,
+          0,
+          -51
+        ]
+      },
+      {
+        "name": "Speeder D",
+        "source": "craft_speederD.obj",
+        "position": [
+          16,
+          0,
+          -51
+        ]
+      },
+      {
+        "name": "Base A",
+        "source": "rocket_baseA.obj",
+        "position": [
+          -12,
+          0,
+          -54
+        ]
+      },
+      {
+        "name": "Base B",
+        "source": "rocket_baseB.obj",
+        "position": [
+          -8,
+          0,
+          -54
+        ]
+      },
+      {
+        "name": "Fins A",
+        "source": "rocket_finsA.obj",
+        "position": [
+          -4,
+          0,
+          -54
+        ]
+      },
+      {
+        "name": "Fins B",
+        "source": "rocket_finsB.obj",
+        "position": [
+          -2,
+          0,
+          -54
+        ]
+      },
+      {
+        "name": "Fuel A",
+        "source": "rocket_fuelA.obj",
+        "position": [
+          0,
+          0,
+          -54
+        ]
+      },
+      {
+        "name": "Fuel B",
+        "source": "rocket_fuelB.obj",
+        "position": [
+          2,
+          0,
+          -54
+        ]
+      },
+      {
+        "name": "Sides A",
+        "source": "rocket_sidesA.obj",
+        "position": [
+          4,
+          0,
+          -54
+        ]
+      },
+      {
+        "name": "Sides B",
+        "source": "rocket_sidesB.obj",
+        "position": [
+          6,
+          0,
+          -54
+        ]
+      },
+      {
+        "name": "Top A",
+        "source": "rocket_topA.obj",
+        "position": [
+          8,
+          0,
+          -54
+        ]
+      },
+      {
+        "name": "Top B",
+        "source": "rocket_topB.obj",
+        "position": [
+          10,
+          0,
+          -54
+        ]
+      }
+    ]
+  }

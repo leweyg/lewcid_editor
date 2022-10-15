@@ -1,4 +1,5 @@
 a_spacekit_minimal.json
+a_spacekit_all.json
 a_spacekit_scene.json
 alien.mtl
 alien.obj
