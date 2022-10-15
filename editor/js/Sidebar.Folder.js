@@ -63,15 +63,19 @@ function SidebarFolder( editor ) {
 
 	// changeOption
 	const changeDefaults = {
-		'open' : "Open",
-		'add' : "Import",
+		'open' : "Open (replace)",
+		'open_tab' : "Open in Tab",
+		'add' : "Add to Scene",
 	};
 	const changeRow = new UIRow();
 	const changeOption = new UISelect().setWidth( '150px' );
 	changeOption.setOptions( changeDefaults );
 	changeOption.setValue( 'open' );
+	var getOpenMode = (() => {
+		return changeOption.getValue();
+	});
 	var isOpenMode = (() => {
-		return (changeOption.getValue() == 'open');
+		return (getOpenMode() == 'open');
 	});
 	//changeRow.add( new UIText( strings.getKey( 'sidebar/folder/click' ) ).setWidth( '90px' ) );
 	changeRow.add( changeOption );
@@ -147,6 +151,12 @@ function SidebarFolder( editor ) {
 							mCurrentPath = to.full_path;
 							RefreshFolder();
 						} else {
+							if (getOpenMode() == "open_tab") {
+								var path = to.full_path;
+								var url = "index.html?file_path=" + to.full_path;
+								window.open( url, '_blank' );
+								return;
+							}
 							// do import/open:
 							if (isOpenMode()) {
 								FolderUtils.SetDefaultScene(editor);
