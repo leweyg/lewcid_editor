@@ -9,7 +9,7 @@ function SidebarFolder( editor ) {
 	var mSearchString = "";
 
 	if (FolderUtils.IsLocalHost()) {
-		mCurrentPath = "../" + mCurrentPath;
+		//mCurrentPath = "../" + mCurrentPath;
 	}
 
 	const config = editor.config;
