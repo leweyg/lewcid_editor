@@ -1,0 +1,818 @@
+{
+  "examples": {
+    "models": {
+      "3dm/": {
+        "Rhino_Logo.3dm": 0
+      },
+      "3ds/": {
+        "portalgun/": {
+          "portalgun.3ds": 0,
+          "textures/": {
+            "color.jpg": 0,
+            "normal.jpg": 0
+          }
+        }
+      },
+      "3mf/": {
+        "README.md": 0,
+        "cube_gears.3mf": 0,
+        "facecolors.3mf": 0,
+        "multipletextures.3mf": 0,
+        "truck.3mf": 0,
+        "vertexcolors.3mf": 0
+      },
+      "amf/": {
+        "rook.amf": 0
+      },
+      "bvh/": {
+        "pirouette.bvh": 0
+      },
+      "collada/": {
+        "abb_irb52_7_120.dae": 0,
+        "elf/": {
+          "Body_tex_003.jpg": 0,
+          "Face_tex_002_toObj.jpg": 0,
+          "Hair_tex_001.jpg": 0,
+          "ce.jpg": 0,
+          "elf.dae": 0
+        },
+        "pump/": {
+          "pump.dae": 0,
+          "pump_body.jpg": 0,
+          "pump_gears.jpg": 0,
+          "pump_metalreflect.jpg": 0
+        },
+        "skin_and_morph.dae": 0,
+        "stormtrooper/": {
+          "Stormtrooper_D.jpg": 0,
+          "stormtrooper.dae": 0
+        }
+      },
+      "draco/": {
+        "bunny.drc": 0
+      },
+      "fbx/": {
+        "README.md": 0,
+        "Samba Dancing.fbx": 0,
+        "bunny_thickness.jpg": 0,
+        "nurbs.fbx": 0,
+        "stanford-bunny.fbx": 0,
+        "white.jpg": 0
+      },
+      "gcode/": {
+        "benchy.gcode": 0
+      },
+      "gltf/": {
+        "AnimatedMorphSphere/": {
+          "README.md": 0,
+          "glTF/": {
+            "AnimatedMorphSphere.bin": 0,
+            "AnimatedMorphSphere.gltf": 0
+          },
+          "screenshot/": {
+            "screenshot.gif": 0
+          }
+        },
+        "BoomBox.glb": 0,
+        "ClearcoatTest/": {
+          "ClearcoatTest.glb": 0,
+          "README.md": 0
+        },
+        "DamagedHelmet/": {
+          "README.md": 0,
+          "glTF/": {
+            "DamagedHelmet.bin": 0,
+            "DamagedHelmet.gltf": 0,
+            "Default_AO.jpg": 0,
+            "Default_albedo.jpg": 0,
+            "Default_emissive.jpg": 0,
+            "Default_metalRoughness.jpg": 0,
+            "Default_normal.jpg": 0
+          }
+        },
+        "Flamingo.glb": 0,
+        "Flower/": {
+          "Flower.glb": 0,
+          "README.md": 0
+        },
+        "Horse.glb": 0,
+        "IridescenceLamp.glb": 0,
+        "IridescentDishWithOlives.glb": 0,
+        "LeePerrySmith/": {
+          "Infinite-Level_02_Disp_NoSmoothUV-4096.jpg": 0,
+          "Infinite-Level_02_Tangent_SmoothUV.jpg": 0,
+          "LeePerrySmith.glb": 0,
+          "LeePerrySmith_License.txt": 0,
+          "Map-COL.jpg": 0,
+          "Map-SPEC.jpg": 0
+        },
+        "LittlestTokyo.glb": 0,
+        "MaterialsVariantsShoe/": {
+          "README.md": 0,
+          "glTF/": {
+            "MaterialsVariantsShoe.bin": 0,
+            "MaterialsVariantsShoe.gltf": 0,
+            "diffuseBeach.jpg": 0,
+            "diffuseMidnight.jpg": 0,
+            "diffuseStreet.jpg": 0,
+            "normal.jpg": 0,
+            "occlusionRougnessMetalness.jpg": 0
+          },
+          "screenshot/": {
+            "screenshot.jpg": 0
+          }
+        },
+        "Nefertiti/": {
+          "Nefertiti.glb": 0,
+          "README.md": 0
+        },
+        "Parrot.glb": 0,
+        "PrimaryIonDrive.glb": 0,
+        "RobotExpressive/": {
+          "README.md": 0,
+          "RobotExpressive.glb": 0
+        },
+        "ShadowmappableMesh.glb": 0,
+        "SheenChair.glb": 0,
+        "SimpleSkinning.gltf": 0,
+        "Soldier.glb": 0,
+        "Stork.glb": 0,
+        "Xbot.blend": 0,
+        "Xbot.glb": 0,
+        "coffeemat.glb": 0,
+        "collision-world.glb": 0,
+        "facecap.glb": 0,
+        "ferrari.glb": 0,
+        "ferrari_ao.png": 0,
+        "kira.glb": 0
+      },
+      "ifc/": {
+        "rac_advanced_sample_project.ifc": 0
+      },
+      "json/": {
+        "QRCode_buffergeometry.json": 0,
+        "WaltHeadLo_buffergeometry.json": 0,
+        "lightmap/": {
+          "lightmap-ao-shadow.png": 0,
+          "lightmap.json": 0,
+          "readme.txt": 0,
+          "rocks.jpg": 0,
+          "stone.jpg": 0
+        },
+        "pressure.json": 0,
+        "suzanne_buffergeometry.json": 0
+      },
+      "kmz/": {
+        "Box.kmz": 0,
+        "Readme.txt": 0
+      },
+      "ldraw/": {
+        "ldraw_org_logo/": {
+          "LDraw.org_logo_LICENSE.txt": 0,
+          "Stamp145.png": 0
+        },
+        "officialLibrary/": {
+          "CAlicense.txt": 0,
+          "CAreadme.txt": 0,
+          "Readme.txt": 0,
+          "models/": {
+            "10174-1-ImperialAT-ST-UCS.mpd_Packed.mpd": 0,
+            "1621-1-LunarMPVVehicle.mpd_Packed.mpd": 0,
+            "30023-1-Lighthouse.ldr_Packed.mpd": 0,
+            "30051-1-X-wingFighter-Mini.mpd_Packed.mpd": 0,
+            "30054-1-AT-ST-Mini.mpd_Packed.mpd": 0,
+            "4489-1-AT-AT-Mini.mpd_Packed.mpd": 0,
+            "4494-1-Imperial Shuttle-Mini.mpd_Packed.mpd": 0,
+            "4838-1-MiniVehicles.mpd_Packed.mpd": 0,
+            "4915-1-MiniConstruction.mpd_Packed.mpd": 0,
+            "4918-1-MiniFlyers.mpd_Packed.mpd": 0,
+            "5935-1-IslandHopper.mpd_Packed.mpd": 0,
+            "6965-1-TIEIntercep_4h4MXk5.mpd_Packed.mpd": 0,
+            "6966-1-JediStarfighter-Mini.mpd_Packed.mpd": 0,
+            "7140-1-X-wingFighter.mpd_Packed.mpd": 0,
+            "889-1-RadarTruck.mpd_Packed.mpd": 0,
+            "car.ldr_Packed.mpd": 0
+          }
+        }
+      },
+      "lwo/": {
+        "Images/": {
+          "environments/": {
+            "kiara_8_sunset.jpg": 0,
+            "kloofendal_48d_partly_cloudy.jpg": 0
+          },
+          "material-PBR-abstract/": {
+            "Abstract_008_basecolor.jpg": 0,
+            "Abstract_008_bump.jpg": 0,
+            "Abstract_008_metallic.jpg": 0,
+            "Abstract_008_normal.jpg": 0,
+            "Abstract_008_roughness.jpg": 0
+          },
+          "material-Phong-metal/": {
+            "167_BUMP.jpg": 0,
+            "167_COLOR.JPG": 0,
+            "167_GLOSS.jpg": 0,
+            "167_SPEC.jpg": 0
+          }
+        },
+        "LICENSE.txt": 0,
+        "Objects/": {
+          "LWO3/": {
+            "Demo.lwo": 0
+          }
+        }
+      },
+      "md2/": {
+        "ogro/": {
+          "Ogro.txt": 0,
+          "ogro.md2": 0,
+          "skins/": {
+            "arboshak.png": 0,
+            "ctf_b.png": 0,
+            "ctf_r.png": 0,
+            "darkam.png": 0,
+            "freedom.png": 0,
+            "gib.png": 0,
+            "gordogh.png": 0,
+            "grok.jpg": 0,
+            "igdosh.png": 0,
+            "khorne.png": 0,
+            "nabogro.png": 0,
+            "ogrobase.png": 0,
+            "sharokh.png": 0,
+            "weapon.jpg": 0
+          },
+          "weapon.md2": 0
+        },
+        "ratamahatta/": {
+          "ratamahatta.md2": 0,
+          "skins/": {
+            "ctf_b.png": 0,
+            "ctf_r.png": 0,
+            "dead.png": 0,
+            "gearwhore.png": 0,
+            "ratamahatta.png": 0,
+            "w_bfg.png": 0,
+            "w_blaster.png": 0,
+            "w_chaingun.png": 0,
+            "w_glauncher.png": 0,
+            "w_hyperblaster.png": 0,
+            "w_machinegun.png": 0,
+            "w_railgun.png": 0,
+            "w_rlauncher.png": 0,
+            "w_shotgun.png": 0,
+            "w_sshotgun.png": 0,
+            "weapon.png": 0
+          },
+          "w_bfg.md2": 0,
+          "w_blaster.md2": 0,
+          "w_chaingun.md2": 0,
+          "w_glauncher.md2": 0,
+          "w_hyperblaster.md2": 0,
+          "w_machinegun.md2": 0,
+          "w_railgun.md2": 0,
+          "w_rlauncher.md2": 0,
+          "w_shotgun.md2": 0,
+          "w_sshotgun.md2": 0,
+          "weapon.md2": 0
+        }
+      },
+      "mdd/": {
+        "cube.mdd": 0
+      },
+      "mmd/": {
+        "LICENSE": 0,
+        "Readme.txt": 0,
+        "audios/": {
+          "readme.txt": 0,
+          "wavefile_short.mp3": 0
+        },
+        "miku/": {
+          "eyeM2.bmp": 0,
+          "miku_v2.pmd": 0,
+          "readme.txt": 0,
+          "readme_miku_v2.txt": 0
+        },
+        "vmds/": {
+          "readme.txt": 0,
+          "readme_wavefile.txt": 0,
+          "readme_wavefile_camera.txt": 0,
+          "wavefile_camera.vmd": 0,
+          "wavefile_v2.vmd": 0
+        },
+        "vpds/": {
+          "01.vpd": 0,
+          "02.vpd": 0,
+          "03.vpd": 0,
+          "04.vpd": 0,
+          "05.vpd": 0,
+          "06.vpd": 0,
+          "07.vpd": 0,
+          "08.vpd": 0,
+          "09.vpd": 0,
+          "10.vpd": 0,
+          "11.vpd": 0,
+          "readme.txt": 0
+        }
+      },
+      "nrrd/": {
+        "I.nrrd": 0,
+        "README.txt": 0,
+        "stent.nrrd": 0
+      },
+      "obj/": {
+        "cerberus/": {
+          "Cerberus.obj": 0,
+          "Cerberus_A.jpg": 0,
+          "Cerberus_M.jpg": 0,
+          "Cerberus_N.jpg": 0,
+          "Cerberus_R.jpg": 0,
+          "Cerberus_RM.jpg": 0
+        },
+        "emerald.obj": 0,
+        "female02/": {
+          "01_-_Default1noCulling.JPG": 0,
+          "02_-_Default1noCulling.JPG": 0,
+          "03_-_Default1noCulling.JPG": 0,
+          "female02.mtl": 0,
+          "female02.obj": 0,
+          "female02_vertex_colors.obj": 0,
+          "readme.txt": 0
+        },
+        "male02/": {
+          "01_-_Default1noCulling.JPG": 0,
+          "male-02-1noCulling.JPG": 0,
+          "male02.mtl": 0,
+          "male02.obj": 0,
+          "orig_02_-_Defaul1noCulling.JPG": 0,
+          "readme.txt": 0
+        },
+        "ninja/": {
+          "ao.jpg": 0,
+          "displacement.jpg": 0,
+          "displacement.txt": 0,
+          "ninjaHead_Low.obj": 0,
+          "normal.png": 0
+        },
+        "spacekit/": {
+          "a_spacekit_all.json": 0,
+          "a_spacekit_minimal.json": 0,
+          "a_spacekit_scene.json": 0,
+          "alien.mtl": 0,
+          "alien.obj": 0,
+          "astronautA.mtl": 0,
+          "astronautA.obj": 0,
+          "astronautB.mtl": 0,
+          "astronautB.obj": 0,
+          "barrel.mtl": 0,
+          "barrel.obj": 0,
+          "barrels.mtl": 0,
+          "barrels.obj": 0,
+          "barrels_rail.mtl": 0,
+          "barrels_rail.obj": 0,
+          "bones.mtl": 0,
+          "bones.obj": 0,
+          "chimney.mtl": 0,
+          "chimney.obj": 0,
+          "chimney_detailed.mtl": 0,
+          "chimney_detailed.obj": 0,
+          "corridor.mtl": 0,
+          "corridor.obj": 0,
+          "corridor_corner.mtl": 0,
+          "corridor_corner.obj": 0,
+          "corridor_cornerRound.mtl": 0,
+          "corridor_cornerRound.obj": 0,
+          "corridor_cornerRoundWindow.mtl": 0,
+          "corridor_cornerRoundWindow.obj": 0,
+          "corridor_cross.mtl": 0,
+          "corridor_cross.obj": 0,
+          "corridor_detailed.mtl": 0,
+          "corridor_detailed.obj": 0,
+          "corridor_end.mtl": 0,
+          "corridor_end.obj": 0,
+          "corridor_open.mtl": 0,
+          "corridor_open.obj": 0,
+          "corridor_roof.mtl": 0,
+          "corridor_roof.obj": 0,
+          "corridor_split.mtl": 0,
+          "corridor_split.obj": 0,
+          "corridor_wall.mtl": 0,
+          "corridor_wall.obj": 0,
+          "corridor_wallCorner.mtl": 0,
+          "corridor_wallCorner.obj": 0,
+          "corridor_window.mtl": 0,
+          "corridor_window.obj": 0,
+          "corridor_windowClosed.mtl": 0,
+          "corridor_windowClosed.obj": 0,
+          "craft_cargoA.mtl": 0,
+          "craft_cargoA.obj": 0,
+          "craft_cargoB.mtl": 0,
+          "craft_cargoB.obj": 0,
+          "craft_miner.mtl": 0,
+          "craft_miner.obj": 0,
+          "craft_racer.mtl": 0,
+          "craft_racer.obj": 0,
+          "craft_speederA.mtl": 0,
+          "craft_speederA.obj": 0,
+          "craft_speederB.mtl": 0,
+          "craft_speederB.obj": 0,
+          "craft_speederC.mtl": 0,
+          "craft_speederC.obj": 0,
+          "craft_speederD.mtl": 0,
+          "craft_speederD.obj": 0,
+          "crater.mtl": 0,
+          "crater.obj": 0,
+          "craterLarge.mtl": 0,
+          "craterLarge.obj": 0,
+          "desk_chair.mtl": 0,
+          "desk_chair.obj": 0,
+          "desk_chairArms.mtl": 0,
+          "desk_chairArms.obj": 0,
+          "desk_chairStool.mtl": 0,
+          "desk_chairStool.obj": 0,
+          "desk_computer.mtl": 0,
+          "desk_computer.obj": 0,
+          "desk_computerCorner.mtl": 0,
+          "desk_computerCorner.obj": 0,
+          "desk_computerScreen.mtl": 0,
+          "desk_computerScreen.obj": 0,
+          "file_list.txt": 0,
+          "gate_complex.mtl": 0,
+          "gate_complex.obj": 0,
+          "gate_simple.mtl": 0,
+          "gate_simple.obj": 0,
+          "hangar_largeA.mtl": 0,
+          "hangar_largeA.obj": 0,
+          "hangar_largeB.mtl": 0,
+          "hangar_largeB.obj": 0,
+          "hangar_roundA.mtl": 0,
+          "hangar_roundA.obj": 0,
+          "hangar_roundB.mtl": 0,
+          "hangar_roundB.obj": 0,
+          "hangar_roundGlass.mtl": 0,
+          "hangar_roundGlass.obj": 0,
+          "hangar_smallA.mtl": 0,
+          "hangar_smallA.obj": 0,
+          "hangar_smallB.mtl": 0,
+          "hangar_smallB.obj": 0,
+          "machine_barrel.mtl": 0,
+          "machine_barrel.obj": 0,
+          "machine_barrelLarge.mtl": 0,
+          "machine_barrelLarge.obj": 0,
+          "machine_generator.mtl": 0,
+          "machine_generator.obj": 0,
+          "machine_generatorLarge.mtl": 0,
+          "machine_generatorLarge.obj": 0,
+          "machine_wireless.mtl": 0,
+          "machine_wireless.obj": 0,
+          "machine_wirelessCable.mtl": 0,
+          "machine_wirelessCable.obj": 0,
+          "meteor.mtl": 0,
+          "meteor.obj": 0,
+          "meteor_detailed.mtl": 0,
+          "meteor_detailed.obj": 0,
+          "meteor_half.mtl": 0,
+          "meteor_half.obj": 0,
+          "monorail_trackCornerLarge.mtl": 0,
+          "monorail_trackCornerLarge.obj": 0,
+          "monorail_trackCornerSmall.mtl": 0,
+          "monorail_trackCornerSmall.obj": 0,
+          "monorail_trackSlope.mtl": 0,
+          "monorail_trackSlope.obj": 0,
+          "monorail_trackStraight.mtl": 0,
+          "monorail_trackStraight.obj": 0,
+          "monorail_trackSupport.mtl": 0,
+          "monorail_trackSupport.obj": 0,
+          "monorail_trackSupportCorner.mtl": 0,
+          "monorail_trackSupportCorner.obj": 0,
+          "monorail_trainBox.mtl": 0,
+          "monorail_trainBox.obj": 0,
+          "monorail_trainCargo.mtl": 0,
+          "monorail_trainCargo.obj": 0,
+          "monorail_trainEnd.mtl": 0,
+          "monorail_trainEnd.obj": 0,
+          "monorail_trainFlat.mtl": 0,
+          "monorail_trainFlat.obj": 0,
+          "monorail_trainFront.mtl": 0,
+          "monorail_trainFront.obj": 0,
+          "monorail_trainPassenger.mtl": 0,
+          "monorail_trainPassenger.obj": 0,
+          "pipe_corner.mtl": 0,
+          "pipe_corner.obj": 0,
+          "pipe_cornerDiagonal.mtl": 0,
+          "pipe_cornerDiagonal.obj": 0,
+          "pipe_cornerRound.mtl": 0,
+          "pipe_cornerRound.obj": 0,
+          "pipe_cornerRoundLarge.mtl": 0,
+          "pipe_cornerRoundLarge.obj": 0,
+          "pipe_cross.mtl": 0,
+          "pipe_cross.obj": 0,
+          "pipe_end.mtl": 0,
+          "pipe_end.obj": 0,
+          "pipe_entrance.mtl": 0,
+          "pipe_entrance.obj": 0,
+          "pipe_open.mtl": 0,
+          "pipe_open.obj": 0,
+          "pipe_rampLarge.mtl": 0,
+          "pipe_rampLarge.obj": 0,
+          "pipe_rampSmall.mtl": 0,
+          "pipe_rampSmall.obj": 0,
+          "pipe_ring.mtl": 0,
+          "pipe_ring.obj": 0,
+          "pipe_ringHigh.mtl": 0,
+          "pipe_ringHigh.obj": 0,
+          "pipe_ringHighEnd.mtl": 0,
+          "pipe_ringHighEnd.obj": 0,
+          "pipe_ringSupport.mtl": 0,
+          "pipe_ringSupport.obj": 0,
+          "pipe_split.mtl": 0,
+          "pipe_split.obj": 0,
+          "pipe_straight.mtl": 0,
+          "pipe_straight.obj": 0,
+          "pipe_supportHigh.mtl": 0,
+          "pipe_supportHigh.obj": 0,
+          "pipe_supportLow.mtl": 0,
+          "pipe_supportLow.obj": 0,
+          "platform_center.mtl": 0,
+          "platform_center.obj": 0,
+          "platform_corner.mtl": 0,
+          "platform_corner.obj": 0,
+          "platform_cornerOpen.mtl": 0,
+          "platform_cornerOpen.obj": 0,
+          "platform_cornerRound.mtl": 0,
+          "platform_cornerRound.obj": 0,
+          "platform_end.mtl": 0,
+          "platform_end.obj": 0,
+          "platform_high.mtl": 0,
+          "platform_high.obj": 0,
+          "platform_large.mtl": 0,
+          "platform_large.obj": 0,
+          "platform_long.mtl": 0,
+          "platform_long.obj": 0,
+          "platform_low.mtl": 0,
+          "platform_low.obj": 0,
+          "platform_side.mtl": 0,
+          "platform_side.obj": 0,
+          "platform_small.mtl": 0,
+          "platform_small.obj": 0,
+          "platform_smallDiagonal.mtl": 0,
+          "platform_smallDiagonal.obj": 0,
+          "platform_straight.mtl": 0,
+          "platform_straight.obj": 0,
+          "rail.mtl": 0,
+          "rail.obj": 0,
+          "rail_corner.mtl": 0,
+          "rail_corner.obj": 0,
+          "rail_end.mtl": 0,
+          "rail_end.obj": 0,
+          "rail_middle.mtl": 0,
+          "rail_middle.obj": 0,
+          "rock.mtl": 0,
+          "rock.obj": 0,
+          "rock_crystals.mtl": 0,
+          "rock_crystals.obj": 0,
+          "rock_crystalsLargeA.mtl": 0,
+          "rock_crystalsLargeA.obj": 0,
+          "rock_crystalsLargeB.mtl": 0,
+          "rock_crystalsLargeB.obj": 0,
+          "rock_largeA.mtl": 0,
+          "rock_largeA.obj": 0,
+          "rock_largeB.mtl": 0,
+          "rock_largeB.obj": 0,
+          "rocket_baseA.mtl": 0,
+          "rocket_baseA.obj": 0,
+          "rocket_baseB.mtl": 0,
+          "rocket_baseB.obj": 0,
+          "rocket_finsA.mtl": 0,
+          "rocket_finsA.obj": 0,
+          "rocket_finsB.mtl": 0,
+          "rocket_finsB.obj": 0,
+          "rocket_fuelA.mtl": 0,
+          "rocket_fuelA.obj": 0,
+          "rocket_fuelB.mtl": 0,
+          "rocket_fuelB.obj": 0,
+          "rocket_sidesA.mtl": 0,
+          "rocket_sidesA.obj": 0,
+          "rocket_sidesB.mtl": 0,
+          "rocket_sidesB.obj": 0,
+          "rocket_topA.mtl": 0,
+          "rocket_topA.obj": 0,
+          "rocket_topB.mtl": 0,
+          "rocket_topB.obj": 0,
+          "rocks_smallA.mtl": 0,
+          "rocks_smallA.obj": 0,
+          "rocks_smallB.mtl": 0,
+          "rocks_smallB.obj": 0,
+          "rover.mtl": 0,
+          "rover.obj": 0,
+          "satelliteDish.mtl": 0,
+          "satelliteDish.obj": 0,
+          "satelliteDish_detailed.mtl": 0,
+          "satelliteDish_detailed.obj": 0,
+          "satelliteDish_large.mtl": 0,
+          "satelliteDish_large.obj": 0,
+          "stairs.mtl": 0,
+          "stairs.obj": 0,
+          "stairs_corner.mtl": 0,
+          "stairs_corner.obj": 0,
+          "stairs_short.mtl": 0,
+          "stairs_short.obj": 0,
+          "structure.mtl": 0,
+          "structure.obj": 0,
+          "structure_closed.mtl": 0,
+          "structure_closed.obj": 0,
+          "structure_detailed.mtl": 0,
+          "structure_detailed.obj": 0,
+          "structure_diagonal.mtl": 0,
+          "structure_diagonal.obj": 0,
+          "supports_high.mtl": 0,
+          "supports_high.obj": 0,
+          "supports_low.mtl": 0,
+          "supports_low.obj": 0,
+          "terrain.mtl": 0,
+          "terrain.obj": 0,
+          "terrain_ramp.mtl": 0,
+          "terrain_ramp.obj": 0,
+          "terrain_rampLarge.mtl": 0,
+          "terrain_rampLarge.obj": 0,
+          "terrain_rampLarge_detailed.mtl": 0,
+          "terrain_rampLarge_detailed.obj": 0,
+          "terrain_roadCorner.mtl": 0,
+          "terrain_roadCorner.obj": 0,
+          "terrain_roadCross.mtl": 0,
+          "terrain_roadCross.obj": 0,
+          "terrain_roadEnd.mtl": 0,
+          "terrain_roadEnd.obj": 0,
+          "terrain_roadSplit.mtl": 0,
+          "terrain_roadSplit.obj": 0,
+          "terrain_roadStraight.mtl": 0,
+          "terrain_roadStraight.obj": 0,
+          "terrain_side.mtl": 0,
+          "terrain_side.obj": 0,
+          "terrain_sideCliff.mtl": 0,
+          "terrain_sideCliff.obj": 0,
+          "terrain_sideCorner.mtl": 0,
+          "terrain_sideCorner.obj": 0,
+          "terrain_sideCornerInner.mtl": 0,
+          "terrain_sideCornerInner.obj": 0,
+          "terrain_sideEnd.mtl": 0,
+          "terrain_sideEnd.obj": 0,
+          "turret_double.mtl": 0,
+          "turret_double.obj": 0,
+          "turret_single.mtl": 0,
+          "turret_single.obj": 0,
+          "weapon_gun.mtl": 0,
+          "weapon_gun.obj": 0,
+          "weapon_rifle.mtl": 0,
+          "weapon_rifle.obj": 0
+        },
+        "tree.obj": 0,
+        "walt/": {
+          "WaltHead.mtl": 0,
+          "WaltHead.obj": 0
+        }
+      },
+      "pcd/": {
+        "ascii/": {
+          "simple.pcd": 0
+        },
+        "binary/": {
+          "Zaghetto.pcd": 0
+        },
+        "binary_compressed/": {
+          "pcl_logo.pcd": 0
+        }
+      },
+      "pdb/": {
+        "Al2O3.pdb": 0,
+        "aspirin.pdb": 0,
+        "buckyball.pdb": 0,
+        "caf2.pdb": 0,
+        "caffeine.pdb": 0,
+        "cholesterol.pdb": 0,
+        "cocaine.pdb": 0,
+        "cu.pdb": 0,
+        "cubane.pdb": 0,
+        "diamond.pdb": 0,
+        "ethanol.pdb": 0,
+        "glucose.pdb": 0,
+        "graphite.pdb": 0,
+        "lsd.pdb": 0,
+        "lycopene.pdb": 0,
+        "nacl.pdb": 0,
+        "nicotine.pdb": 0,
+        "ybco.pdb": 0
+      },
+      "ply/": {
+        "ascii/": {
+          "dolphins.ply": 0,
+          "dolphins_colored.ply": 0
+        },
+        "binary/": {
+          "Lucy100k.ply": 0,
+          "dolphins_be.ply": 0,
+          "dolphins_le.ply": 0
+        }
+      },
+      "prwm/": {
+        "faceted-nefertiti.be.prwm": 0,
+        "faceted-nefertiti.le.prwm": 0,
+        "smooth-suzanne.be.prwm": 0,
+        "smooth-suzanne.le.prwm": 0,
+        "vive-controller.be.prwm": 0,
+        "vive-controller.le.prwm": 0
+      },
+      "stl/": {
+        "ascii/": {
+          "pr2_head_pan.stl": 0,
+          "pr2_head_tilt.stl": 0,
+          "slotted_disk.stl": 0
+        },
+        "binary/": {
+          "colored.stl": 0,
+          "pr2_head_pan.stl": 0,
+          "pr2_head_tilt.stl": 0
+        }
+      },
+      "svg/": {
+        "energy.svg": 0,
+        "hexagon.svg": 0,
+        "lineJoinsAndCaps.svg": 0,
+        "multiple-css-classes.svg": 0,
+        "style-css-inside-defs.svg": 0,
+        "tests/": {
+          "1.png": 0,
+          "1.svg": 0,
+          "2.png": 0,
+          "2.svg": 0,
+          "3.png": 0,
+          "3.svg": 0,
+          "4.png": 0,
+          "4.svg": 0,
+          "5.png": 0,
+          "5.svg": 0,
+          "6.png": 0,
+          "6.svg": 0,
+          "7.png": 0,
+          "7.svg": 0,
+          "8.png": 0,
+          "8.svg": 0,
+          "9.svg": 0,
+          "ordering.svg": 0,
+          "roundJoinPrecisionIssue.svg": 0,
+          "styles.svg": 0,
+          "testDefs/": {
+            "Svg-defs-license.txt": 0,
+            "Svg-defs.svg": 0,
+            "Svg-defs2.svg": 0,
+            "Wave-defs-license.txt": 0,
+            "Wave-defs.svg": 0,
+            "defs4.svg": 0,
+            "defs5.svg": 0
+          },
+          "units.svg": 0
+        },
+        "threejs.svg": 0,
+        "tiger.svg": 0,
+        "zero-radius.svg": 0
+      },
+      "tilt/": {
+        "BRUSH_DOME.tilt": 0
+      },
+      "usdz/": {
+        "saeukkang.usdz": 0
+      },
+      "vox/": {
+        "menger.vox": 0,
+        "monu10.vox": 0,
+        "teapot.vox": 0
+      },
+      "vrml/": {
+        "creaseAngle.wrl": 0,
+        "crystal.wrl": 0,
+        "elevationGrid1.wrl": 0,
+        "elevationGrid2.wrl": 0,
+        "extrusion1.wrl": 0,
+        "extrusion2.wrl": 0,
+        "extrusion3.wrl": 0,
+        "house.wrl": 0,
+        "lines.wrl": 0,
+        "map.gif": 0,
+        "meshWithLines.wrl": 0,
+        "meshWithTexture.wrl": 0,
+        "pixelTexture.wrl": 0,
+        "points.wrl": 0
+      },
+      "vtk/": {
+        "bunny.vtk": 0,
+        "cube_ascii.vtp": 0,
+        "cube_binary.vtp": 0,
+        "cube_no_compression.vtp": 0,
+        "liver.vtk": 0
+      },
+      "xyz/": {
+        "helix_201.xyz": 0
+      }
+    }
+  }
+}

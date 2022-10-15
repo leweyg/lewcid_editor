@@ -40,6 +40,39 @@ var FolderUtils = {
         }
     },
 
+    BuildFileListLocal : function(path, callback) {
+        FolderUtils.GetFilesInPath(path, (list) => {
+            var ans = {};
+            var waiting = 0;
+            var checkDone = (() => {
+                if (waiting == 0) {
+                    callback(ans);
+                }
+            });
+            for (var index in list) {
+                var file = list[index];
+                if (file.trim() == "") continue;
+                if (file.endsWith("/")) {
+                    ans[file] = {};
+                    waiting++;
+                    function buildSub(_path, _file, _into) {
+                        var full = _path + _file;
+                        FolderUtils.BuildFileListLocal(full, (subList) => {
+                            _into[_file] = subList;
+                            waiting--;
+                            checkDone();
+                        });
+                    }
+                    buildSub( path, file, ans );
+
+                } else {
+                    ans[file] = 0;
+                }
+            }
+            checkDone();
+        });
+    },
+
     GetFilePathInURL : function() {
 		var queryString = window.location.search;
 		var urlParams = new URLSearchParams(queryString);

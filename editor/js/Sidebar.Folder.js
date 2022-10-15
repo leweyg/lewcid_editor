@@ -22,6 +22,57 @@ function SidebarFolder( editor ) {
 	settings.setPaddingTop( '20px' );
 	container.add( settings );
 
+	// folder tools:
+	if (FolderUtils.IsLocalHost()) {
+		// changeOption
+		const folderTools = {
+			'none' : "Git/Tools..",
+			'git_clone' : "Git Clone...",
+			'git_status' : "Git Status",
+			'file_list_update' : "Update file list",
+		};
+		const toolsRow = new UIRow();
+		const toolsOption = new UISelect().setWidth( '150px' );
+		toolsRow.add(toolsOption);
+		toolsOption.setOptions( folderTools );
+		toolsOption.setValue( 'none' );
+		toolsOption.onChange(() => {
+			var toolId = toolsOption.getValue();
+			switch (toolId) {
+				case 'git_clone':
+					var path = prompt("Git source URL? SSH or .git:");
+					if (path != "") {
+						FolderUtils.ShellExecute("git clone " + path,(res) => {
+							alert(res);
+						}, "../");
+					}
+					break;
+				case 'git_status':
+					FolderUtils.ShellExecute("git status",(res) => {
+						alert(res);
+					});
+					break;
+				case 'file_list_update':
+					//var folder = FolderUtils.PathParentFolder( FolderUtils.GetFilePathInURL() );
+					var folder = "../examples/models/";
+
+					FolderUtils.BuildFileListLocal(folder,(res) => {
+						var fullRes = {examples:{models:res}};
+						var fullText = JSON.stringify(fullRes, null, 2);
+						var savePath = "../file_tree.json";
+						FolderUtils.ShellSaveToFile(savePath, fullText, (res)=>{
+							alert("Updated = " + res.trim());
+						});
+					});
+					break;
+				default:
+					break;
+			}
+			toolsOption.setValue( 'none' );
+		});
+		settings.add( toolsRow );
+	}
+
 	// current
 	const currentRow = new UIRow();
 	const currentOption = new UIInput(mCurrentPath);
