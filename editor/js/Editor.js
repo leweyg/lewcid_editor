@@ -637,15 +637,15 @@ Editor.prototype = {
 	fromJSON: async function ( json ) {
 
 		var loader = new THREE.ObjectLoader();
-		var camera = await loader.parseAsync( json.camera );
+		//var camera = await loader.parseAsync( json.camera );
 
-		this.camera.copy( camera );
+		//this.camera.copy( camera );
 		this.signals.cameraResetted.dispatch();
 
-		this.history.fromJSON( json.history );
-		this.scripts = json.scripts;
+		//this.history.fromJSON( json.history );
+		//this.scripts = json.scripts;
 
-		this.setScene( await loader.parseAsync( json.scene ) );
+		//this.setScene( await loader.parseAsync( json.scene ) );
 
 	},
 
@@ -681,10 +681,12 @@ Editor.prototype = {
 				toneMapping: this.config.getKey( 'project/renderer/toneMapping' ),
 				toneMappingExposure: this.config.getKey( 'project/renderer/toneMappingExposure' )
 			},
-			// not autosaving the camera: camera: this.camera.toJSON(),
-			// not autosaving the scene: scene: this.scene.toJSON(),
-			// not saving script: scripts: this.scripts,
-			// not saving history: history: this.history.toJSON()
+			/*
+			camera: this.camera.toJSON(),
+			scene: this.scene.toJSON(),
+			scripts: this.scripts,
+			history: this.history.toJSON()
+			*/
 
 		};
 
