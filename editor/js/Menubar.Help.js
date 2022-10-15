@@ -23,7 +23,7 @@ function MenubarHelp( editor ) {
 	option.setTextContent( strings.getKey( 'menubar/help/source_code' ) );
 	option.onClick( function () {
 
-		window.open( 'https://github.com/mrdoob/three.js/tree/master/editor', '_blank' );
+		window.open( 'https://github.com/leweyg/lewcid_editor', '_blank' );
 
 	} );
 	options.add( option );
@@ -42,6 +42,7 @@ function MenubarHelp( editor ) {
 	options.add( option );
 	*/
 
+	/*
 	// About
 
 	option = new UIRow();
@@ -65,6 +66,7 @@ function MenubarHelp( editor ) {
 
 	} );
 	options.add( option );
+	*/
 
 	return container;
 
