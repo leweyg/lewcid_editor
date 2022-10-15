@@ -42,12 +42,12 @@ function MenubarHelp( editor ) {
 	options.add( option );
 	*/
 
-	/*
+
 	// About
 
 	option = new UIRow();
 	option.setClass( 'option' );
-	option.setTextContent( strings.getKey( 'menubar/help/about' ) );
+	option.setTextContent( 'About Three.js' );
 	option.onClick( function () {
 
 		window.open( 'https://threejs.org', '_blank' );
@@ -55,8 +55,18 @@ function MenubarHelp( editor ) {
 	} );
 	options.add( option );
 
-	// Manual
+	option = new UIRow();
+	option.setClass( 'option' );
+	option.setTextContent( 'About Lewcid Editor' );
+	option.onClick( function () {
 
+		window.open( '../', '_blank' );
+
+	} );
+	options.add( option );
+
+	// Manual
+	/*
 	option = new UIRow();
 	option.setClass( 'option' );
 	option.setTextContent( strings.getKey( 'menubar/help/manual' ) );
