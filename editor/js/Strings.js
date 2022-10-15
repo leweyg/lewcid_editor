@@ -11,7 +11,7 @@ function Strings( config ) {
 			'menubar/file/open': 'Open',
 			'menubar/file/save': 'Save',
 			'menubar/file/folder/open': 'Open Folder',
-			'menubar/file/folder/code': 'Code Folder',
+			'menubar/file/folder/code': 'Open File',
 			'menubar/file/import': 'Import',
 			'menubar/file/export/geometry': 'Export Geometry',
 			'menubar/file/export/object': 'Export Object',

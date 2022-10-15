@@ -82,11 +82,18 @@ function MenubarFile( editor ) {
 
 	// Folder Open
 
+	var gitHubBase = "https://github.com/leweyg/lewcid_editor/tree/local_editor/examples/";
+
 	let openFolderOption = new UIRow();
 	openFolderOption.setClass( 'option' );
 	openFolderOption.setTextContent( strings.getKey( 'menubar/file/folder/open' ) );
 	openFolderOption.onClick( function () {
-		FolderUtils.ShellExecute("open ./",(result)=>{ });
+		if (FolderUtils.IsLocalHost()) {
+			FolderUtils.ShellExecute("open ./",(result)=>{ });
+		} else {
+			var url = gitHubBase + FolderUtils.PathParentFolder( FolderUtils.GetFilePathInURL() );
+			window.open( url, '_blank' );
+		}
 	} );
 	options.add( openFolderOption );
 
@@ -96,7 +103,12 @@ function MenubarFile( editor ) {
 	codeFolderOption.setClass( 'option' );
 	codeFolderOption.setTextContent( strings.getKey( 'menubar/file/folder/code' ) );
 	codeFolderOption.onClick( function () {
-		FolderUtils.ShellExecute("code ./",(result)=>{ });
+		if (FolderUtils.IsLocalHost()) {
+			FolderUtils.ShellExecute("code ./",(result)=>{ });
+		} else {
+			var url = gitHubBase + FolderUtils.GetFilePathInURL();
+			window.open( url, '_blank' );
+		}
 	} );
 	options.add( codeFolderOption );
 
