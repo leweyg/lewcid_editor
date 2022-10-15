@@ -681,10 +681,10 @@ Editor.prototype = {
 				toneMapping: this.config.getKey( 'project/renderer/toneMapping' ),
 				toneMappingExposure: this.config.getKey( 'project/renderer/toneMappingExposure' )
 			},
-			camera: this.camera.toJSON(),
-			scene: this.scene.toJSON(),
-			scripts: this.scripts,
-			history: this.history.toJSON()
+			// not autosaving the camera: camera: this.camera.toJSON(),
+			// not autosaving the scene: scene: this.scene.toJSON(),
+			// not saving script: scripts: this.scripts,
+			// not saving history: history: this.history.toJSON()
 
 		};
 
