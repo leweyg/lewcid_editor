@@ -239,6 +239,7 @@ function SidebarFolder( editor ) {
 		var file_path = FolderUtils.GetFilePathInURL();
 		if (!file_path) return;
 		
+		editor.clear();
 		FolderUtils.SetDefaultScene(editor);
 		FolderUtils.SetTitleFromPath(file_path);
 		FolderUtils.ImportByPath(file_path, (obj) => {
@@ -249,8 +250,12 @@ function SidebarFolder( editor ) {
 		RefreshFolder();
 	}
 
+
+
 	window.onload = (() => {
-		checkUrlParameters();
+		setTimeout(()=>{
+			checkUrlParameters();
+		},100);
 	});
 
 	return container;
