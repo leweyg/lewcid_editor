@@ -3,7 +3,19 @@
 Lewcid Editor is an adaptation of the three.js editor to run locally,
 like a traditional file-based 3D editor, while maintining it's online capabilities. It is listed as this bug on the main three.js website: https://github.com/mrdoob/three.js/issues/24766 
 
-Based on [three.js](https://threejs.org/)'s [editor source code](https://github.com/mrdoob/three.js)
+Based on [three.js](https://threejs.org/)'s [editor source code](https://github.com/mrdoob/three.js). Changes are in the 'local_editor' branch: https://github.com/leweyg/lewcid_editor/compare/dev...local_editor 
+
+## Examples 
+
+Scene assembled in Lewcid Editor :
+https://leweyg.github.io/lewcid_editor/editor/index.html?file_path=../examples/models/obj/spacekit/a_spacekit_scene.json 
+![Example Scene](docs/editor/lewcid_editor_spacekit_scene.png)
+
+Kenney.nl's Space Kit in Lewcid Editor :
+https://leweyg.github.io/lewcid_editor/editor/index.html?file_path=../examples/models/obj/spacekit/a_spacekit_all.json 
+![Example Scene](docs/editor/lewcid_editor_kits.png)
+
+
 
 ## Features (ALL IN PROGRESS)
 - **'Folder' tab** to quick browse/search/open/instance/manage large collections of files, including for the example three.js content itself. Default scenes (with lights) provided for images, materials, etc.
