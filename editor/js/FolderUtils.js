@@ -173,34 +173,41 @@ var FolderUtils = {
             const { MTLLoader } = await import( 'three/addons/loaders/MTLLoader.js' );
 			const { OBJLoader } = await import( 'three/addons/loaders/OBJLoader.js' );
 
+            function loadObjWithMaterials(materials) {
+                var loader = new OBJLoader();
+                if (materials) loader.setMaterials(materials);
+                loader.load(path, function (object) {
+                    object.name = FolderUtils.PathDisplayName(path);
+                    object.userData = {
+                        source : FolderUtils.PathWithoutFolder(path)
+                    };
+                    var isAutoAdd = !noAutoEditorAdd;
+                    if (isAutoAdd) {
+                        FolderUtils.EnsureMainSceneNode(editor,(parent)=>{
+                            parent.add(object);
+                        });
+                        if (editor.selected) {
+                            object.position.copy(editor.selected.position);
+                            object.rotation.copy(editor.selected.rotation);
+                            object.scale.copy(editor.selected.scale);
+                        }
+                        editor.selected = object;
+                        editor.signals.objectSelected.dispatch( object );
+                    } else {
+                        FolderUtils.EditorRefresh();
+                    }
+                    if (callback_blob) callback_blob(object);
+                });
+            }
+
             var mtlPath = path.replace(".obj",".mtl");
             new MTLLoader()
                 .load(mtlPath, function (materials) {
                     materials.preload();
-                    new OBJLoader()
-                        .setMaterials(materials)
-                        .load(path, function (object) {
-                            object.name = FolderUtils.PathDisplayName(path);
-                            object.userData = {
-                                source : FolderUtils.PathWithoutFolder(path)
-                            };
-                            var isAutoAdd = !noAutoEditorAdd;
-                            if (isAutoAdd) {
-                                FolderUtils.EnsureMainSceneNode(editor,(parent)=>{
-                                    parent.add(object);
-                                });
-                                if (editor.selected) {
-                                    object.position.copy(editor.selected.position);
-                                    object.rotation.copy(editor.selected.rotation);
-                                    object.scale.copy(editor.selected.scale);
-                                }
-                                editor.selected = object;
-                                editor.signals.objectSelected.dispatch( object );
-                            } else {
-                                FolderUtils.EditorRefresh();
-                            }
-                            if (callback_blob) callback_blob(object);
-                        });
+                    loadObjWithMaterials(materials);
+                }, () => {},
+                (errorInfo) => {
+                    loadObjWithMaterials(null);
                 });
             return;
         }
