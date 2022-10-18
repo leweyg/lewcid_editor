@@ -22,6 +22,24 @@ function SidebarFolder( editor ) {
 	settings.setPaddingTop( '20px' );
 	container.add( settings );
 
+	var refreshRow = new UIRow();
+	const refreshButton = new UIButton("RELOAD IF NOT LOAIDING....");
+	refreshRow.add( refreshButton );
+	settings.add( refreshRow );
+	refreshButton.onClick(() => {
+		checkUrlParameters();
+	});
+	function clearReloadButton() {
+		if (refreshRow) {
+			settings.remove(refreshRow);
+			refreshRow = null;
+		}
+	}
+	if (!FolderUtils.GetFilePathInURL()) {
+		clearReloadButton();
+	}
+	
+
 	// folder tools:
 	if (FolderUtils.IsLocalHost()) {
 		// changeOption
@@ -199,6 +217,7 @@ function SidebarFolder( editor ) {
 				};
 				function add_on_click(to) {
 					to.onClick = (() => {
+						clearReloadButton();
 						if (to.is_folder) {
 							// change folder:
 							mCurrentPath = to.full_path;
@@ -234,8 +253,15 @@ function SidebarFolder( editor ) {
 	}
 
 	RefreshFolder();
+	var hasCheckedUrl = false;
 
 	function checkUrlParameters() {
+		if (hasCheckedUrl) {
+			return;
+		}
+		hasCheckedUrl = true;
+
+		clearReloadButton();
 		var file_path = FolderUtils.GetFilePathInURL();
 		if (!file_path) return;
 		
@@ -257,6 +283,9 @@ function SidebarFolder( editor ) {
 			checkUrlParameters();
 		},100);
 	});
+	setTimeout(() => {
+		checkUrlParameters();
+	}, 2000);
 
 	return container;
 
