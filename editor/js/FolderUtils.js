@@ -11,7 +11,7 @@ var FolderUtils = {
             if (callback) callback(null);
             return;
         }
-        var encoded = cmd.replace(" ","_");
+        var encoded = cmd.replace(" ","^");
         FolderUtils.DownloadText("php/shell_execute.php?cd=" + cd + "&cmd=" + encoded, callback);
     },
 
