@@ -61,6 +61,13 @@ function MenubarFile( editor ) {
 	let saveOption = new UIRow();
 	saveOption.setClass( 'option' );
 	saveOption.setTextContent( strings.getKey( 'menubar/file/save' ) );
+	function doSaveAs(saveTo) {
+		var contentObj = FolderUtils.lewcidObject_ExportToObjectFromEditor();
+		var contentText = JSON.stringify(contentObj,null,2);
+		FolderUtils.ShellSaveToFile(saveTo,contentText,(responce)=>{
+			alert("Saved = " + responce);
+		});
+	}
 	saveOption.onClick( function () {
 		if (!FolderUtils.IsLocalHost()) {
             alert("Save is not supported on web!\n\nPlease clone and host locally.");
@@ -72,13 +79,28 @@ function MenubarFile( editor ) {
 			alert("Select a scene in the 'Folder' tab first.");
 			return;
 		}
-		var contentObj = FolderUtils.lewcidObject_ExportToObjectFromEditor();
-		var contentText = JSON.stringify(contentObj,null,2);
-		FolderUtils.ShellSaveToFile(saveTo,contentText,(responce)=>{
-			alert("Saved = " + responce);
-		});
+		doSaveAs(saveTo);
 	} );
 	options.add( saveOption );
+	let saveAsOption = new UIRow();
+	saveAsOption.setClass( 'option' );
+	saveAsOption.setTextContent( strings.getKey( 'menubar/file/save_as' ) );
+	options.add( saveAsOption );
+	saveAsOption.onClick( function () {
+		if (!FolderUtils.IsLocalHost()) {
+            alert("Save as is not supported on web!\n\nPlease clone and host locally.");
+            return;
+        }
+		var testExtension = ""; //".out.json"; // TODO: make this ""
+		var saveTo = FolderUtils.GetFilePathInURL() + testExtension;
+		saveTo = prompt("Save to?", saveTo);
+		if (!saveTo) {
+			alert("Select a scene in the 'Folder' tab first.");
+			return;
+		}
+		doSaveAs(saveTo);
+	} );
+	
 
 	// Folder Open
 

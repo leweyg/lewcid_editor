@@ -10,6 +10,7 @@ function Strings( config ) {
 			'menubar/file/new': 'New',
 			'menubar/file/open': 'Open',
 			'menubar/file/save': 'Save',
+			'menubar/file/save_as': 'Save as...',
 			'menubar/file/folder/open': 'Open Folder',
 			'menubar/file/folder/code': 'Open File',
 			'menubar/file/import': 'Import',
