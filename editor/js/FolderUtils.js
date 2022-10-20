@@ -163,6 +163,17 @@ var FolderUtils = {
         return path;
     },
 
+    PathRelativeToCurrent : function(path) {
+        var current = FolderUtils.GetFilePathInURL();
+        if (!current) return path;
+        current = FolderUtils.PathParentFolder(current);
+        if (path.startsWith(current)) {
+            return path.replace(current,"");
+        }
+        console.assert(false);
+        alert("TODO!");
+    },
+
     SetDefaultScene : function(editor) {
         editor.clear();
         FolderUtils.AddDefaultLight(editor);
@@ -179,7 +190,7 @@ var FolderUtils = {
                 loader.load(path, function (object) {
                     object.name = FolderUtils.PathDisplayName(path);
                     object.userData = {
-                        source : FolderUtils.PathWithoutFolder(path)
+                        source : FolderUtils.PathRelativeToCurrent(path)
                     };
                     var isAutoAdd = !noAutoEditorAdd;
                     if (isAutoAdd) {

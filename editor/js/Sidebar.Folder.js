@@ -48,6 +48,8 @@ function SidebarFolder( editor ) {
 			'pwd' : "Current Directory",
 			'git_clone' : "Git Clone...",
 			'git_status' : "Git Status",
+			'custom_select_file' : "Custom: Select File",
+			'custom_match_files' : "Custom: Match files",
 			'file_list_update' : "Update file list",
 		};
 		const toolsRow = new UIRow();
@@ -89,6 +91,37 @@ function SidebarFolder( editor ) {
 						});
 					});
 					break;
+				case 'custom_match_files':
+					function copySingleFile(folderPath,shortName) {
+						var from = folderPath + "obj_src/" + shortName + ".*";
+						var to = folderPath + "obj/";
+						FolderUtils.ShellExecute("cp " + from + " " + to,(res)=>{
+						});
+					}
+					function customMatchFiles(folderPath) {
+						FolderUtils.GetFilesInPath(folderPath + "gltf/",(sourceList)=>{
+							for (var ndx in sourceList) {
+								var sourceFile = sourceList[ndx];
+								var oldPrefix = ".gltf.glb";
+								if (sourceFile.endsWith(oldPrefix)) {
+									sourceFile = sourceFile.replace(".gltf.glb","");
+									copySingleFile(folderPath,sourceFile);
+								}
+							}
+						});
+					}
+					customMatchFiles(FolderUtils.PathParentFolder(FolderUtils.GetFilePathInURL()));
+					break;
+				case 'custom_select_file':
+					function customSelectFile(fromFile) {
+						var toPath = FolderUtils.PathParentFolder(fromFile) + "../../obj/";
+						var fromPath = fromFile.replace(".obj",".*");
+						FolderUtils.ShellExecute("cp " + fromPath + " " + toPath, (cmd)=>{
+
+						});
+					}
+					customSelectFile(FolderUtils.GetFilePathInURL());
+					break;
 				default:
 					break;
 			}
@@ -102,6 +135,11 @@ function SidebarFolder( editor ) {
 	const currentOption = new UIInput(mCurrentPath);
 	const upButton = new UIButton(" ▲Up ").setWidth("90px");
 	upButton.onClick(() => {
+		if (mSearchString != "") {
+			setSearchString("");
+			RefreshFolder();
+			return;
+		}
 		if (mCurrentPath != "../") {
 			var parentPath = FolderUtils.PathParentFolder(mCurrentPath);
 			SetFolderPath(parentPath);
@@ -129,6 +167,11 @@ function SidebarFolder( editor ) {
 	function updateFromSearchBox() {
 		var val = searchBox.getValue();
 		mSearchString = val;
+		RefreshFolder();
+	}
+	function setSearchString(str) {
+		searchBox.setValue(str);
+		mSearchString = str;
 		RefreshFolder();
 	}
 	searchBox.onInput(() => {
