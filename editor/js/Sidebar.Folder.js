@@ -45,6 +45,7 @@ function SidebarFolder( editor ) {
 		// changeOption
 		const folderTools = {
 			'none' : "Git/Tools..",
+			'pwd' : "Current Directory",
 			'git_clone' : "Git Clone...",
 			'git_status' : "Git Status",
 			'file_list_update' : "Update file list",
@@ -57,12 +58,17 @@ function SidebarFolder( editor ) {
 		toolsOption.onChange(() => {
 			var toolId = toolsOption.getValue();
 			switch (toolId) {
+				case 'pwd':
+					FolderUtils.ShellExecute("pwd",(res) => {
+						alert(res);
+					});
+					break;
 				case 'git_clone':
 					var path = prompt("Git source URL? SSH or .git:");
 					if (path != "") {
 						FolderUtils.ShellExecute("git clone " + path,(res) => {
 							alert(res);
-						}, "../");
+						});
 					}
 					break;
 				case 'git_status':
