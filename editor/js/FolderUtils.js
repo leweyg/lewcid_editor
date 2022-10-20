@@ -179,7 +179,7 @@ var FolderUtils = {
         FolderUtils.AddDefaultLight(editor);
     },
 
-    ImportByPath_OBJ : async function(path,callback_blob,noAutoEditorAdd=false) {
+    ImportByPath_OBJ : async function(path,callback_blob,parentScene=null) {
         if (path.endsWith(".obj")) {
             const { MTLLoader } = await import( 'three/addons/loaders/MTLLoader.js' );
 			const { OBJLoader } = await import( 'three/addons/loaders/OBJLoader.js' );
@@ -192,8 +192,7 @@ var FolderUtils = {
                     object.userData = {
                         source : FolderUtils.PathRelativeToCurrent(path)
                     };
-                    var isAutoAdd = !noAutoEditorAdd;
-                    if (isAutoAdd) {
+                    if (!parentScene) {
                         FolderUtils.EnsureMainSceneNode(editor,(parent)=>{
                             parent.add(object);
                         });
@@ -205,6 +204,7 @@ var FolderUtils = {
                         editor.selected = object;
                         editor.signals.objectSelected.dispatch( object );
                     } else {
+                        parentScene.add(object);
                         FolderUtils.EditorRefresh();
                     }
                     if (callback_blob) callback_blob(object);
@@ -309,10 +309,10 @@ var FolderUtils = {
         FolderUtils.lewcidObject_ApplyTransformToScene(el, jsonObj);
         if (jsonObj.source) {
             var url = folderPath + jsonObj.source;
-            FolderUtils.ImportByPath_OBJ(url, (childObj) => {
+            FolderUtils.ImportByPath(url, (childObj) => {
                 if (!childObj.name) childObj.name = FolderUtils.PathDisplayName(jsonObj.source);
-                el.add(childObj);
-            }, /*noAutoEditorAdd=*/true );
+                //el.add(childObj);
+            }, el );
         }
         if (jsonObj.children) {
             for (var childIndex in jsonObj.children) {
@@ -393,7 +393,7 @@ var FolderUtils = {
         return root;
     },
 
-    ImportByPath_lewcidJSON : async function(path,callback_blob) {
+    ImportByPath_lewcidJSON : async function(path,callback_blob,parentScene) {
         FolderUtils.DownloadJSON(path, (jsonObject) => {
             var folderRoot = FolderUtils.PathParentFolder(path);
             if (!jsonObject.name) {
@@ -401,9 +401,13 @@ var FolderUtils = {
             }
             var sceneObject = FolderUtils.lewcidObject_sceneFromJsonObject(jsonObject,folderRoot);
 
-            editor.execute( new AddObjectCommand( editor, sceneObject ) );
-            if (jsonObject.metadata && jsonObject.metadata.camera) {
-                FolderUtils.lewcidObject_ApplyTransformToScene(editor.camera, jsonObject.metadata.camera);
+            if (!parentScene) {
+                editor.execute( new AddObjectCommand( editor, sceneObject ) );
+                if (jsonObject.metadata && jsonObject.metadata.camera) {
+                    FolderUtils.lewcidObject_ApplyTransformToScene(editor.camera, jsonObject.metadata.camera);
+                }
+            } else {
+                parentScene.add(sceneObject);
             }
 
             if (callback_blob) callback_blob(sceneObject);
@@ -411,15 +415,15 @@ var FolderUtils = {
 
     },
 
-    ImportByPath : async function(path,callback_blob) {
+    ImportByPath : async function(path,callback_blob,parentScene=null) {
         if (path.endsWith(".obj")) {
-            return await FolderUtils.ImportByPath_OBJ(path, callback_blob);
+            return await FolderUtils.ImportByPath_OBJ(path, callback_blob,parentScene);
         }
         if (path.endsWith(".mtl")) {
             return await FolderUtils.ImportByPath_MTL(path, callback_blob);
         }
         if (path.endsWith(".json") || path.endsWith(".path_scene")) {
-            return FolderUtils.ImportByPath_lewcidJSON(path,callback_blob);
+            return FolderUtils.ImportByPath_lewcidJSON(path,callback_blob,parentScene);
         }
         FolderUtils.DownloadBlob(path, (blob) => {
             blob.name = path;
