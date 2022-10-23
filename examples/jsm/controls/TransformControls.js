@@ -110,8 +110,8 @@ class TransformControls extends Object3D {
 		defineProperty( 'enabled', true );
 		defineProperty( 'axis', null );
 		defineProperty( 'mode', 'translate' );
-		defineProperty( 'translationSnap', 0.5 );
-		defineProperty( 'rotationSnap', 3.14159 / 2.0 );
+		defineProperty( 'translationSnap', 0.5 ); // leweyg tuning
+		defineProperty( 'rotationSnap', 3.14159 / 4.0 ); // leweyg tuning
 		defineProperty( 'scaleSnap', null );
 		defineProperty( 'space', 'world' );
 		defineProperty( 'size', 1 );

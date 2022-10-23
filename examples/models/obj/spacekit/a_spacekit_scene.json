@@ -809,16 +809,6 @@
       "source": "terrain_sideEnd.obj"
     },
     {
-      "name": "terrain_ramp",
-      "position": [
-        1,
-        0,
-        -4
-      ],
-      "userData": {},
-      "source": "terrain_ramp.obj"
-    },
-    {
       "name": "terrain_sideCliff",
       "position": [
         0,
@@ -1212,7 +1202,7 @@
       "name": "pipe_rampLarge",
       "position": [
         4,
-        0.5,
+        0.4,
         -4
       ],
       "userData": {},
@@ -1222,7 +1212,7 @@
       "name": "pipe_ring",
       "position": [
         4,
-        0.5,
+        0.4,
         -3
       ],
       "userData": {},
@@ -2182,7 +2172,7 @@
       "name": "pipe_rampSmall",
       "position": [
         -1,
-        0.5,
+        0.7000000000000001,
         -7
       ],
       "rotation": [
@@ -2197,7 +2187,7 @@
       "name": "pipe_end",
       "position": [
         -2,
-        0.5,
+        0.7000000000000001,
         -7
       ],
       "rotation": [
@@ -3407,6 +3397,26 @@
       ],
       "userData": {},
       "source": "astronautA.obj"
+    },
+    {
+      "name": "terrain_roadStraight",
+      "position": [
+        1,
+        0.25,
+        -3.95
+      ],
+      "rotation": [
+        0.3926987500000002,
+        0,
+        0
+      ],
+      "scale": [
+        1.0845427778573642,
+        1,
+        1.2763556174280206
+      ],
+      "userData": {},
+      "source": "terrain_roadStraight.obj"
     }
   ],
   "metadata": {
@@ -3414,14 +3424,14 @@
     "type": "lewcid_object",
     "camera": {
       "position": [
-        -7.58555268906778,
-        5.976256324243351,
-        6.169257933097225
+        -6.3453232606836325,
+        8.661492940794504,
+        7.131240069772935
       ],
       "rotation": [
-        -0.5753871143479652,
-        -0.5854284844020571,
-        -0.3441256691061074
+        -0.836766654238694,
+        -0.3390401874339136,
+        -0.35317805647475276
       ]
     }
   }
