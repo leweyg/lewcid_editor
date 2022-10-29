@@ -288,7 +288,7 @@ function SidebarFolder( editor ) {
 							
 							FolderUtils.ImportByPath(to.full_path, (blob) => {
 								
-							});
+							}, null, true);
 							
 						}
 					});
@@ -319,7 +319,7 @@ function SidebarFolder( editor ) {
 		FolderUtils.SetTitleFromPath(file_path);
 		FolderUtils.ImportByPath(file_path, (obj) => {
 			// editor.focus(obj);
-		});
+		}, null, true);
 
 		mCurrentPath = FolderUtils.PathParentFolder(file_path);
 		RefreshFolder();

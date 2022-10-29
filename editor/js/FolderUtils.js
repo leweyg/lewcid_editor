@@ -2,6 +2,7 @@ import * as THREE from 'three';
 
 import { AddObjectCommand } from './commands/AddObjectCommand.js';
 import { Viewport } from './Viewport.js';
+import { AssetCache } from './AssetCache.js';
 //import { ImageUtils } from '../../src/extras/ImageUtils.js';
 
 var FolderUtils = {
@@ -442,7 +443,13 @@ var FolderUtils = {
 
     },
 
-    ImportByPath : async function(path,callback_blob,parentScene=null) {
+    ImportByPath : async function(path,callback_blob,parentScene=null,skipCache=false) {
+        var useCaching = true;
+        var avoidCaching = (path.endsWith(".json")); // due to async clone
+        if (useCaching && (!avoidCaching) && !(skipCache)) {
+            AssetCache.Load(path, callback_blob, parentScene);
+            return;
+        }
         var lpath = path.toLowerCase();
         if (lpath.endsWith(".obj")) {
             return await FolderUtils.ImportByPath_OBJ(path, callback_blob,parentScene);
@@ -474,27 +481,6 @@ var FolderUtils = {
         light.position.set( 5, 10, 7.5 );
 
         editor.execute( new AddObjectCommand( editor, light ) );
-    },
-
-    LoadByPath : async function(path, callback) {
-        // generic: editor.loader.loadFile( blob );
-
-        const { OBJLoader } = await import( 'three/addons/loaders/OBJLoader.js' );
-        const loader = new OBJLoader();
-        var internalCallback = (val,error) => {
-            if (!val) {
-                console.log("Error loading '" + path, + "': " + error);
-                return;
-            }
-            editor.execute( new AddObjectCommand( editor, val ) );
-            callback(val,error);
-        };
-        loader.load(path, 
-            (loaded) => { internalCallback(loaded); },
-            (progress) => { },
-            (error) => { internalCallback(null,error); } );
-
-        
     },
 
     DownloadBlob : function(path,callback) {
