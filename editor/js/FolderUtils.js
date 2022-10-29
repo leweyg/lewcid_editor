@@ -2,6 +2,7 @@ import * as THREE from 'three';
 
 import { AddObjectCommand } from './commands/AddObjectCommand.js';
 import { Viewport } from './Viewport.js';
+//import { ImageUtils } from '../../src/extras/ImageUtils.js';
 
 var FolderUtils = {
 
@@ -415,15 +416,45 @@ var FolderUtils = {
 
     },
 
+    ImportByPath_Texture : async function(parentScene,path,callback_obj) {
+        var loader = (new THREE.TextureLoader());
+        loader.load(path, texture => {
+
+            var material = new THREE.MeshLambertMaterial({ 
+                map : texture,
+             });
+            var plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
+            plane.material.side = THREE.DoubleSide;
+    
+            var resultObj = plane;
+    
+            if (parentScene) {
+                parentScene.add(resultObj);
+            } else {
+                editor.execute( new AddObjectCommand( editor, resultObj ) );
+                editor.focus(resultObj);
+            }
+    
+            if (callback_obj) {
+                callback_obj(resultObj);
+            }
+        });
+
+    },
+
     ImportByPath : async function(path,callback_blob,parentScene=null) {
-        if (path.endsWith(".obj")) {
+        var lpath = path.toLowerCase();
+        if (lpath.endsWith(".obj")) {
             return await FolderUtils.ImportByPath_OBJ(path, callback_blob,parentScene);
         }
-        if (path.endsWith(".mtl")) {
+        if (lpath.endsWith(".mtl")) {
             return await FolderUtils.ImportByPath_MTL(path, callback_blob);
         }
-        if (path.endsWith(".json") || path.endsWith(".path_scene")) {
+        if (lpath.endsWith(".json") || lpath.endsWith(".path_scene")) {
             return FolderUtils.ImportByPath_lewcidJSON(path,callback_blob,parentScene);
+        }
+        if (lpath.endsWith(".png") || lpath.endsWith(".jpg") || lpath.endsWith(".jpeg")) {
+            return FolderUtils.ImportByPath_Texture(parentScene, path, callback_blob);
         }
         FolderUtils.DownloadBlob(path, (blob) => {
             blob.name = path;
