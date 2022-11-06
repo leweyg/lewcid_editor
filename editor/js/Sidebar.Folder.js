@@ -23,7 +23,7 @@ function SidebarFolder( editor ) {
 	container.add( settings );
 
 	var refreshRow = new UIRow();
-	const refreshButton = new UIButton("RELOAD IF NOT LOAIDING....");
+	const refreshButton = new UIButton("RELOAD IF NOT LOADING....");
 	refreshRow.add( refreshButton );
 	settings.add( refreshRow );
 	refreshButton.onClick(() => {
@@ -50,6 +50,7 @@ function SidebarFolder( editor ) {
 			'git_status' : "Git Status",
 			'custom_select_file' : "Custom: Select File",
 			'custom_match_files' : "Custom: Match files",
+			'custom_common_materials' : "Custom: Common Material",
 			'file_list_update' : "Update file list",
 		};
 		const toolsRow = new UIRow();
@@ -111,6 +112,56 @@ function SidebarFolder( editor ) {
 						});
 					}
 					customMatchFiles(FolderUtils.PathParentFolder(FolderUtils.GetFilePathInURL()));
+					break;
+				case 'custom_common_materials':
+					{
+						var folder = FolderUtils.PathParentFolder(FolderUtils.GetFilePathInURL());
+						FolderUtils.GetFilesInPath(folder, (files) => {
+							var materialsByName = {};
+							var matsInFile = async function(path) {
+								var text = await FolderUtils.DownloadTextAsync(path);
+								var lines = text.split("\n");
+								var mtls = {};
+								var current = null;
+								for (var li in lines) {
+									var line = lines[li];
+									if (line.startsWith("newmtl")) {
+										var name = line.split(" ")[1].trim();
+										var mtl = {
+											name : name,
+											lines : []
+										}
+										current = mtl;
+										if (!(name in materialsByName)) {
+											materialsByName[name] = mtl;
+										}
+									}
+									if (current) {
+										current.lines.push(line);
+									}
+								}
+								return mtls;
+							};
+							var matPromises = [];
+							for (var fi in files) {
+								var path = folder + files[fi];
+								if (path.endsWith(".mtl") && !path.includes("common.mtl")) {
+									matPromises.push(matsInFile(path));
+								}
+							}
+							Promise.all(matPromises).then(() => {
+								var combined = "";
+								for (var name in materialsByName) {
+									var mat = materialsByName[name];
+									for (var li in mat.lines) {
+										combined += mat.lines[li] + "\n";
+									}
+									combined += "\n";
+								}
+								FolderUtils.ShellSaveToFile(folder + "common.mtl", combined);
+							});
+						});
+					}
 					break;
 				case 'custom_select_file':
 					function customSelectFile(fromFile) {
