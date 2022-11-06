@@ -531,10 +531,36 @@ var FolderUtils = {
         rawFile.open("POST", url, true);
         rawFile.onreadystatechange = function() {
             if (rawFile.readyState === 4 && rawFile.status == "200") {
-                callback(rawFile.responseText);
+                if (callback) {
+                    callback(rawFile.responseText);
+                }
             }
         }
         rawFile.send(content);
+    },
+
+    DownloadTextAsync : async function(url,method="GET") {
+        return new Promise(function (resolve, reject) {
+            let xhr = new XMLHttpRequest();
+            xhr.open(method, url);
+            xhr.onload = function () {
+                if (this.status >= 200 && this.status < 300) {
+                    resolve(xhr.response);
+                } else {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                }
+            };
+            xhr.onerror = function () {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            };
+            xhr.send();
+        });
     },
 
     DownloadText : function (path, callback) {
