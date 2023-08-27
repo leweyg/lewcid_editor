@@ -142,6 +142,12 @@ function SidebarObject( editor ) {
 
 	container.add( objectScaleRow );
 
+	// animation
+	const objectAnimations = new UIRow();
+	var objectAnimButton = new UIButton("Animations");
+	objectAnimations.add( objectAnimButton );
+	container.add( objectAnimations );
+
 	// fov
 
 	const objectFovRow = new UIRow();
@@ -823,6 +829,14 @@ function SidebarObject( editor ) {
 		objectVisible.setValue( object.visible );
 		objectFrustumCulled.setValue( object.frustumCulled );
 		objectRenderOrder.setValue( object.renderOrder );
+
+		if (object.animations && (object.animations.length>0)) {
+			objectAnimButton.setTextContent("Anim Count=" + object.animations.length);
+			objectAnimButton.setDisabled(false);
+		} else {
+			objectAnimButton.setTextContent("No Animations");
+			objectAnimButton.setDisabled(true);
+		}
 
 		try {
 
