@@ -88,6 +88,7 @@ function Strings( config ) {
 
 			'sidebar/animations': 'Animations',
 			'sidebar/animations/play': 'Play',
+			'sidebar/animations/pause': 'Pause',
 			'sidebar/animations/stop': 'Stop',
 			'sidebar/animations/timescale': 'Time Scale',
 

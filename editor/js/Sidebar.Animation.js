@@ -9,7 +9,7 @@ function SidebarAnimation( editor ) {
 	function getButtonText( action ) {
 
 		return action.isRunning()
-			? strings.getKey( 'sidebar/animations/stop' )
+			? strings.getKey( 'sidebar/animations/pause' )
 			: strings.getKey( 'sidebar/animations/play' );
 
 	}
@@ -26,12 +26,28 @@ function SidebarAnimation( editor ) {
 		const button = new UIButton( getButtonText( action  ) );
 		button.onClick( function () {
 
-			action.isRunning() ? action.stop() : action.play();
+			if (!action.isRunning()) {
+				action.play();
+				action.setEffectiveTimeScale(1.0);
+			} else {
+				var curTimeScale = action.getEffectiveTimeScale();
+				if (curTimeScale > 0.5) {
+					action.setEffectiveTimeScale(0.0);
+				} else {
+					action.setEffectiveTimeScale(1.0);
+				}
+			}
 			button.setTextContent( getButtonText( action  ) );
 
 		} );
-
 		container.add( button );
+
+		const stopButton = new UIButton( strings.getKey( 'sidebar/animations/stop' ) );
+		stopButton.onClick(function(){
+			action.stop();
+		});
+
+		container.add( stopButton );
 
 		return container;
 
