@@ -1016,6 +1016,47 @@ class UIProgress extends UIElement {
 
 }
 
+class UIRange extends UIElement {
+
+	constructor( value=50.0, min=0, max=100, step=0.5 ) {
+
+		var el = document.createElement( 'input' );
+		el.type = "range";
+		super( el );
+
+		this.dom.value = value;
+		this.min = min;
+		this.max = max;
+		this.step = step;
+
+	}
+
+	setValue( value ) {
+
+		this.dom.value = value;
+
+	}
+
+	getValue() {
+		return this.dom.value;
+	}
+
+	setMinMax( min, max ) {
+
+		this.dom.min = min;
+		this.dom.max = max;
+
+	}
+
+	setStep( step ) {
+
+		this.dom.step = min;
+		this.dom.step = max;
+
+	}
+
+}
+
 class UITabbedPanel extends UIDiv {
 
 	constructor() {
@@ -1287,4 +1328,4 @@ class ListboxItem extends UIDiv {
 
 }
 
-export { UIElement, UISpan, UIDiv, UIRow, UIPanel, UIText, UIInput, UITextArea, UISelect, UICheckbox, UIColor, UINumber, UIInteger, UIBreak, UIHorizontalRule, UIButton, UIProgress, UITabbedPanel, UIListbox, ListboxItem };
+export { UIElement, UISpan, UIDiv, UIRow, UIPanel, UIText, UIInput, UITextArea, UISelect, UICheckbox, UIColor, UINumber, UIInteger, UIBreak, UIHorizontalRule, UIButton, UIProgress, UIRange, UITabbedPanel, UIListbox, ListboxItem };

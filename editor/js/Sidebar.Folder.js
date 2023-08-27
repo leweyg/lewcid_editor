@@ -1,4 +1,4 @@
-import { UIListbox, UIPanel, UIRow, UISelect, UISpan, UIText, UIInput, UIButton } from './libs/ui.js';
+import { UIListbox, UIPanel, UIRow, UISelect, UISpan, UIText, UIInput, UIButton, UIProgress, UIRange } from './libs/ui.js';
 
 import { FolderUtils } from "./FolderUtils.js"
 
@@ -207,6 +207,17 @@ function SidebarFolder( editor ) {
 		}
 	});
 	settings.add( currentRow );
+
+	// animation scrubber:
+	const animRow = new UIRow();
+	const animLabel = new UIText("Animation");
+	animRow.add(animLabel);
+	const animProgress = new UIRange(0.5, 0.0, 1.0, 0.01);
+	animProgress.onChange(() => {
+		animLabel.setValue("AnimTime=" + animProgress.getValue());
+	});
+	animRow.add(animProgress);
+	settings.add( animRow );
 
 
 	// search bar
