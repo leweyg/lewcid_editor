@@ -66,6 +66,8 @@ function Loader( editor ) {
 
 		const filename = file.name;
 		const extension = filename.split( '.' ).pop().toLowerCase();
+		var filePath = (filename.includes("/")) ?
+			filename.substr(0,filename.lastIndexOf("/")+1) : "";
 
 		const reader = new FileReader();
 		reader.addEventListener( 'progress', function ( event ) {
@@ -244,7 +246,7 @@ function Loader( editor ) {
 					const { FBXLoader } = await import( 'three/addons/loaders/FBXLoader.js' );
 
 					const loader = new FBXLoader( manager );
-					const object = loader.parse( contents );
+					const object = loader.parse( contents, filePath );
 
 					editor.execute( new AddObjectCommand( editor, object ) );
 
