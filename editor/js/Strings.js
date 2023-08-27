@@ -104,7 +104,7 @@ function Strings( config ) {
 			'sidebar/folder/double_click': 'Double Click',
 
 			'sidebar/properties/object': 'Object',
-			'sidebar/properties/geometry': 'Geometry',
+			'sidebar/properties/geometry': 'Model',
 			'sidebar/properties/material': 'Material',
 			'sidebar/properties/script': 'Script',
 
