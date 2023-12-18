@@ -1,4 +1,4 @@
-import { UIPanel, UIBreak, UIButton, UIDiv, UIText, UINumber, UIRow } from './libs/ui.js';
+import { UIPanel, UIBreak, UIButton, UIDiv, UIText, UINumber, UIRow, UIProgress, UIRange } from './libs/ui.js';
 
 function SidebarAnimation( editor ) {
 
@@ -18,8 +18,11 @@ function SidebarAnimation( editor ) {
 
 		const action = mixer.clipAction( animation, object );
 
-		const container = new UIRow();
+		const topContainer = new UIPanel();
 
+		const container = new UIRow();
+		topContainer.add(container);
+		
 		const name = new UIText( animation.name ).setWidth( '200px' );
 		container.add( name );
 
@@ -49,7 +52,21 @@ function SidebarAnimation( editor ) {
 
 		container.add( stopButton );
 
-		return container;
+		const playbackSliderStuff = new UIRow();
+		const playbackRange = new UIRange( 0.0, 0.0, animation.duration, 0.01 );
+		playbackRange.onChange(function(){
+			var userTimePct = playbackRange.getValue() / 100.0;
+			var userTimeSec = animation.duration * userTimePct;
+			action.time = userTimeSec;
+		});
+		playbackSliderStuff.add(playbackRange);
+
+		var playbackDuration = new UIText( animation.duration );//.setWidth( '200px' );
+		playbackSliderStuff.add(playbackDuration);
+		
+		topContainer.add(playbackSliderStuff);
+
+		return topContainer;
 
 	}
 
