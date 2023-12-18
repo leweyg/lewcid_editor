@@ -15,6 +15,9 @@ class ViewHelper extends ViewHelperBase {
 		panel.setBottom( '0px' );
 		panel.setHeight( '128px' );
 		panel.setWidth( '128px' );
+		
+		var allowTouchViewHelper = false;
+		if (allowTouchViewHelper) {
 
 		panel.dom.addEventListener( 'pointerup', ( event ) => {
 
@@ -29,6 +32,8 @@ class ViewHelper extends ViewHelperBase {
 			event.stopPropagation();
 
 		} );
+		
+		}
 
 		container.add( panel );
 

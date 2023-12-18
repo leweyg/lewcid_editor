@@ -321,6 +321,13 @@ class EditorControls extends THREE.EventDispatcher {
 			return ans;
 		}
 
+		function touchIndexClean(event,rawIndex) {
+			var touchIndex = 1 * rawIndex;
+			var from = event.touches[ touchIndex ];
+			var correctIndex = 1 * from.identifier;
+			return correctIndex;
+		}
+
 		function touchStart( event ) {
 
 			if ( scope.enabled === false ) return;
@@ -328,7 +335,7 @@ class EditorControls extends THREE.EventDispatcher {
 			if (useQuadrantStyle) {
 
 			for (var touchIndexRaw in touchIndices(event)) {
-				var touchIndex = 1 * touchIndexRaw;
+				var touchIndex = touchIndexClean(event,touchIndexRaw);
 				var from = event.touches[ touchIndex ];
 				var to = touches[touchIndex];
 				to.set(from.clientX, from.clientY, 0);
@@ -385,7 +392,7 @@ class EditorControls extends THREE.EventDispatcher {
 			if (useQuadrantStyle) {
 
 				for (var touchIndexRaw in touchIndices(event)) {
-					var touchIndex = 1 * touchIndexRaw;
+					var touchIndex = touchIndexClean(event, touchIndexRaw);
 					touches[ touchIndex ].set( event.touches[ touchIndex ].clientX,
 						event.touches[ touchIndex ].clientY );
 
@@ -411,26 +418,28 @@ class EditorControls extends THREE.EventDispatcher {
 							subState = SUBSTATE.INWARD;
 						}
 					} else {
+						state = STATE.ROTATE;
 						if (isTopSideOfCanvas) {
-							state = STATE.ZOOM;
-						} else {
-							state = STATE.ROTATE;
+							//state = STATE.ZOOM;
 						}
 					}
 					if (state == STATE.ROTATE) {
-						var scl = 0.5;
+						var scl = -0.75;
 						delta.x *= scl;
 						delta.y *= scl;
 						scope.rotate( delta );
 					} else if (state == STATE.ZOOM) {
 						// todo
 					} else if (state == STATE.PAN) {
-						var scl = 1.0;
-						delta.x *= scl;
-						delta.y *= scl;
 						if (subState == SUBSTATE.FACING) {
+							var scl = 0.5;
+							delta.x *= scl;
+							delta.y *= scl;
 							delta.set( -delta.x, delta.y, 0 );
 						} else if (subState == SUBSTATE.INWARD) {
+							var scl = 1.0;
+							delta.x *= scl;
+							delta.y *= scl;
 							delta.set( delta.x, 0, delta.y );
 						}
 						scope.pan(delta);
