@@ -22,7 +22,9 @@ class EditorControls extends THREE.EventDispatcher {
 		var box = new THREE.Box3();
 
 		var STATE = { NONE: - 1, ROTATE: 0, ZOOM: 1, PAN: 2 };
+		var SUBSTATE = { INWARD:0, FACING:1 };
 		var state = STATE.NONE;
+		var subState = SUBSTATE.INWARD;
 
 		var center = this.center;
 		var normalMatrix = new THREE.Matrix3();
@@ -180,6 +182,32 @@ class EditorControls extends THREE.EventDispatcher {
 
 		function onMouseDown( event ) {
 
+			var touchStyleModeSelect = true;
+			if (touchStyleModeSelect) {
+
+				var touchX = event.clientX;
+				var touchY = event.clientY;
+				var midX = event.target.clientWidth / 2.0;
+				var midY = event.target.clientHeight / 2.0;
+				var isLeftSideOfCanvas = (touchX < midX);
+				var isTopSideOfCanvas = (touchY < midY);
+				if (isLeftSideOfCanvas) {
+					state = STATE.PAN;
+					if (isTopSideOfCanvas) {
+						subState = SUBSTATE.FACING;
+					} else {
+						subState = SUBSTATE.INWARD;
+					}
+				} else {
+					if (isTopSideOfCanvas) {
+						state = STATE.ZOOM;
+					} else {
+						state = STATE.ROTATE;
+					}
+				}
+
+			} else {
+
 			if ( event.button === 0 ) {
 
 				state = STATE.ROTATE;
@@ -193,6 +221,8 @@ class EditorControls extends THREE.EventDispatcher {
 				state = STATE.PAN;
 
 			}
+
+			} // end !touchStyleModeSelect
 
 			pointerOld.set( event.clientX, event.clientY );
 
@@ -215,7 +245,15 @@ class EditorControls extends THREE.EventDispatcher {
 
 			} else if ( state === STATE.PAN ) {
 
-				scope.pan( delta.set( - movementX, movementY, 0 ) );
+				if ( subState === SUBSTATE.FACING ) {
+
+					scope.pan( delta.set( - movementX, movementY, 0 ) );
+
+				} else if ( subState === SUBSTATE.INWARD ) {
+
+					scope.pan( delta.set( - movementX, 0, movementY ) );
+
+				}
 
 			}
 
