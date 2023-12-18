@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-import { UIPanel, UIRow, UIInput, UIButton, UIColor, UICheckbox, UIInteger, UITextArea, UIText, UINumber } from './libs/ui.js';
+import { UIPanel, UIRow, UIInput, UIButton, UIColor, UICheckbox, UIInteger, UITextArea, UIText, UINumber, UIBreak } from './libs/ui.js';
 import { UIBoolean } from './libs/ui.three.js';
 
 import { SetUuidCommand } from './commands/SetUuidCommand.js';
@@ -9,6 +9,8 @@ import { SetPositionCommand } from './commands/SetPositionCommand.js';
 import { SetRotationCommand } from './commands/SetRotationCommand.js';
 import { SetScaleCommand } from './commands/SetScaleCommand.js';
 import { SetColorCommand } from './commands/SetColorCommand.js';
+import { MultiCmdsCommand } from './commands/MultiCmdsCommand.js';
+
 
 function SidebarObject( editor ) {
 
@@ -105,6 +107,37 @@ function SidebarObject( editor ) {
 	objectNameRow.add( objectName );
 
 	container.add( objectNameRow );
+
+	// camera transforms:
+
+	var editorCameraRow = new UIRow();
+	// editor.camera
+
+	var editorCameraFrom = new UIButton("From Editor");
+	editorCameraFrom.onClick(function(){
+		var from = editor.camera;
+		var to = editor.selected;
+		let cmds = [
+			new SetPositionCommand( editor, to, from.position.clone() ),
+			new SetRotationCommand( editor, to, from.rotation.clone() ) ];
+		editor.execute( new MultiCmdsCommand( editor, cmds ),
+			'From Editor Camera' );
+	});
+	editorCameraRow.add( editorCameraFrom );
+	editorCameraRow.add( new UIBreak() );
+	var editorCameraTo = new UIButton("To Editor");
+	editorCameraTo.onClick(function(){
+		var from = editor.selected;
+		var to = editor.camera;
+		let cmds = [
+			new SetPositionCommand( editor, to, from.position.clone() ),
+			new SetRotationCommand( editor, to, from.rotation.clone() ) ];
+		editor.execute( new MultiCmdsCommand( editor, cmds ),
+			'To Editor Camera' );
+	});
+	editorCameraRow.add( editorCameraTo );
+
+	container.add( editorCameraRow );
 
 	// position
 
