@@ -68,12 +68,16 @@ class EditorControls extends THREE.EventDispatcher {
 
 		};
 
-		this.pan = function ( delta ) {
+		this.pan = function ( delta, sameFloor=false ) {
 
 			var distance = object.position.distanceTo( center );
 
 			delta.multiplyScalar( distance * scope.panSpeed );
 			delta.applyMatrix3( normalMatrix.getNormalMatrix( object.matrix ) );
+
+			if (sameFloor) {
+				delta.y = 0.0;
+			}
 
 			object.position.add( delta );
 			center.add( delta );
@@ -251,7 +255,8 @@ class EditorControls extends THREE.EventDispatcher {
 
 				} else if ( subState === SUBSTATE.INWARD ) {
 
-					scope.pan( delta.set( - movementX, 0, movementY ) );
+					var sameFloor = true;
+					scope.pan( delta.set( movementX, 0, movementY ), sameFloor );
 
 				}
 
@@ -305,12 +310,22 @@ class EditorControls extends THREE.EventDispatcher {
 
 		// touch
 
+		var touchStateCreate = function() {
+			return {
+				posNow : new THREE.Vector3(),
+				posStart : new THREE.Vector3(),
+				posPrevious : new THREE.Vector3(),
+				posDelta : new THREE.Vector3(),
+				targetSize : new THREE.Vector3(),
+				touchData : null,
+				startTop : false,
+				startLeft : true,
+			};
+		}
+
 		var touches = [ new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3() ];
 		var prevTouches = [ new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3() ];
-		var startedTouches = [ new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3() ];
-		var motionTouches = [ new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3() ];
-		var targetSize = [ new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3() ];
-
+		var touchById = {};
 		var prevDistance = null;
 
 		function touchIndices(event) {
@@ -321,11 +336,15 @@ class EditorControls extends THREE.EventDispatcher {
 			return ans;
 		}
 
-		function touchIndexClean(event,rawIndex) {
-			var touchIndex = 1 * rawIndex;
-			var from = event.touches[ touchIndex ];
-			var correctIndex = 1 * from.identifier;
-			return correctIndex;
+		function touchStateGet(event,rawIndex) {
+			var from = event.touches[ 1 * rawIndex ];
+			var fromId = from.identifier;
+			if (!(fromId in touchById)) {
+				touchById[fromId] = touchStateCreate();
+			}
+			var res = touchById[fromId];
+			res.touchData = from;
+			return res;
 		}
 
 		function touchStart( event ) {
@@ -335,11 +354,13 @@ class EditorControls extends THREE.EventDispatcher {
 			if (useQuadrantStyle) {
 
 			for (var touchIndexRaw in touchIndices(event)) {
-				var touchIndex = touchIndexClean(event,touchIndexRaw);
-				var from = event.touches[ touchIndex ];
-				var to = touches[touchIndex];
-				to.set(from.clientX, from.clientY, 0);
-				targetSize[touchIndex].set(from.target.clientWidth, from.target.clientHeight, 1);
+				var touchState = touchStateGet(event,touchIndexRaw);
+				var from = touchState.touchData;
+				var to = touchState;
+				to.posNow.set(from.clientX, from.clientY, 0);
+				to.posStart.copy(to.posNow);
+				to.posPrevious.copy(to.posNow);
+				to.targetSize.set(from.target.clientWidth, from.target.clientHeight, 1);
 			}
 
 			} else {
@@ -363,8 +384,6 @@ class EditorControls extends THREE.EventDispatcher {
 
 			prevTouches[ 0 ].copy( touches[ 0 ] );
 			prevTouches[ 1 ].copy( touches[ 1 ] );
-			startedTouches[ 0 ].copy( touches[ 0 ] );
-			startedTouches[ 1 ].copy( touches[ 1 ] );
 		}
 
 
@@ -392,18 +411,19 @@ class EditorControls extends THREE.EventDispatcher {
 			if (useQuadrantStyle) {
 
 				for (var touchIndexRaw in touchIndices(event)) {
-					var touchIndex = touchIndexClean(event, touchIndexRaw);
-					touches[ touchIndex ].set( event.touches[ touchIndex ].clientX,
-						event.touches[ touchIndex ].clientY );
+					var touchState = touchStateGet(event,touchIndexRaw);
+					touchState.posNow.set( touchState.touchData.clientX,
+						touchState.touchData.clientY );
 
-					var curPos = touches[touchIndex];
-					var prevPos = prevTouches[touchIndex];
-					var delta = motionTouches[ touchIndex ];
+					var curPos = touchState.posNow;
+					var prevPos = touchState.posPrevious;
+					var delta = touchState.posDelta;
 					delta.copy(curPos);
 					delta.sub(prevPos);
+					prevPos.copy(curPos);
 
-					var startedAt = startedTouches[touchIndex];
-					var fullSize = targetSize[touchIndex];
+					var startedAt = touchState.posStart;
+					var fullSize = touchState.targetSize;
 					var touchX = startedAt.x;
 					var touchY = startedAt.y;
 					var midX = fullSize.x / 2.0;
@@ -431,6 +451,7 @@ class EditorControls extends THREE.EventDispatcher {
 					} else if (state == STATE.ZOOM) {
 						// todo
 					} else if (state == STATE.PAN) {
+						var sameFloor = false;
 						if (subState == SUBSTATE.FACING) {
 							var scl = 0.5;
 							delta.x *= scl;
@@ -441,8 +462,9 @@ class EditorControls extends THREE.EventDispatcher {
 							delta.x *= scl;
 							delta.y *= scl;
 							delta.set( delta.x, 0, delta.y );
+							sameFloor = true;
 						}
-						scope.pan(delta);
+						scope.pan(delta, sameFloor);
 					}
 				}
 
