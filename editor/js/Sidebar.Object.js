@@ -10,7 +10,7 @@ import { SetRotationCommand } from './commands/SetRotationCommand.js';
 import { SetScaleCommand } from './commands/SetScaleCommand.js';
 import { SetColorCommand } from './commands/SetColorCommand.js';
 import { MultiCmdsCommand } from './commands/MultiCmdsCommand.js';
-
+import { AddObjectCommand } from './commands/AddObjectCommand.js';
 
 function SidebarObject( editor ) {
 
@@ -73,6 +73,14 @@ function SidebarObject( editor ) {
 
 	objectTypeRow.add( new UIText( strings.getKey( 'sidebar/object/type' ) ).setWidth( '90px' ) );
 	objectTypeRow.add( objectType );
+
+	var objectCloneButton = new UIButton("Clone");
+	objectCloneButton.onClick(function(){
+		var from = editor.selected;
+		var to = from.clone();
+		editor.execute( new AddObjectCommand( editor, to ) );
+	});
+	objectTypeRow.add(objectCloneButton);
 
 	container.add( objectTypeRow );
 
