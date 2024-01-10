@@ -79,8 +79,7 @@ function SidebarObject( editor ) {
 	objectCloneButton.onClick(function(){
 		var from = editor.selected;
 		var to = from.clone();
-		from.add(to);
-		editor.execute( new AddObjectCommand( editor, to ) );
+		editor.execute( new AddObjectCommand( editor, to, from.parent ) );
 	});
 	objectTypeRow.add(objectCloneButton);
 
