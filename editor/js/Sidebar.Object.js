@@ -443,14 +443,26 @@ function SidebarObject( editor ) {
 	var currentUserData 
 	playbackRange.onChange(function(){
 		// Do playback scrub here:
-		var userTimePct = playbackRange.getValue();// / 100.0;
-		playbackCurrent.setValue(userTimePct);
+		var userTime = playbackRange.getValue();
+		playbackCurrent.setValue(userTime);
 
 		let object = editor.selected;
+		let frameSource = null;
+		let frameIndex = 0;
 		if (object && object.userData && object.userData.frames) {
 			var framesAll = object.userData.frames;
-			var frame = framesAll[0]; // TODO: find by time
-			FolderUtils.lewcidObject_sceneFromJsonObject(frame.value, object);
+			for (var i=0; i<framesAll.length; i++) {
+				var sample = framesAll[i];
+				if (sample.time <= userTime) {
+					frameSource = sample;
+					playbackCurrent.setValue("@" + frameSource.time + " (" + frameIndex + "/" + framesAll.length + ")" );
+				} else {
+					break;
+				}
+			}
+		}
+		if (frameSource) {
+			FolderUtils.lewcidObject_sceneFromJsonObject(frameSource.value, object);
 		}
 	});
 	playbackRow.add(playbackRange);
@@ -906,6 +918,14 @@ function SidebarObject( editor ) {
 		try {
 
 			objectUserData.setValue( JSON.stringify( object.userData, null, '  ' ) );
+
+			if (object.userData && object.userData.duration) {
+				var dur = 1.0 * object.userData.duration;
+				playbackRange.setMinMax(0.0, dur);
+				playbackCurrent.setValue("" + dur + "s / " + object.userData.frames.length + "f");
+			} else {
+				playbackCurrent.setValue("(no duration)");
+			}
 
 		} catch ( error ) {
 
