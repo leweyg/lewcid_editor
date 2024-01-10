@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-import { UIPanel, UIRow, UIInput, UIButton, UIColor, UICheckbox, UIInteger, UITextArea, UIText, UINumber, UIBreak } from './libs/ui.js';
+import { UIPanel, UIRow, UIInput, UIButton, UIColor, UICheckbox, UIInteger, UITextArea, UIText, UINumber, UIRange, UIBreak } from './libs/ui.js';
 import { UIBoolean } from './libs/ui.three.js';
 
 import { SetUuidCommand } from './commands/SetUuidCommand.js';
@@ -11,6 +11,7 @@ import { SetScaleCommand } from './commands/SetScaleCommand.js';
 import { SetColorCommand } from './commands/SetColorCommand.js';
 import { MultiCmdsCommand } from './commands/MultiCmdsCommand.js';
 import { AddObjectCommand } from './commands/AddObjectCommand.js';
+import { FolderUtils } from './FolderUtils.js';
 
 function SidebarObject( editor ) {
 
@@ -74,10 +75,11 @@ function SidebarObject( editor ) {
 	objectTypeRow.add( new UIText( strings.getKey( 'sidebar/object/type' ) ).setWidth( '90px' ) );
 	objectTypeRow.add( objectType );
 
-	var objectCloneButton = new UIButton("Clone");
+	var objectCloneButton = new UIButton("Duplicate");
 	objectCloneButton.onClick(function(){
 		var from = editor.selected;
 		var to = from.clone();
+		from.add(to);
 		editor.execute( new AddObjectCommand( editor, to ) );
 	});
 	objectTypeRow.add(objectCloneButton);
@@ -432,6 +434,28 @@ function SidebarObject( editor ) {
 	objectUserDataRow.add( objectUserData );
 
 	container.add( objectUserDataRow );
+
+	// user data scrubber:
+
+	const playbackRow = new UIRow();
+	const playbackRange = new UIRange( 0.0, 0.0, 1.0, 0.01 );
+	const playbackCurrent = new UIText( "time" );
+	var currentUserData 
+	playbackRange.onChange(function(){
+		// Do playback scrub here:
+		var userTimePct = playbackRange.getValue();// / 100.0;
+		playbackCurrent.setValue(userTimePct);
+
+		let object = editor.selected;
+		if (object && object.userData && object.userData.frames) {
+			var framesAll = object.userData.frames;
+			var frame = framesAll[0]; // TODO: find by time
+			FolderUtils.lewcidObject_sceneFromJsonObject(frame.value, object);
+		}
+	});
+	playbackRow.add(playbackRange);
+	playbackRow.add(playbackCurrent);
+	container.add( playbackRow );
 
 
 	//

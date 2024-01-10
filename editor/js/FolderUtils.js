@@ -302,9 +302,30 @@ var FolderUtils = {
         }
     },
 
-    lewcidObject_sceneFromJsonObject : function(jsonObj,folderPath) {
-        var el = new THREE.Group();
-        el.userData = FolderUtils.lewcidObject_CleanUserData( jsonObj );
+    lewcidObject_findChildToPatch : function(parentScene, childIndex, childData) {
+        var isPatch = (childIndex < parentScene.children.length);
+        if (!isPatch) return null;
+
+        var childScene = parentScene.children[childIndex];
+        if (childData && childData.name && (childData.name != childScene.name)) {
+            // find better object target by name
+            for (var i=0; i<parentScene.children.length; i++) {
+                childScene = parentScene.children[i];
+                if (childScene.name == childData.name) {
+                    return childScene;
+                }
+            }
+            return null;
+        }
+    
+        return childScene;
+    },
+
+    lewcidObject_sceneFromJsonObject : function(jsonObj,intoScene,folderPath) {
+        var el = intoScene ? intoScene : new THREE.Group();
+        if (jsonObj.userData) {
+            el.userData = FolderUtils.lewcidObject_CleanUserData( jsonObj );
+        }
         if (jsonObj.name) {
             el.name = jsonObj.name;
         }
@@ -318,14 +339,28 @@ var FolderUtils = {
         }
         if (jsonObj.children) {
             for (var childIndex in jsonObj.children) {
-                var child = jsonObj.children[childIndex];
-                var res = FolderUtils.lewcidObject_sceneFromJsonObject(child,folderPath);
-                if (!res.name) {
-                    res.name = "child" + childIndex;
+                var childData = jsonObj.children[childIndex];
+                var childScene = FolderUtils.lewcidObject_findChildToPatch(el, childIndex, childData);
+                if (!childScene) {
+                    childScene = (new THREE.Group());
+                    childScene.name = "child" + childIndex;
+                    el.add(childScene);
                 }
-                el.add(res);
+                var res = FolderUtils.lewcidObject_sceneFromJsonObject(childData,childScene,folderPath);
+                //el.add(res);
             }
         }
+
+        const debugBoxOnEachNode = false;
+        if (debugBoxOnEachNode) {
+            var scl = 1.0;
+            const geometry = new THREE.BoxGeometry( scl, scl, scl ); 
+            const material = new THREE.MeshBasicMaterial( {color: 0x00ff00} ); 
+            const cube = new THREE.Mesh( geometry, material );
+            cube.name = "debug_cube";
+            el.add( cube );
+        }
+
         return el;
     },
 
@@ -401,7 +436,7 @@ var FolderUtils = {
             if (!jsonObject.name) {
                 jsonObject.name = FolderUtils.PathWithoutFolder(path);
             }
-            var sceneObject = FolderUtils.lewcidObject_sceneFromJsonObject(jsonObject,folderRoot);
+            var sceneObject = FolderUtils.lewcidObject_sceneFromJsonObject(jsonObject,null,folderRoot);
 
             if (!parentScene) {
                 editor.execute( new AddObjectCommand( editor, sceneObject ) );
