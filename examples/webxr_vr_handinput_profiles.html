@@ -35,6 +35,7 @@
 			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
 			import { SceneJson } from 'three/addons/exporters/SceneJson.js';
+			import { FolderUtils } from '../../editor/js/FolderUtils.js';
 
 			let container;
 			let camera, scene, renderer;
@@ -286,9 +287,10 @@
 
 				var res = exportState.root;
 				var txt = JSON.stringify(res);
-				alert(txt);
-
-				exportDoneSending();
+				
+				FolderUtils.ShellSaveToFile("hands.json", txt, (res) => {
+					exportDoneSending();
+				}, "../editor/");
 			}
 
 			function exportDoneSending() {

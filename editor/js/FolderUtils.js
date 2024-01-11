@@ -559,8 +559,8 @@ var FolderUtils = {
         return FolderUtils.CreateMainSceneNode(callback);
     },
 
-    ShellSaveToFile : function(path,content,callback) {
-        var url = "php/save_to_file.php?path=" + path;
+    ShellSaveToFile : function(path,content,callback,folderRoot="") {
+        var url = folderRoot + "php/save_to_file.php?path=" + path;
         var rawFile = new XMLHttpRequest();
         rawFile.overrideMimeType("application/json");
         rawFile.open("POST", url, true);

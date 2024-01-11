@@ -1,0 +1,2144 @@
+{
+    "children": [
+        {
+            "name": "floor",
+            "rotation": [
+                -1.571,
+                0,
+                0
+            ]
+        },
+        {
+            "position": [
+                0,
+                1,
+                0
+            ]
+        },
+        {
+            "position": [
+                0,
+                6,
+                0
+            ]
+        },
+        {
+            "position": [
+                -0.138,
+                0.706,
+                -0.157
+            ],
+            "rotation": [
+                0.068,
+                -0.014,
+                0.526
+            ],
+            "children": [
+                {
+                    "name": "line",
+                    "scale": [
+                        1,
+                        1,
+                        5
+                    ]
+                }
+            ]
+        },
+        {
+            "position": [
+                0.154,
+                0.718,
+                -0.181
+            ],
+            "rotation": [
+                0.18,
+                -0.064,
+                -0.796
+            ],
+            "children": [
+                {
+                    "name": "line",
+                    "scale": [
+                        1,
+                        1,
+                        5
+                    ]
+                }
+            ]
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "Scene",
+                            "children": [
+                                {
+                                    "name": "Armature",
+                                    "children": [
+                                        {
+                                            "name": "xr_standard_trigger_pressed_max",
+                                            "position": [
+                                                -0.037,
+                                                0.056,
+                                                0.008
+                                            ],
+                                            "rotation": [
+                                                -3.142,
+                                                -1.571,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "name": "xr_standard_trigger_pressed_min",
+                                            "position": [
+                                                -0.037,
+                                                0.056,
+                                                0.008
+                                            ],
+                                            "rotation": [
+                                                -3.142,
+                                                -1.571,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "name": "xr_standard_trigger_pressed_value",
+                                            "position": [
+                                                -0.037,
+                                                0.056,
+                                                0.008
+                                            ],
+                                            "rotation": [
+                                                -3.142,
+                                                -1.571,
+                                                0
+                                            ]
+                                        },
+                                        {
+                                            "name": "pinky-finger-tip",
+                                            "position": [
+                                                -0.016,
+                                                -0.082,
+                                                0.06
+                                            ],
+                                            "rotation": [
+                                                -1.798,
+                                                -0.06,
+                                                1.874
+                                            ]
+                                        },
+                                        {
+                                            "name": "pinky-finger-phalanx-distal",
+                                            "position": [
+                                                -0.016,
+                                                -0.07,
+                                                0.057
+                                            ],
+                                            "rotation": [
+                                                -1.811,
+                                                -0.06,
+                                                1.87
+                                            ]
+                                        },
+                                        {
+                                            "name": "pinky-finger-phalanx-intermediate",
+                                            "position": [
+                                                -0.019,
+                                                -0.051,
+                                                0.05
+                                            ],
+                                            "rotation": [
+                                                -1.904,
+                                                -0.14,
+                                                1.861
+                                            ]
+                                        },
+                                        {
+                                            "name": "pinky-finger-phalanx-proximal",
+                                            "position": [
+                                                -0.024,
+                                                -0.018,
+                                                0.043
+                                            ],
+                                            "rotation": [
+                                                -1.815,
+                                                -0.146,
+                                                1.799
+                                            ]
+                                        },
+                                        {
+                                            "name": "pinky-finger-metacarpal",
+                                            "position": [
+                                                -0.028,
+                                                0.022,
+                                                0.031
+                                            ],
+                                            "rotation": [
+                                                -1.839,
+                                                -0.135,
+                                                1.97
+                                            ]
+                                        },
+                                        {
+                                            "name": "ring-finger-tip",
+                                            "position": [
+                                                -0.022,
+                                                -0.108,
+                                                0.044
+                                            ],
+                                            "rotation": [
+                                                -1.754,
+                                                -0.063,
+                                                1.738
+                                            ]
+                                        },
+                                        {
+                                            "name": "ring-finger-phalanx-distal",
+                                            "position": [
+                                                -0.023,
+                                                -0.096,
+                                                0.041
+                                            ],
+                                            "rotation": [
+                                                -1.778,
+                                                -0.076,
+                                                1.75
+                                            ]
+                                        },
+                                        {
+                                            "name": "ring-finger-phalanx-intermediate",
+                                            "position": [
+                                                -0.026,
+                                                -0.07,
+                                                0.035
+                                            ],
+                                            "rotation": [
+                                                -1.826,
+                                                -0.126,
+                                                1.731
+                                            ]
+                                        },
+                                        {
+                                            "name": "ring-finger-phalanx-proximal",
+                                            "position": [
+                                                -0.031,
+                                                -0.029,
+                                                0.026
+                                            ],
+                                            "rotation": [
+                                                -1.81,
+                                                -0.112,
+                                                1.667
+                                            ]
+                                        },
+                                        {
+                                            "name": "ring-finger-metacarpal",
+                                            "position": [
+                                                -0.032,
+                                                0.029,
+                                                0.016
+                                            ],
+                                            "rotation": [
+                                                -1.772,
+                                                -0.075,
+                                                1.831
+                                            ]
+                                        },
+                                        {
+                                            "name": "middle-finger-tip",
+                                            "position": [
+                                                -0.029,
+                                                -0.121,
+                                                0.015
+                                            ],
+                                            "rotation": [
+                                                -1.712,
+                                                0.084,
+                                                1.678
+                                            ]
+                                        },
+                                        {
+                                            "name": "middle-finger-phalanx-distal",
+                                            "position": [
+                                                -0.028,
+                                                -0.109,
+                                                0.014
+                                            ],
+                                            "rotation": [
+                                                -1.745,
+                                                0.084,
+                                                1.672
+                                            ]
+                                        },
+                                        {
+                                            "name": "middle-finger-phalanx-intermediate",
+                                            "position": [
+                                                -0.03,
+                                                -0.082,
+                                                0.011
+                                            ],
+                                            "rotation": [
+                                                -1.674,
+                                                -0.098,
+                                                1.604
+                                            ]
+                                        },
+                                        {
+                                            "name": "middle-finger-phalanx-proximal",
+                                            "position": [
+                                                -0.035,
+                                                -0.036,
+                                                0.006
+                                            ],
+                                            "rotation": [
+                                                -1.66,
+                                                -0.102,
+                                                1.583
+                                            ]
+                                        },
+                                        {
+                                            "name": "middle-finger-metacarpal",
+                                            "position": [
+                                                -0.032,
+                                                0.027,
+                                                0.005
+                                            ],
+                                            "rotation": [
+                                                -1.56,
+                                                -0.027,
+                                                1.683
+                                            ]
+                                        },
+                                        {
+                                            "name": "index-finger-tip",
+                                            "position": [
+                                                -0.025,
+                                                -0.113,
+                                                -0.011
+                                            ],
+                                            "rotation": [
+                                                -1.673,
+                                                0.056,
+                                                1.585
+                                            ]
+                                        },
+                                        {
+                                            "name": "index-finger-phalanx-distal",
+                                            "position": [
+                                                -0.025,
+                                                -0.102,
+                                                -0.013
+                                            ],
+                                            "rotation": [
+                                                -1.682,
+                                                0.046,
+                                                1.579
+                                            ]
+                                        },
+                                        {
+                                            "name": "index-finger-phalanx-intermediate",
+                                            "position": [
+                                                -0.027,
+                                                -0.078,
+                                                -0.014
+                                            ],
+                                            "rotation": [
+                                                -1.629,
+                                                -0.09,
+                                                1.56
+                                            ]
+                                        },
+                                        {
+                                            "name": "index-finger-phalanx-proximal",
+                                            "position": [
+                                                -0.03,
+                                                -0.036,
+                                                -0.015
+                                            ],
+                                            "rotation": [
+                                                -1.61,
+                                                -0.082,
+                                                1.508
+                                            ]
+                                        },
+                                        {
+                                            "name": "index-finger-metacarpal",
+                                            "position": [
+                                                -0.032,
+                                                0.02,
+                                                -0.001
+                                            ],
+                                            "rotation": [
+                                                -1.374,
+                                                -0.048,
+                                                1.607
+                                            ]
+                                        },
+                                        {
+                                            "name": "thumb-tip",
+                                            "position": [
+                                                0.012,
+                                                -0.036,
+                                                -0.07
+                                            ],
+                                            "rotation": [
+                                                -0.667,
+                                                -0.356,
+                                                0.326
+                                            ]
+                                        },
+                                        {
+                                            "name": "thumb-phalanx-distal",
+                                            "position": [
+                                                0.006,
+                                                -0.027,
+                                                -0.059
+                                            ],
+                                            "rotation": [
+                                                -0.66,
+                                                -0.348,
+                                                0.337
+                                            ]
+                                        },
+                                        {
+                                            "name": "thumb-phalanx-proximal",
+                                            "position": [
+                                                -0.003,
+                                                -0.003,
+                                                -0.037
+                                            ],
+                                            "rotation": [
+                                                -0.835,
+                                                -0.27,
+                                                0.45
+                                            ]
+                                        },
+                                        {
+                                            "name": "thumb-metacarpal",
+                                            "position": [
+                                                -0.018,
+                                                0.02,
+                                                -0.02
+                                            ],
+                                            "rotation": [
+                                                -0.946,
+                                                -0.458,
+                                                0.323
+                                            ]
+                                        },
+                                        {
+                                            "name": "wrist",
+                                            "position": [
+                                                -0.037,
+                                                0.056,
+                                                0.008
+                                            ],
+                                            "rotation": [
+                                                -1.571,
+                                                0,
+                                                1.571
+                                            ]
+                                        },
+                                        {
+                                            "name": "l_handMeshNode"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Hand1",
+            "children": [
+                {
+                    "children": [
+                        {}
+                    ]
+                },
+                {
+                    "children": [
+                        {}
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "name": "Armature",
+                            "children": [
+                                {
+                                    "name": "xr_standard_trigger_pressed_max",
+                                    "position": [
+                                        -0.037,
+                                        0.056,
+                                        0.008
+                                    ],
+                                    "rotation": [
+                                        -3.142,
+                                        -1.571,
+                                        0
+                                    ]
+                                },
+                                {
+                                    "name": "xr_standard_trigger_pressed_min",
+                                    "position": [
+                                        -0.037,
+                                        0.056,
+                                        0.008
+                                    ],
+                                    "rotation": [
+                                        -3.142,
+                                        -1.571,
+                                        0
+                                    ]
+                                },
+                                {
+                                    "name": "xr_standard_trigger_pressed_value",
+                                    "position": [
+                                        -0.037,
+                                        0.056,
+                                        0.008
+                                    ],
+                                    "rotation": [
+                                        -3.142,
+                                        -1.571,
+                                        0
+                                    ]
+                                },
+                                {
+                                    "name": "pinky-finger-tip",
+                                    "position": [
+                                        -0.181,
+                                        0.709,
+                                        -0.197
+                                    ],
+                                    "rotation": [
+                                        -0.273,
+                                        -0.665,
+                                        0.581
+                                    ]
+                                },
+                                {
+                                    "name": "pinky-finger-phalanx-distal",
+                                    "position": [
+                                        -0.194,
+                                        0.712,
+                                        -0.18
+                                    ],
+                                    "rotation": [
+                                        -0.273,
+                                        -0.665,
+                                        0.581
+                                    ]
+                                },
+                                {
+                                    "name": "pinky-finger-phalanx-intermediate",
+                                    "position": [
+                                        -0.204,
+                                        0.716,
+                                        -0.163
+                                    ],
+                                    "rotation": [
+                                        -0.21,
+                                        -0.509,
+                                        0.618
+                                    ]
+                                },
+                                {
+                                    "name": "pinky-finger-phalanx-proximal",
+                                    "position": [
+                                        -0.212,
+                                        0.708,
+                                        -0.134
+                                    ],
+                                    "rotation": [
+                                        0.269,
+                                        -0.246,
+                                        0.676
+                                    ]
+                                },
+                                {
+                                    "name": "pinky-finger-metacarpal",
+                                    "position": [
+                                        -0.213,
+                                        0.685,
+                                        -0.095
+                                    ],
+                                    "rotation": [
+                                        0.529,
+                                        -0.04,
+                                        0.882
+                                    ]
+                                },
+                                {
+                                    "name": "ring-finger-tip",
+                                    "position": [
+                                        -0.157,
+                                        0.717,
+                                        -0.205
+                                    ],
+                                    "rotation": [
+                                        -0.554,
+                                        -0.667,
+                                        0.217
+                                    ]
+                                },
+                                {
+                                    "name": "ring-finger-phalanx-distal",
+                                    "position": [
+                                        -0.171,
+                                        0.726,
+                                        -0.188
+                                    ],
+                                    "rotation": [
+                                        -0.554,
+                                        -0.667,
+                                        0.217
+                                    ]
+                                },
+                                {
+                                    "name": "ring-finger-phalanx-intermediate",
+                                    "position": [
+                                        -0.185,
+                                        0.732,
+                                        -0.166
+                                    ],
+                                    "rotation": [
+                                        -0.255,
+                                        -0.53,
+                                        0.364
+                                    ]
+                                },
+                                {
+                                    "name": "ring-finger-phalanx-proximal",
+                                    "position": [
+                                        -0.197,
+                                        0.724,
+                                        -0.13
+                                    ],
+                                    "rotation": [
+                                        0.205,
+                                        -0.327,
+                                        0.48
+                                    ]
+                                },
+                                {
+                                    "name": "ring-finger-metacarpal",
+                                    "position": [
+                                        -0.208,
+                                        0.69,
+                                        -0.09
+                                    ],
+                                    "rotation": [
+                                        0.737,
+                                        -0.236,
+                                        0.489
+                                    ]
+                                },
+                                {
+                                    "name": "middle-finger-tip",
+                                    "position": [
+                                        -0.142,
+                                        0.724,
+                                        -0.206
+                                    ],
+                                    "rotation": [
+                                        -0.494,
+                                        -0.513,
+                                        0.206
+                                    ]
+                                },
+                                {
+                                    "name": "middle-finger-phalanx-distal",
+                                    "position": [
+                                        -0.153,
+                                        0.734,
+                                        -0.186
+                                    ],
+                                    "rotation": [
+                                        -0.494,
+                                        -0.513,
+                                        0.206
+                                    ]
+                                },
+                                {
+                                    "name": "middle-finger-phalanx-intermediate",
+                                    "position": [
+                                        -0.166,
+                                        0.742,
+                                        -0.163
+                                    ],
+                                    "rotation": [
+                                        -0.355,
+                                        -0.485,
+                                        0.172
+                                    ]
+                                },
+                                {
+                                    "name": "middle-finger-phalanx-proximal",
+                                    "position": [
+                                        -0.181,
+                                        0.735,
+                                        -0.124
+                                    ],
+                                    "rotation": [
+                                        0.172,
+                                        -0.353,
+                                        0.366
+                                    ]
+                                },
+                                {
+                                    "name": "middle-finger-metacarpal",
+                                    "position": [
+                                        -0.192,
+                                        0.691,
+                                        -0.084
+                                    ],
+                                    "rotation": [
+                                        0.737,
+                                        -0.236,
+                                        0.489
+                                    ]
+                                },
+                                {
+                                    "name": "index-finger-tip",
+                                    "position": [
+                                        -0.126,
+                                        0.737,
+                                        -0.191
+                                    ],
+                                    "rotation": [
+                                        -0.362,
+                                        -0.434,
+                                        0.101
+                                    ]
+                                },
+                                {
+                                    "name": "index-finger-phalanx-distal",
+                                    "position": [
+                                        -0.135,
+                                        0.743,
+                                        -0.172
+                                    ],
+                                    "rotation": [
+                                        -0.362,
+                                        -0.434,
+                                        0.101
+                                    ]
+                                },
+                                {
+                                    "name": "index-finger-phalanx-intermediate",
+                                    "position": [
+                                        -0.146,
+                                        0.746,
+                                        -0.15
+                                    ],
+                                    "rotation": [
+                                        -0.167,
+                                        -0.461,
+                                        0.151
+                                    ]
+                                },
+                                {
+                                    "name": "index-finger-phalanx-proximal",
+                                    "position": [
+                                        -0.16,
+                                        0.737,
+                                        -0.116
+                                    ],
+                                    "rotation": [
+                                        0.277,
+                                        -0.374,
+                                        0.28
+                                    ]
+                                },
+                                {
+                                    "name": "index-finger-metacarpal",
+                                    "position": [
+                                        -0.176,
+                                        0.694,
+                                        -0.079
+                                    ],
+                                    "rotation": [
+                                        0.737,
+                                        -0.236,
+                                        0.489
+                                    ]
+                                },
+                                {
+                                    "name": "thumb-tip",
+                                    "position": [
+                                        -0.105,
+                                        0.693,
+                                        -0.146
+                                    ],
+                                    "rotation": [
+                                        -0.011,
+                                        -0.702,
+                                        -1.582
+                                    ]
+                                },
+                                {
+                                    "name": "thumb-phalanx-distal",
+                                    "position": [
+                                        -0.121,
+                                        0.693,
+                                        -0.128
+                                    ],
+                                    "rotation": [
+                                        -0.011,
+                                        -0.702,
+                                        -1.582
+                                    ]
+                                },
+                                {
+                                    "name": "thumb-phalanx-proximal",
+                                    "position": [
+                                        -0.14,
+                                        0.689,
+                                        -0.1
+                                    ],
+                                    "rotation": [
+                                        0.135,
+                                        -0.589,
+                                        -1.327
+                                    ]
+                                },
+                                {
+                                    "name": "thumb-metacarpal",
+                                    "position": [
+                                        -0.165,
+                                        0.688,
+                                        -0.08
+                                    ],
+                                    "rotation": [
+                                        0.03,
+                                        -0.898,
+                                        -1.566
+                                    ]
+                                },
+                                {
+                                    "name": "wrist",
+                                    "position": [
+                                        -0.206,
+                                        0.674,
+                                        -0.054
+                                    ],
+                                    "rotation": [
+                                        0.737,
+                                        -0.236,
+                                        0.489
+                                    ]
+                                },
+                                {
+                                    "name": "l_handMeshNode"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "position": [
+                        -0.206,
+                        0.674,
+                        -0.054
+                    ],
+                    "rotation": [
+                        0.736,
+                        -0.235,
+                        0.49
+                    ]
+                },
+                {
+                    "position": [
+                        -0.165,
+                        0.688,
+                        -0.08
+                    ],
+                    "rotation": [
+                        0.034,
+                        -0.897,
+                        -1.561
+                    ]
+                },
+                {
+                    "position": [
+                        -0.14,
+                        0.689,
+                        -0.1
+                    ],
+                    "rotation": [
+                        0.137,
+                        -0.587,
+                        -1.324
+                    ]
+                },
+                {
+                    "position": [
+                        -0.121,
+                        0.693,
+                        -0.128
+                    ],
+                    "rotation": [
+                        -0.008,
+                        -0.696,
+                        -1.578
+                    ]
+                },
+                {
+                    "position": [
+                        -0.105,
+                        0.693,
+                        -0.146
+                    ],
+                    "rotation": [
+                        -0.008,
+                        -0.696,
+                        -1.578
+                    ]
+                },
+                {
+                    "position": [
+                        -0.177,
+                        0.694,
+                        -0.079
+                    ],
+                    "rotation": [
+                        0.736,
+                        -0.235,
+                        0.49
+                    ]
+                },
+                {
+                    "position": [
+                        -0.16,
+                        0.737,
+                        -0.116
+                    ],
+                    "rotation": [
+                        0.276,
+                        -0.375,
+                        0.281
+                    ]
+                },
+                {
+                    "position": [
+                        -0.146,
+                        0.746,
+                        -0.15
+                    ],
+                    "rotation": [
+                        -0.168,
+                        -0.462,
+                        0.152
+                    ]
+                },
+                {
+                    "position": [
+                        -0.135,
+                        0.743,
+                        -0.172
+                    ],
+                    "rotation": [
+                        -0.363,
+                        -0.434,
+                        0.101
+                    ]
+                },
+                {
+                    "position": [
+                        -0.126,
+                        0.736,
+                        -0.191
+                    ],
+                    "rotation": [
+                        -0.363,
+                        -0.434,
+                        0.101
+                    ]
+                },
+                {
+                    "position": [
+                        -0.192,
+                        0.691,
+                        -0.084
+                    ],
+                    "rotation": [
+                        0.736,
+                        -0.235,
+                        0.49
+                    ]
+                },
+                {
+                    "position": [
+                        -0.181,
+                        0.735,
+                        -0.124
+                    ],
+                    "rotation": [
+                        0.17,
+                        -0.353,
+                        0.366
+                    ]
+                },
+                {
+                    "position": [
+                        -0.166,
+                        0.742,
+                        -0.164
+                    ],
+                    "rotation": [
+                        -0.359,
+                        -0.486,
+                        0.172
+                    ]
+                },
+                {
+                    "position": [
+                        -0.153,
+                        0.734,
+                        -0.186
+                    ],
+                    "rotation": [
+                        -0.498,
+                        -0.514,
+                        0.205
+                    ]
+                },
+                {
+                    "position": [
+                        -0.142,
+                        0.724,
+                        -0.206
+                    ],
+                    "rotation": [
+                        -0.498,
+                        -0.514,
+                        0.205
+                    ]
+                },
+                {
+                    "position": [
+                        -0.208,
+                        0.69,
+                        -0.09
+                    ],
+                    "rotation": [
+                        0.736,
+                        -0.235,
+                        0.49
+                    ]
+                },
+                {
+                    "position": [
+                        -0.197,
+                        0.724,
+                        -0.13
+                    ],
+                    "rotation": [
+                        0.204,
+                        -0.328,
+                        0.481
+                    ]
+                },
+                {
+                    "position": [
+                        -0.185,
+                        0.731,
+                        -0.166
+                    ],
+                    "rotation": [
+                        -0.256,
+                        -0.53,
+                        0.364
+                    ]
+                },
+                {
+                    "position": [
+                        -0.171,
+                        0.726,
+                        -0.188
+                    ],
+                    "rotation": [
+                        -0.554,
+                        -0.667,
+                        0.217
+                    ]
+                },
+                {
+                    "position": [
+                        -0.157,
+                        0.717,
+                        -0.206
+                    ],
+                    "rotation": [
+                        -0.554,
+                        -0.667,
+                        0.217
+                    ]
+                },
+                {
+                    "position": [
+                        -0.213,
+                        0.685,
+                        -0.095
+                    ],
+                    "rotation": [
+                        0.528,
+                        -0.04,
+                        0.883
+                    ]
+                },
+                {
+                    "position": [
+                        -0.212,
+                        0.708,
+                        -0.134
+                    ],
+                    "rotation": [
+                        0.271,
+                        -0.246,
+                        0.677
+                    ]
+                },
+                {
+                    "position": [
+                        -0.204,
+                        0.716,
+                        -0.163
+                    ],
+                    "rotation": [
+                        -0.208,
+                        -0.51,
+                        0.619
+                    ]
+                },
+                {
+                    "position": [
+                        -0.194,
+                        0.712,
+                        -0.18
+                    ],
+                    "rotation": [
+                        -0.27,
+                        -0.665,
+                        0.582
+                    ]
+                },
+                {
+                    "position": [
+                        -0.181,
+                        0.709,
+                        -0.197
+                    ],
+                    "rotation": [
+                        -0.27,
+                        -0.665,
+                        0.582
+                    ]
+                }
+            ]
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "name": "Scene",
+                            "children": [
+                                {
+                                    "name": "Armature",
+                                    "children": [
+                                        {
+                                            "name": "wrist",
+                                            "position": [
+                                                0.039,
+                                                0.056,
+                                                0.009
+                                            ],
+                                            "rotation": [
+                                                -1.571,
+                                                0,
+                                                -1.571
+                                            ]
+                                        },
+                                        {
+                                            "name": "thumb-metacarpal",
+                                            "position": [
+                                                0.02,
+                                                0.02,
+                                                -0.019
+                                            ],
+                                            "rotation": [
+                                                -0.946,
+                                                0.48,
+                                                -0.236
+                                            ]
+                                        },
+                                        {
+                                            "name": "thumb-phalanx-proximal",
+                                            "position": [
+                                                0.005,
+                                                -0.003,
+                                                -0.036
+                                            ],
+                                            "rotation": [
+                                                -0.832,
+                                                0.279,
+                                                -0.448
+                                            ]
+                                        },
+                                        {
+                                            "name": "thumb-phalanx-distal",
+                                            "position": [
+                                                -0.005,
+                                                -0.027,
+                                                -0.058
+                                            ],
+                                            "rotation": [
+                                                -0.667,
+                                                0.349,
+                                                -0.329
+                                            ]
+                                        },
+                                        {
+                                            "name": "thumb-tip",
+                                            "position": [
+                                                -0.01,
+                                                -0.036,
+                                                -0.069
+                                            ],
+                                            "rotation": [
+                                                -0.661,
+                                                0.363,
+                                                -0.339
+                                            ]
+                                        },
+                                        {
+                                            "name": "index-finger-metacarpal",
+                                            "position": [
+                                                0.032,
+                                                0.027,
+                                                -0.001
+                                            ],
+                                            "rotation": [
+                                                -1.445,
+                                                0.011,
+                                                -1.529
+                                            ]
+                                        },
+                                        {
+                                            "name": "index-finger-phalanx-proximal",
+                                            "position": [
+                                                0.032,
+                                                -0.033,
+                                                -0.014
+                                            ],
+                                            "rotation": [
+                                                -1.59,
+                                                0.094,
+                                                -1.506
+                                            ]
+                                        },
+                                        {
+                                            "name": "index-finger-phalanx-intermediate",
+                                            "position": [
+                                                0.029,
+                                                -0.078,
+                                                -0.013
+                                            ],
+                                            "rotation": [
+                                                -1.623,
+                                                0.092,
+                                                -1.56
+                                            ]
+                                        },
+                                        {
+                                            "name": "index-finger-phalanx-distal",
+                                            "position": [
+                                                0.026,
+                                                -0.102,
+                                                -0.012
+                                            ],
+                                            "rotation": [
+                                                -1.675,
+                                                -0.054,
+                                                -1.588
+                                            ]
+                                        },
+                                        {
+                                            "name": "index-finger-tip",
+                                            "position": [
+                                                0.027,
+                                                -0.114,
+                                                -0.01
+                                            ],
+                                            "rotation": [
+                                                -1.697,
+                                                -0.053,
+                                                -1.59
+                                            ]
+                                        },
+                                        {
+                                            "name": "middle-finger-metacarpal",
+                                            "position": [
+                                                0.033,
+                                                0.027,
+                                                0.006
+                                            ],
+                                            "rotation": [
+                                                -1.526,
+                                                0.009,
+                                                -1.686
+                                            ]
+                                        },
+                                        {
+                                            "name": "middle-finger-phalanx-proximal",
+                                            "position": [
+                                                0.037,
+                                                -0.036,
+                                                0.007
+                                            ],
+                                            "rotation": [
+                                                -1.669,
+                                                0.107,
+                                                -1.584
+                                            ]
+                                        },
+                                        {
+                                            "name": "middle-finger-phalanx-intermediate",
+                                            "position": [
+                                                0.032,
+                                                -0.082,
+                                                0.012
+                                            ],
+                                            "rotation": [
+                                                -1.71,
+                                                0.097,
+                                                -1.601
+                                            ]
+                                        },
+                                        {
+                                            "name": "middle-finger-phalanx-distal",
+                                            "position": [
+                                                0.029,
+                                                -0.11,
+                                                0.015
+                                            ],
+                                            "rotation": [
+                                                -1.71,
+                                                -0.088,
+                                                -1.672
+                                            ]
+                                        },
+                                        {
+                                            "name": "middle-finger-tip",
+                                            "position": [
+                                                0.03,
+                                                -0.122,
+                                                0.016
+                                            ],
+                                            "rotation": [
+                                                -1.698,
+                                                -0.087,
+                                                -1.676
+                                            ]
+                                        },
+                                        {
+                                            "name": "ring-finger-metacarpal",
+                                            "position": [
+                                                0.033,
+                                                0.029,
+                                                0.017
+                                            ],
+                                            "rotation": [
+                                                -1.7,
+                                                0.04,
+                                                -1.822
+                                            ]
+                                        },
+                                        {
+                                            "name": "ring-finger-phalanx-proximal",
+                                            "position": [
+                                                0.033,
+                                                -0.029,
+                                                0.027
+                                            ],
+                                            "rotation": [
+                                                -1.803,
+                                                0.116,
+                                                -1.661
+                                            ]
+                                        },
+                                        {
+                                            "name": "ring-finger-phalanx-intermediate",
+                                            "position": [
+                                                0.028,
+                                                -0.071,
+                                                0.036
+                                            ],
+                                            "rotation": [
+                                                -1.842,
+                                                0.126,
+                                                -1.725
+                                            ]
+                                        },
+                                        {
+                                            "name": "ring-finger-phalanx-distal",
+                                            "position": [
+                                                0.025,
+                                                -0.096,
+                                                0.042
+                                            ],
+                                            "rotation": [
+                                                -1.762,
+                                                0.066,
+                                                -1.743
+                                            ]
+                                        },
+                                        {
+                                            "name": "ring-finger-tip",
+                                            "position": [
+                                                0.024,
+                                                -0.108,
+                                                0.045
+                                            ],
+                                            "rotation": [
+                                                -1.76,
+                                                0.069,
+                                                -1.75
+                                            ]
+                                        },
+                                        {
+                                            "name": "pinky-finger-metacarpal",
+                                            "position": [
+                                                0.03,
+                                                0.022,
+                                                0.032
+                                            ],
+                                            "rotation": [
+                                                -1.824,
+                                                0.107,
+                                                -1.983
+                                            ]
+                                        },
+                                        {
+                                            "name": "pinky-finger-phalanx-proximal",
+                                            "position": [
+                                                0.025,
+                                                -0.018,
+                                                0.044
+                                            ],
+                                            "rotation": [
+                                                -1.786,
+                                                0.143,
+                                                -1.8
+                                            ]
+                                        },
+                                        {
+                                            "name": "pinky-finger-phalanx-intermediate",
+                                            "position": [
+                                                0.021,
+                                                -0.052,
+                                                0.052
+                                            ],
+                                            "rotation": [
+                                                -1.897,
+                                                0.137,
+                                                -1.862
+                                            ]
+                                        },
+                                        {
+                                            "name": "pinky-finger-phalanx-distal",
+                                            "position": [
+                                                0.018,
+                                                -0.071,
+                                                0.058
+                                            ],
+                                            "rotation": [
+                                                -1.815,
+                                                0.064,
+                                                -1.867
+                                            ]
+                                        },
+                                        {
+                                            "name": "pinky-finger-tip",
+                                            "position": [
+                                                0.017,
+                                                -0.082,
+                                                0.061
+                                            ],
+                                            "rotation": [
+                                                -1.87,
+                                                0.082,
+                                                -1.867
+                                            ]
+                                        },
+                                        {
+                                            "name": "r_handMeshNode"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Hand2",
+            "children": [
+                {
+                    "children": [
+                        {}
+                    ]
+                },
+                {
+                    "children": [
+                        {}
+                    ]
+                },
+                {
+                    "children": [
+                        {
+                            "name": "Armature",
+                            "children": [
+                                {
+                                    "name": "wrist",
+                                    "position": [
+                                        0.211,
+                                        0.651,
+                                        -0.088
+                                    ],
+                                    "rotation": [
+                                        0.982,
+                                        0.051,
+                                        -0.621
+                                    ]
+                                },
+                                {
+                                    "name": "thumb-metacarpal",
+                                    "position": [
+                                        0.177,
+                                        0.678,
+                                        -0.114
+                                    ],
+                                    "rotation": [
+                                        0.372,
+                                        0.665,
+                                        1.372
+                                    ]
+                                },
+                                {
+                                    "name": "thumb-phalanx-proximal",
+                                    "position": [
+                                        0.157,
+                                        0.687,
+                                        -0.138
+                                    ],
+                                    "rotation": [
+                                        0.35,
+                                        0.222,
+                                        1.214
+                                    ]
+                                },
+                                {
+                                    "name": "thumb-phalanx-distal",
+                                    "position": [
+                                        0.149,
+                                        0.699,
+                                        -0.169
+                                    ],
+                                    "rotation": [
+                                        0.248,
+                                        0.357,
+                                        1.411
+                                    ]
+                                },
+                                {
+                                    "name": "thumb-tip",
+                                    "position": [
+                                        0.14,
+                                        0.705,
+                                        -0.19
+                                    ],
+                                    "rotation": [
+                                        0.248,
+                                        0.357,
+                                        1.411
+                                    ]
+                                },
+                                {
+                                    "name": "index-finger-metacarpal",
+                                    "position": [
+                                        0.188,
+                                        0.681,
+                                        -0.11
+                                    ],
+                                    "rotation": [
+                                        0.982,
+                                        0.051,
+                                        -0.621
+                                    ]
+                                },
+                                {
+                                    "name": "index-finger-phalanx-proximal",
+                                    "position": [
+                                        0.183,
+                                        0.734,
+                                        -0.134
+                                    ],
+                                    "rotation": [
+                                        0.252,
+                                        0.402,
+                                        -0.371
+                                    ]
+                                },
+                                {
+                                    "name": "index-finger-phalanx-intermediate",
+                                    "position": [
+                                        0.168,
+                                        0.743,
+                                        -0.168
+                                    ],
+                                    "rotation": [
+                                        -0.483,
+                                        0.56,
+                                        -0.073
+                                    ]
+                                },
+                                {
+                                    "name": "index-finger-phalanx-distal",
+                                    "position": [
+                                        0.155,
+                                        0.733,
+                                        -0.186
+                                    ],
+                                    "rotation": [
+                                        -0.774,
+                                        0.516,
+                                        0.043
+                                    ]
+                                },
+                                {
+                                    "name": "index-finger-tip",
+                                    "position": [
+                                        0.144,
+                                        0.721,
+                                        -0.201
+                                    ],
+                                    "rotation": [
+                                        -0.774,
+                                        0.516,
+                                        0.043
+                                    ]
+                                },
+                                {
+                                    "name": "middle-finger-metacarpal",
+                                    "position": [
+                                        0.204,
+                                        0.677,
+                                        -0.115
+                                    ],
+                                    "rotation": [
+                                        0.982,
+                                        0.051,
+                                        -0.621
+                                    ]
+                                },
+                                {
+                                    "name": "middle-finger-phalanx-proximal",
+                                    "position": [
+                                        0.203,
+                                        0.73,
+                                        -0.142
+                                    ],
+                                    "rotation": [
+                                        0.576,
+                                        0.156,
+                                        -0.618
+                                    ]
+                                },
+                                {
+                                    "name": "middle-finger-phalanx-intermediate",
+                                    "position": [
+                                        0.196,
+                                        0.753,
+                                        -0.178
+                                    ],
+                                    "rotation": [
+                                        -0.098,
+                                        0.529,
+                                        -0.407
+                                    ]
+                                },
+                                {
+                                    "name": "middle-finger-phalanx-distal",
+                                    "position": [
+                                        0.183,
+                                        0.751,
+                                        -0.201
+                                    ],
+                                    "rotation": [
+                                        -0.344,
+                                        0.625,
+                                        -0.381
+                                    ]
+                                },
+                                {
+                                    "name": "middle-finger-tip",
+                                    "position": [
+                                        0.168,
+                                        0.745,
+                                        -0.221
+                                    ],
+                                    "rotation": [
+                                        -0.344,
+                                        0.625,
+                                        -0.381
+                                    ]
+                                },
+                                {
+                                    "name": "ring-finger-metacarpal",
+                                    "position": [
+                                        0.218,
+                                        0.673,
+                                        -0.119
+                                    ],
+                                    "rotation": [
+                                        0.982,
+                                        0.051,
+                                        -0.621
+                                    ]
+                                },
+                                {
+                                    "name": "ring-finger-phalanx-proximal",
+                                    "position": [
+                                        0.217,
+                                        0.717,
+                                        -0.151
+                                    ],
+                                    "rotation": [
+                                        0.723,
+                                        -0.088,
+                                        -0.735
+                                    ]
+                                },
+                                {
+                                    "name": "ring-finger-phalanx-intermediate",
+                                    "position": [
+                                        0.22,
+                                        0.742,
+                                        -0.18
+                                    ],
+                                    "rotation": [
+                                        0.166,
+                                        0.445,
+                                        -0.717
+                                    ]
+                                },
+                                {
+                                    "name": "ring-finger-phalanx-distal",
+                                    "position": [
+                                        0.209,
+                                        0.746,
+                                        -0.203
+                                    ],
+                                    "rotation": [
+                                        -0.143,
+                                        0.716,
+                                        -0.572
+                                    ]
+                                },
+                                {
+                                    "name": "ring-finger-tip",
+                                    "position": [
+                                        0.194,
+                                        0.745,
+                                        -0.222
+                                    ],
+                                    "rotation": [
+                                        -0.143,
+                                        0.716,
+                                        -0.572
+                                    ]
+                                },
+                                {
+                                    "name": "pinky-finger-metacarpal",
+                                    "position": [
+                                        0.222,
+                                        0.668,
+                                        -0.125
+                                    ],
+                                    "rotation": [
+                                        0.748,
+                                        -0.111,
+                                        -1.049
+                                    ]
+                                },
+                                {
+                                    "name": "pinky-finger-phalanx-proximal",
+                                    "position": [
+                                        0.227,
+                                        0.699,
+                                        -0.158
+                                    ],
+                                    "rotation": [
+                                        0.711,
+                                        -0.294,
+                                        -0.855
+                                    ]
+                                },
+                                {
+                                    "name": "pinky-finger-phalanx-intermediate",
+                                    "position": [
+                                        0.236,
+                                        0.719,
+                                        -0.181
+                                    ],
+                                    "rotation": [
+                                        0.214,
+                                        0.308,
+                                        -1.001
+                                    ]
+                                },
+                                {
+                                    "name": "pinky-finger-phalanx-distal",
+                                    "position": [
+                                        0.23,
+                                        0.723,
+                                        -0.199
+                                    ],
+                                    "rotation": [
+                                        0.145,
+                                        0.58,
+                                        -0.968
+                                    ]
+                                },
+                                {
+                                    "name": "pinky-finger-tip",
+                                    "position": [
+                                        0.219,
+                                        0.726,
+                                        -0.218
+                                    ],
+                                    "rotation": [
+                                        0.145,
+                                        0.58,
+                                        -0.968
+                                    ]
+                                },
+                                {
+                                    "name": "r_handMeshNode"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "position": [
+                        0.211,
+                        0.652,
+                        -0.088
+                    ],
+                    "rotation": [
+                        0.99,
+                        0.048,
+                        -0.61
+                    ]
+                },
+                {
+                    "position": [
+                        0.177,
+                        0.678,
+                        -0.113
+                    ],
+                    "rotation": [
+                        0.349,
+                        0.666,
+                        1.397
+                    ]
+                },
+                {
+                    "position": [
+                        0.157,
+                        0.687,
+                        -0.137
+                    ],
+                    "rotation": [
+                        0.341,
+                        0.231,
+                        1.233
+                    ]
+                },
+                {
+                    "position": [
+                        0.149,
+                        0.698,
+                        -0.168
+                    ],
+                    "rotation": [
+                        0.238,
+                        0.375,
+                        1.432
+                    ]
+                },
+                {
+                    "position": [
+                        0.139,
+                        0.704,
+                        -0.19
+                    ],
+                    "rotation": [
+                        0.238,
+                        0.375,
+                        1.432
+                    ]
+                },
+                {
+                    "position": [
+                        0.188,
+                        0.682,
+                        -0.11
+                    ],
+                    "rotation": [
+                        0.99,
+                        0.048,
+                        -0.61
+                    ]
+                },
+                {
+                    "position": [
+                        0.183,
+                        0.735,
+                        -0.134
+                    ],
+                    "rotation": [
+                        0.309,
+                        0.371,
+                        -0.388
+                    ]
+                },
+                {
+                    "position": [
+                        0.169,
+                        0.746,
+                        -0.167
+                    ],
+                    "rotation": [
+                        -0.335,
+                        0.538,
+                        -0.151
+                    ]
+                },
+                {
+                    "position": [
+                        0.157,
+                        0.739,
+                        -0.187
+                    ],
+                    "rotation": [
+                        -0.62,
+                        0.514,
+                        -0.041
+                    ]
+                },
+                {
+                    "position": [
+                        0.146,
+                        0.728,
+                        -0.204
+                    ],
+                    "rotation": [
+                        -0.62,
+                        0.514,
+                        -0.041
+                    ]
+                },
+                {
+                    "position": [
+                        0.204,
+                        0.677,
+                        -0.114
+                    ],
+                    "rotation": [
+                        0.99,
+                        0.048,
+                        -0.61
+                    ]
+                },
+                {
+                    "position": [
+                        0.203,
+                        0.731,
+                        -0.141
+                    ],
+                    "rotation": [
+                        0.59,
+                        0.136,
+                        -0.613
+                    ]
+                },
+                {
+                    "position": [
+                        0.198,
+                        0.754,
+                        -0.177
+                    ],
+                    "rotation": [
+                        -0.075,
+                        0.509,
+                        -0.418
+                    ]
+                },
+                {
+                    "position": [
+                        0.184,
+                        0.753,
+                        -0.201
+                    ],
+                    "rotation": [
+                        -0.322,
+                        0.61,
+                        -0.396
+                    ]
+                },
+                {
+                    "position": [
+                        0.17,
+                        0.747,
+                        -0.221
+                    ],
+                    "rotation": [
+                        -0.322,
+                        0.61,
+                        -0.396
+                    ]
+                },
+                {
+                    "position": [
+                        0.218,
+                        0.674,
+                        -0.119
+                    ],
+                    "rotation": [
+                        0.99,
+                        0.048,
+                        -0.61
+                    ]
+                },
+                {
+                    "position": [
+                        0.217,
+                        0.718,
+                        -0.15
+                    ],
+                    "rotation": [
+                        0.73,
+                        -0.098,
+                        -0.726
+                    ]
+                },
+                {
+                    "position": [
+                        0.221,
+                        0.744,
+                        -0.179
+                    ],
+                    "rotation": [
+                        0.164,
+                        0.437,
+                        -0.712
+                    ]
+                },
+                {
+                    "position": [
+                        0.21,
+                        0.748,
+                        -0.202
+                    ],
+                    "rotation": [
+                        -0.16,
+                        0.715,
+                        -0.559
+                    ]
+                },
+                {
+                    "position": [
+                        0.194,
+                        0.746,
+                        -0.221
+                    ],
+                    "rotation": [
+                        -0.16,
+                        0.715,
+                        -0.559
+                    ]
+                },
+                {
+                    "position": [
+                        0.223,
+                        0.669,
+                        -0.124
+                    ],
+                    "rotation": [
+                        0.758,
+                        -0.117,
+                        -1.04
+                    ]
+                },
+                {
+                    "position": [
+                        0.228,
+                        0.7,
+                        -0.157
+                    ],
+                    "rotation": [
+                        0.713,
+                        -0.3,
+                        -0.848
+                    ]
+                },
+                {
+                    "position": [
+                        0.237,
+                        0.72,
+                        -0.18
+                    ],
+                    "rotation": [
+                        0.214,
+                        0.298,
+                        -0.998
+                    ]
+                },
+                {
+                    "position": [
+                        0.231,
+                        0.724,
+                        -0.199
+                    ],
+                    "rotation": [
+                        0.135,
+                        0.58,
+                        -0.962
+                    ]
+                },
+                {
+                    "position": [
+                        0.22,
+                        0.727,
+                        -0.217
+                    ],
+                    "rotation": [
+                        0.135,
+                        0.58,
+                        -0.962
+                    ]
+                }
+            ]
+        }
+    ]
+}
