@@ -27,7 +27,7 @@ https://leweyg.github.io/lewcid_editor/editor/index.html?file_path=../examples/m
 
 
 ## Short term setup:
-- Clone the git locally and run './editor_unix.sh' for Mac/Linux, or similar for Windows.
+- Clone the git locally and run './host_editor_php.sh' for Mac/Linux, or similar for Windows.
 
 ## Longer term:
 - To be compiled into a standalone electron-type app to run natively on most platforms.
