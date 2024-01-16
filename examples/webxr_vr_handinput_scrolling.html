@@ -13,6 +13,8 @@
 			(Oculus Browser 15.1+)<br/>
 			<input type="button" value="Test" id="testButtonExport" />
 			<input type="checkbox" id="enableExportCheckbox" />Export
+			<br/>
+				<code id="textDebugArea"></code>
 		</div>
 
 		<!-- Import maps polyfill -->
@@ -29,12 +31,43 @@
 		</script>
 
 		<script type="module">
+			import * as THREE from 'three';
+			import { FolderUtils } from '../../editor/js/FolderUtils.js';
+
+			function reviewHandData() {
+				var handDataFile = "models/xr/hands_frame.json";
+				FolderUtils.DownloadJSON(handDataFile, (jsonObject) => {
+					var ans = {};
+					function reduceNodes(node) {
+						var res = {};
+						if (node.children) {
+							for (var i in node.children) {
+								var child = node.children[i];
+								var key = child.name;
+								if (!key) {
+									key = "child" + i;
+								}
+								res[key] = reduceNodes(child);
+							}
+						}
+						return res;
+					}
+					var reduced = reduceNodes(jsonObject);
+					var str = JSON.stringify(reduced,null,2);
+					textDebugArea.innerText = str;
+				});
+			}
+			//reviewHandData();
+		</script>
+
+		<script type="module">
 
 			import * as THREE from 'three';
 			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 			import { VRButton } from 'three/addons/webxr/VRButton.js';
 			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
+			import { XRHandScrollFactory } from 'three/addons/webxr/XRHandScrollFactory.js';
 			import { SceneJson } from 'three/addons/exporters/SceneJson.js';
 			import { FolderUtils } from '../../editor/js/FolderUtils.js';
 
