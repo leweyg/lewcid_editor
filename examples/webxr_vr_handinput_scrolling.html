@@ -15,6 +15,8 @@
 			<input type="checkbox" id="enableExportCheckbox" />Export
 			<input type="range" id="timeScrubber" min="0" max="10" step="1" value="0">
 			<br/>
+			<span id="debugHandStateSpan">loading...</span>
+			<br/>
 				<code id="textDebugArea"></code>
 		</div>
 
@@ -314,6 +316,14 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 
 			}
+
+			function updateDebugUI() {
+				var txt = "";
+				if (scrollArms) {
+					txt = scrollArms.handLeft.handPose + " - " + scrollArms.handRight.handPose;
+				}
+				debugHandStateSpan.innerText = txt;
+			}
 			//
 
 			function animate() {
@@ -327,6 +337,7 @@
 				// State management:
 				if (scrollArms) {
 					scrollArms.updateArmsFromSource();
+					updateDebugUI();
 				}
 
 				// Core Render:
