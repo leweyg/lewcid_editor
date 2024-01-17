@@ -33,15 +33,17 @@ class XRFingerJoint {
         } else if (this.found) {
             this.found = false;
         }
-        this.updateDebugScene();
+        //this.updateDebugJoint();
         return this.found;
     }
 
-    updateDebugScene() {
+    updateDebugJoint() {
         var tools = this.fingerState.handScrollState.arms.debugTools;
         if (!tools) return;
         if (!this.debugFingerJoint) {
+            var scl = 0.01;
             this.debugFingerJoint = tools.createDebugBox();
+            this.debugFingerJoint.scale.set(scl, scl, scl);
             this.debugFingerJoint.name = this.fingerState.handScrollState.handName + "-" + this.jointName;
         }
         this.debugFingerJoint.position.copy(this.position);
@@ -62,11 +64,20 @@ class XRFingerState {
         this.jointBend = new XRFingerJoint(this, isThumb ? "-phalanx-distal" : "-phalanx-intermediate");
         this.jointTip = new XRFingerJoint(this, "-tip");
         this.joints = [ this.jointWrist, this.jointProximal, this.jointBend, this.jointTip ];
+        this.debugSegments = null;
+        this.debugMaterials = null;
         // state:
         this.fingerFound = false;
-        this.tendonContracted = false;
-        this.tendonRelaxed = true;
-        this.tendonProtracted = false;
+        this.fingerSide = new THREE.Vector3();
+        this.fingerUp = new THREE.Vector3();
+        this.tendonAngleMin = Math.PI / 8.0;
+        this.tendonAngleMax = Math.PI / 2.0;
+        this.tendonAngle = (this.tendonAngleMin + this.tendonAngleMax) * 0.5;
+        this.tendonState = 0; // -1 for contracted, 1 for protracted
+        // temp vectors:
+        this.dv1 = new THREE.Vector3();
+        this.dv2 = new THREE.Vector3();
+        this.dv3 = new THREE.Vector3();
     }
 
     updateFingerFromSource() {
@@ -78,10 +89,71 @@ class XRFingerState {
             }
         }
         this.fingerFound = true;
+
+        // general finger math:
+        this.dv1.copy(this.jointProximal.position);
+        this.dv1.sub(this.jointWrist.position);
+        this.dv2.copy(this.jointTip.position);
+        this.dv2.sub(this.jointProximal.position);
+        this.fingerSide.crossVectors(this.dv2, this.dv1);
+        this.fingerUp.crossVectors(this.fingerSide, this.dv1);
+
         // calculate tensor state:
+        this.tendonAngle = this.dv1.angleTo(this.dv2);
+        if (this.tendonAngle < this.tendonAngleMin) {
+            this.tendonState = 1;
+        } else if (this.tendonAngle > this.tendonAngleMax) {
+            this.tendonState = -1;
+        } else {
+            this.tendonState = 0;
+        }
 
         // result:
+        this.updateDebugFinger();
         return this.fingerFound;
+    }
+
+    updateDebugFinger() {
+        var tools = this.handScrollState.arms.debugTools;
+        if (!tools) return;
+        if (!this.debugSegments) {
+            this.debugSegments = [ null, null, null ];
+            for (var i in this.debugSegments) {
+                var seg = tools.createDebugBox();
+                this.debugSegments[i] = seg;
+                seg.name = this.handScrollState.handName + "-" + this.nameFinger;
+            }
+        }
+        for (var i in this.debugSegments) {
+            var line = this.debugSegments[i];
+            line.up.copy(this.fingerUp);
+
+            var from = this.joints[i];
+            var to = this.joints[(1*i)+1];
+
+            var dv1 = this.dv1;
+            var dv2 = this.dv2;
+            var dv3 = this.dv3;
+            dv1.copy(from.position);
+            dv1.add(to.position);
+            
+            dv1.multiplyScalar(0.5);
+            line.position.copy(dv1);
+            line.lookAt(to.position);
+
+            dv1.copy(from.position);
+            dv1.sub(to.position);
+            var len = dv1.length();
+            line.scale.set(0.01, 0.0161, len);
+
+            if (this.tendonState < 0) {
+                line.material = tools.commonRed;
+            } else if (this.tendonState == 0) {
+                line.material = tools.commonMat;
+            } else {
+                line.material = tools.commonBlue;
+            }
+        }
     }
 };
 
@@ -160,9 +232,11 @@ class HandScrollDebugTools {
         this.armState = armState;
         this.debugScene = debugScene;
 
-        var scl = 0.01;
+        var scl = 1.0;
         this.commonBoxGeo = new THREE.BoxGeometry( scl, scl, scl ); 
-        this.commonMat = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+        this.commonMat = new THREE.MeshPhysicalMaterial( {color: 0x778877} );
+        this.commonRed = new THREE.MeshPhysicalMaterial( {color: 0xFF0000} );
+        this.commonBlue = new THREE.MeshPhysicalMaterial( {color: 0x0000FF} );
     }
 
     createDebugBox() {
