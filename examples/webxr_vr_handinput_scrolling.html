@@ -253,7 +253,7 @@
 						jointSourceReady(srcLeft, srcRight);
 					});
 				}
-				var useLiveData = false;
+				var useLiveData = true;
 				if (useLiveData) {
 					jointSourceReady( leftJoints, rightJoints );
 				} else {
@@ -295,8 +295,15 @@
 
 			function render() {
 
+				// State management:
+				if (scrollArms) {
+					scrollArms.updateArmsFromSource();
+				}
+
+				// Core Render:
 				renderer.render( scene, camera );
 
+				// Custom:
 				exportUpdate();
 
 			}

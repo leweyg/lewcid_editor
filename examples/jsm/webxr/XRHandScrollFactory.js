@@ -70,8 +70,8 @@ class XRFingerState {
         this.fingerFound = false;
         this.fingerSide = new THREE.Vector3();
         this.fingerUp = new THREE.Vector3();
-        this.tendonAngleMin = Math.PI / 8.0;
-        this.tendonAngleMax = Math.PI / 2.0;
+        this.tendonAngleMin = 0.35; //Math.PI / 8.0;
+        this.tendonAngleMax = 1.25; // Math.PI / 2.0;
         this.tendonAngle = (this.tendonAngleMin + this.tendonAngleMax) * 0.5;
         this.tendonState = 0; // -1 for contracted, 1 for protracted
         // temp vectors:
