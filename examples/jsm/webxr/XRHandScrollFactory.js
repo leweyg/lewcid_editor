@@ -234,7 +234,7 @@ class XRHandScrollState {
         this.palmAlong = new THREE.Vector3(); // along index finger
         this.palmFacing = new THREE.Vector3();
         this.palmIsDown = false;
-        this.palmIsIn = false;
+        this.palmIsToSide = false;
         this.handPose = this.handPosesByName.unknown;
         this.cursor = new XRHandScrollCursor(this);
         // temp vectors:
@@ -266,8 +266,8 @@ class XRHandScrollState {
             this.dv3.sub(this.dv1).normalize();
             this.palmFacing.crossVectors(this.dv2, this.dv3).normalize();
 
-            this.palmIsDown = this.palmFacing.dot(this.arms.headUp) < -0.5;
-            this.palmIsIn = Math.abs( this.palmFacing.dot(this.arms.headRight) ) > 0.5;
+            this.palmIsDown = Math.abs( this.palmFacing.dot(this.arms.headUp) ) > 0.5;
+            this.palmIsToSide = Math.abs( this.palmFacing.dot(this.arms.headRight) ) > 0.5;
         }
         // Pose
         if (this.handFound) {
@@ -278,8 +278,14 @@ class XRHandScrollState {
             var indexOut = this.fingerIndex.isProtracted();
             if (ringIn && !indexIn) {
                 this.handPose = this.handPosesByName.pointing;
-            } else if (ringOut && indexOut) {
+            } else if (ringOut && indexOut && this.palmIsDown) {
                 this.handPose = this.handPosesByName.plane_down;
+            } else if (ringOut && (!indexIn) && this.palmIsToSide) {
+                this.handPose = this.handPosesByName.plane_side;
+            } else if (ringIn && indexIn && this.palmIsToSide) {
+                this.handPose = this.handPosesByName.plane_away;
+            } else if (ringIn && indexIn && !this.palmIsToSide) {
+                this.handPose = this.handPosesByName.closed;
             }
         } else {
             this.handPose = this.handPosesByName.unknown;

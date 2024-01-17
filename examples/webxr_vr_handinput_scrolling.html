@@ -321,6 +321,7 @@
 				var txt = "";
 				if (scrollArms) {
 					txt = scrollArms.handLeft.handPose + " - " + scrollArms.handRight.handPose;
+					txt += " @" + Math.floor( timeScrubber.value );
 				}
 				debugHandStateSpan.innerText = txt;
 			}
