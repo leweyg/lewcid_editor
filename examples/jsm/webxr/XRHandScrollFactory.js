@@ -11,6 +11,7 @@ class XRFingerJoint {
         this.position = new THREE.Vector3();
         this.rotation = new THREE.Euler();
         this.found = false;
+        this.debugFingerJoint = null;
     }
 
     updateJointFromSource() {
@@ -32,8 +33,19 @@ class XRFingerJoint {
         } else if (this.found) {
             this.found = false;
         }
+        this.updateDebugScene();
         return this.found;
+    }
 
+    updateDebugScene() {
+        var tools = this.fingerState.handScrollState.arms.debugTools;
+        if (!tools) return;
+        if (!this.debugFingerJoint) {
+            this.debugFingerJoint = tools.createDebugBox();
+            this.debugFingerJoint.name = this.fingerState.handScrollState.handName + "-" + this.jointName;
+        }
+        this.debugFingerJoint.position.copy(this.position);
+        this.debugFingerJoint.rotation.copy(this.rotation);
     }
 };
 
@@ -88,6 +100,7 @@ class XRHandScrollState {
     constructor(arms, handSource, isRightHand) {
         // sources:
         this.arms = arms;
+        this.handName = isRightHand ? "hand-right" : "hand-left";
         this.handSource = handSource;
         this.isRightHand = isRightHand;
         this.fingerThumb = new XRFingerState(this, "thumb", true);
@@ -142,10 +155,28 @@ class XRHandScrollState {
     }
 };
 
+class HandScrollDebugTools {
+    constructor(armState, debugScene) {
+        this.armState = armState;
+        this.debugScene = debugScene;
+
+        var scl = 0.01;
+        this.commonBoxGeo = new THREE.BoxGeometry( scl, scl, scl ); 
+        this.commonMat = new THREE.MeshBasicMaterial( {color: 0x00ff00} );
+    }
+
+    createDebugBox() {
+        const cube = new THREE.Mesh( this.commonBoxGeo, this.commonMat );
+        this.debugScene.add(cube);
+        return cube;
+    }
+};
+
 class XRArmsScrollState {
-    constructor(headSource, handSourceLeft, handSourceRight) {
+    constructor(headSource, handSourceLeft, handSourceRight, debugScene) {
         // sources:
         this.head = headSource;
+        this.debugTools = debugScene ? (new HandScrollDebugTools(this, debugScene)) : null;
         this.left = new XRHandScrollState(this, handSourceLeft, false);
         this.right= new XRHandScrollState(this, handSourceRight, true);
         this.hands = [ this.left, this.right ];

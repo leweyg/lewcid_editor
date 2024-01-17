@@ -224,8 +224,11 @@
 				// set up scrolling:
 				function jointSourceReady(leftSource, rightSource) {
 					var headPos = scene; // todo
+					var handDebugScene = new THREE.Group();
+					handDebugScene.name = "handDebuging";
+					scene.add(handDebugScene);
 
-					scrollArms = new XRArmsScrollState(headPos, leftSource, rightSource);
+					scrollArms = new XRArmsScrollState(headPos, leftSource, rightSource, handDebugScene);
 					scrollArms.updateArmsFromSource();
 				}
 				function requestSampleHandData() {
@@ -246,7 +249,7 @@
 							return null;
 						}
 						var srcLeft = findNamed(jsonObject, "Hand1").children[2].children[0];
-						var srcRight = findNamed(jsonObject, "Hand1").children[2].children[0];
+						var srcRight = findNamed(jsonObject, "Hand2").children[2].children[0];
 						jointSourceReady(srcLeft, srcRight);
 					});
 				}
