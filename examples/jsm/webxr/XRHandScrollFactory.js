@@ -169,38 +169,6 @@ class XRFingerState {
     }
 };
 
-class XRHandScrollCursor {
-    constructor(handScrollState) {
-        this.handScrollState = handScrollState;
-        this.cursorShowing = false;
-        this.cursorPosition = new THREE.Vector3();
-        this.cursorForward = new THREE.Vector3(0,0,-1);
-        this.cursorUp = new THREE.Vector3(0,1,0);
-        this.cursorCubeCenter = new THREE.Vector3();
-        this.cursorCubeScale = new THREE.Vector3(0.15,0.15,0.15);
-        this.cursorCubeRotation = new THREE.Euler();
-        this.debugCursor = null;
-    }
-
-    updateCursorFromSource() {
-
-
-        this.updateDebugCursor();
-    }
-
-    updateDebugCursor() {
-        var tools = this.handScrollState.arms.debugTools;
-        if (!tools) return;
-        if (!this.debugCursor) {
-            this.debugCursor = tools.createDebugBox();
-            this.debugCursor.name = this.handScrollState.handName + "-cursor";
-        }
-        this.debugCursor.position.copy(this.cursorCubeCenter);
-        this.debugCursor.rotation.copy(this.cursorCubeRotation);
-        this.debugCursor.visible = this.cursorShowing;
-    }
-};
-
 class XRHandScrollState {
 
     constructor(arms, handSource, isRightHand) {
@@ -328,6 +296,46 @@ class XRHandScrollState {
     }
 };
 
+
+class XRHandScrollCursor {
+    constructor(handScrollState) {
+        this.handScrollState = handScrollState;
+        this.cursorShowing = false;
+        this.cursorPosition = new THREE.Vector3();
+        this.cursorForward = new THREE.Vector3(0,0,-1);
+        this.cursorUp = new THREE.Vector3(0,1,0);
+        this.cursorCubeCenter = new THREE.Vector3();
+        this.cursorCubeScale = new THREE.Vector3(0.02, 0.02, 0.02);
+        this.cursorCubeRotation = new THREE.Euler();
+        this.debugCursor = null;
+    }
+
+    updateCursorFromSource() {
+        var found = this.handScrollState.handFound;
+        this.cursorShowing = found;
+        if (found) {
+            this.cursorPosition.copy(this.handScrollState.fingerIndex.jointTip.position);
+            this.cursorCubeCenter.copy(this.cursorPosition); // offset?
+        }
+
+        this.updateDebugCursor();
+    }
+
+    updateDebugCursor() {
+        var tools = this.handScrollState.arms.debugTools;
+        if (!tools) return;
+        if (!this.debugCursor) {
+            this.debugCursor = tools.createDebugBox();
+            this.debugCursor.name = this.handScrollState.handName + "-cursor";
+            this.debugCursor.material = tools.commonCursorMat;
+        }
+        this.debugCursor.position.copy(this.cursorCubeCenter);
+        this.debugCursor.rotation.copy(this.cursorCubeRotation);
+        this.debugCursor.scale.copy(this.cursorCubeScale);
+        this.debugCursor.visible = this.cursorShowing;
+    }
+};
+
 class HandScrollDebugTools {
     constructor(armState, debugScene) {
         this.armState = armState;
@@ -335,6 +343,7 @@ class HandScrollDebugTools {
 
         var scl = 1.0;
         this.commonBoxGeo = new THREE.BoxGeometry( scl, scl, scl ); 
+        this.commonCursorMat = new THREE.MeshStandardMaterial( {color: 0x00FF00,transparent:true,opacity:0.5});
         this.commonMat = new THREE.MeshPhysicalMaterial( {color: 0x778877} );
         this.commonRed = new THREE.MeshPhysicalMaterial( {color: 0xFF0000} );
         this.commonBlue = new THREE.MeshPhysicalMaterial( {color: 0x0000FF} );
