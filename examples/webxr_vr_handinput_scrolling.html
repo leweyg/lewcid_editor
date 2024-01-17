@@ -225,7 +225,8 @@
 				function jointSourceReady(leftSource, rightSource) {
 					var headPos = scene; // todo
 
-					scrollArms = new XRArmsScrollState(headPos, leftJoints, rightJoints);
+					scrollArms = new XRArmsScrollState(headPos, leftSource, rightSource);
+					scrollArms.updateArmsFromSource();
 				}
 				function requestSampleHandData() {
 					var handDataFile = "models/xr/hands_frame.json";
