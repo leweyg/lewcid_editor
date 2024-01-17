@@ -235,6 +235,9 @@ class XRHandScrollState {
         this.palmFacing = new THREE.Vector3();
         this.palmIsDown = false;
         this.palmIsToSide = false;
+        this.pinchDistance = 10.0;
+        this.pinchNear = false;
+        this.pinchActive = false;
         this.handPose = this.handPosesByName.unknown;
         this.cursor = new XRHandScrollCursor(this);
         // temp vectors:
@@ -268,6 +271,12 @@ class XRHandScrollState {
 
             this.palmIsDown = Math.abs( this.palmFacing.dot(this.arms.headUp) ) > 0.5;
             this.palmIsToSide = Math.abs( this.palmFacing.dot(this.arms.headRight) ) > 0.5;
+
+            this.dv1.copy(this.fingerIndex.jointTip.position);
+            this.dv2.copy(this.fingerThumb.jointTip.position);
+            this.pinchDistance = this.dv1.distanceTo(this.dv2);
+            this.pinchNear = (this.pinchDistance < 0.04);
+            this.pinchActive = (this.pinchDistance < 0.02);
         }
         // Pose
         if (this.handFound) {
@@ -276,7 +285,9 @@ class XRHandScrollState {
             var ringOut = this.fingerRing.isProtracted();
             var indexIn = this.fingerIndex.isContracted();
             var indexOut = this.fingerIndex.isProtracted();
-            if (ringIn && !indexIn) {
+            if (indexIn && this.pinchActive) {
+                this.handPose = this.handPosesByName.pinch_active;
+            } else if (ringIn && !indexIn) {
                 this.handPose = this.handPosesByName.pointing;
             } else if (ringOut && indexOut && this.palmIsDown) {
                 this.handPose = this.handPosesByName.plane_down;
@@ -286,6 +297,8 @@ class XRHandScrollState {
                 this.handPose = this.handPosesByName.plane_away;
             } else if (ringIn && indexIn && !this.palmIsToSide) {
                 this.handPose = this.handPosesByName.closed;
+            } else if (ringIn && this.pinchNear) {
+                this.handPose = this.handPosesByName.pinch_near;
             }
         } else {
             this.handPose = this.handPosesByName.unknown;
