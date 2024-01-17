@@ -67,7 +67,7 @@
 			import { VRButton } from 'three/addons/webxr/VRButton.js';
 			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
-			import { XRHandScrollFactory } from 'three/addons/webxr/XRHandScrollFactory.js';
+			import { XRArmsScrollState } from 'three/addons/webxr/XRHandScrollFactory.js';
 			import { SceneJson } from 'three/addons/exporters/SceneJson.js';
 			import { FolderUtils } from '../../editor/js/FolderUtils.js';
 
@@ -76,6 +76,7 @@
 			let hand1, hand2;
 			let controller1, controller2;
 			let controllerGrip1, controllerGrip2;
+			let scrollArms;
 
 			const handModels = {
 				left: null,
@@ -164,6 +165,7 @@
 					handModelFactory.createHandModel( hand1, 'spheres' ),
 					handModelFactory.createHandModel( hand1, 'mesh' )
 				];
+				var leftJoints = handModels.left[2];
 
 				for ( let i = 0; i < 3; i ++ ) {
 
@@ -197,6 +199,7 @@
 					handModelFactory.createHandModel( hand2, 'spheres' ),
 					handModelFactory.createHandModel( hand2, 'mesh' )
 				];
+				var rightJoints = handModels.right[2];
 
 				for ( let i = 0; i < 3; i ++ ) {
 
@@ -217,6 +220,41 @@
 					}
 
 				} );
+
+				// set up scrolling:
+				function jointSourceReady(leftSource, rightSource) {
+					var headPos = scene; // todo
+
+					scrollArms = new XRArmsScrollState(headPos, leftJoints, rightJoints);
+				}
+				function requestSampleHandData() {
+					var handDataFile = "models/xr/hands_frame.json";
+					FolderUtils.DownloadJSON(handDataFile, (jsonObject) => {
+						function findNamed(ob, nm) {
+							if (ob.name == nm) {
+								return ob;
+							}
+							if (ob.children) {
+								for (var i in ob.children) {
+									var c = ob.children[i];
+									if (c.name == nm) {
+										return c;
+									}
+								}
+							}
+							return null;
+						}
+						var srcLeft = findNamed(jsonObject, "Hand1").children[2].children[0];
+						var srcRight = findNamed(jsonObject, "Hand1").children[2].children[0];
+						jointSourceReady(srcLeft, srcRight);
+					});
+				}
+				var useLiveData = false;
+				if (useLiveData) {
+					jointSourceReady( leftJoints, rightJoints );
+				} else {
+					requestSampleHandData();
+				}
 
 				//
 
