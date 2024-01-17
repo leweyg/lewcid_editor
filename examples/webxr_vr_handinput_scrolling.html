@@ -13,6 +13,7 @@
 			(Oculus Browser 15.1+)<br/>
 			<input type="button" value="Test" id="testButtonExport" />
 			<input type="checkbox" id="enableExportCheckbox" />Export
+			<input type="range" id="timeScrubber" min="0" max="10" step="1" value="0">
 			<br/>
 				<code id="textDebugArea"></code>
 		</div>
@@ -34,27 +35,41 @@
 			import * as THREE from 'three';
 			import { FolderUtils } from '../../editor/js/FolderUtils.js';
 
-			function reviewHandData() {
-				var handDataFile = "models/xr/hands_frame.json";
-				FolderUtils.DownloadJSON(handDataFile, (jsonObject) => {
-					var ans = {};
-					function reduceNodes(node) {
-						var res = {};
-						if (node.children) {
-							for (var i in node.children) {
-								var child = node.children[i];
-								var key = child.name;
-								if (!key) {
-									key = "child" + i;
-								}
-								res[key] = reduceNodes(child);
-							}
+			function reduceScene(from) {
+				var ans = {};
+				if (from.children) {
+					ans.children = [];
+					for (var i in from.children) {
+						var s = from.children[i];
+						if (s.name && s.name.startsWith("Hand")) {
+							var arm = {
+								name : s.name,
+								children : [ s.children[2] ],
+							};
+							ans.children.push(arm);
 						}
-						return res;
 					}
-					var reduced = reduceNodes(jsonObject);
-					var str = JSON.stringify(reduced,null,2);
-					textDebugArea.innerText = str;
+				}
+				if (from.userData) {
+					ans.userData = from.userData;
+					if (ans.userData.frames) {
+						for (var i in ans.userData.frames) {
+							var frame = ans.userData.frames[i];
+							frame.value = reduceScene(frame.value);
+						}
+					}
+				}
+				return ans;
+			}
+			function reviewHandData() {
+				var handDataFile = "models/xr/hands_motion_full.json";
+				FolderUtils.DownloadJSON(handDataFile, (jsonObject) => {
+					var reduced = reduceScene(jsonObject);
+					var str = JSON.stringify(reduced);
+					//textDebugArea.innerText = str;
+					FolderUtils.ShellSaveToFile("hands_motion.json", str, (res)=>{
+						alert("Saved=" + res);
+					}, "../editor/");
 				});
 			}
 			//reviewHandData();
@@ -77,6 +92,7 @@
 			let controller1, controller2;
 			let controllerGrip1, controllerGrip2;
 			let scrollArms;
+			var sampleDataRoot = null;
 
 			const handModels = {
 				left: null,
@@ -231,9 +247,12 @@
 					scrollArms = new XRArmsScrollState(headPos, leftSource, rightSource, handDebugScene);
 					scrollArms.updateArmsFromSource();
 				}
+				
 				function requestSampleHandData() {
 					var handDataFile = "models/xr/hands_frame.json";
+					var handDataFile = "models/xr/hands_motion.json";
 					FolderUtils.DownloadJSON(handDataFile, (jsonObject) => {
+						sampleDataRoot = jsonObject;
 						function findNamed(ob, nm) {
 							if (ob.name == nm) {
 								return ob;
@@ -248,12 +267,22 @@
 							}
 							return null;
 						}
-						var srcLeft = findNamed(jsonObject, "Hand1").children[2].children[0];
-						var srcRight = findNamed(jsonObject, "Hand2").children[2].children[0];
+						var hand1Data = findNamed(jsonObject, "Hand1");
+						var subIndex = (hand1Data.children.length == 1) ? 0 : 2;
+						var srcLeft = hand1Data.children[subIndex].children[0];
+						var srcRight = findNamed(jsonObject, "Hand2").children[subIndex].children[0];
 						jointSourceReady(srcLeft, srcRight);
+
+						if (jsonObject.userData && jsonObject.userData.frames) {
+							timeScrubber.max = jsonObject.userData.frames.length;
+						} else {
+							timeScrubber.style.display = "none";
+						}
 					});
 				}
-				var useLiveData = true;
+
+				var hostingUrl = document.URL;
+				var useLiveData = hostingUrl.startsWith("https:"); // false when on localhost
 				if (useLiveData) {
 					jointSourceReady( leftJoints, rightJoints );
 				} else {
@@ -390,6 +419,29 @@
 					alert("Exporting not enabled.");
 				}
 			};
+
+			function updateSampleRecursive(to, from) {
+				if (from.position) {
+					to.position = from.position;
+				}
+				if (from.rotation) {
+					to.rotation = from.rotation;
+				}
+				if (from.children) {
+					console.assert(from.children.length == to.children.length);
+					for (var i in from.children) {
+						updateSampleRecursive(to.children[i], from.children[i]);
+					}
+				}
+			}
+
+			timeScrubber.oninput = function() {
+				var frameIndex = Math.floor(1* timeScrubber.value);
+				var frame = sampleDataRoot.userData.frames[frameIndex];
+				if (frame) {
+					updateSampleRecursive(sampleDataRoot, frame.value);
+				}
+			}
 
 		</script>
 	</body>
