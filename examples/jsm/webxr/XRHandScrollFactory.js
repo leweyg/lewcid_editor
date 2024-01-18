@@ -312,6 +312,8 @@ class XRHandScrollCursor {
         this.cursorPosition = new THREE.Vector3();
         this.cursorAxes = new THREE.Vector3(1,1,1);
         this.cursorOffset = new THREE.Vector3();
+        this.cursorOffsetPrevious = new THREE.Vector3();
+        this.cursorOffsetDelta = new THREE.Vector3();
         this.cursorForward = new THREE.Vector3(0,0,-1);
         this.cursorUp = new THREE.Vector3(0,1,0);
         this.cursorCubeCenter = new THREE.Vector3();
@@ -427,6 +429,12 @@ class XRHandScrollCursor {
             this.cursorCubeOffset.copy(this.cursorCubeCenter);
             this.cursorCubeOffset.add(this.cursorOffset);
         }
+        if (poseChanged) {
+            this.cursorOffsetPrevious.copy(this.cursorOffset);
+        }
+        this.cursorOffsetDelta.copy(this.cursorOffset);
+        this.cursorOffsetDelta.sub(this.cursorOffsetPrevious);
+        this.cursorOffsetPrevious.copy(this.cursorOffset);
 
 
         this.cursorForward.copy(hand.palmAlong);
@@ -534,17 +542,33 @@ class XRArmScroller {
             this.zoomScalarMotion = this.zoomCurrent;
 
             if (this.debugTarget) {
-                //this.debugTarget.position.sub(this.zoomCenter);
+                this.debugTarget.worldToLocal(this.zoomCenter);
+
+                this.dv1.copy(this.zoomCenter);
+                this.debugTarget.localToWorld(this.dv1);
+
                 this.debugTarget.scale.multiplyScalar(this.zoomScalarMotion);
-                //this.debugTarget.position.add(this.zoomCenter);
+
+                this.dv2.copy(this.zoomCenter);
+                this.debugTarget.localToWorld(this.dv2);
+
+                this.dv1.sub(this.dv2);
+                this.debugTarget.position.add(this.dv1);
             }
 
         } else if (anyHandsActive) {
             for (var i in this.cursors) {
                 var cursor = this.cursors[i];
                 if (cursor.cursorOffsetShowing) {
-                    this.dv1.copy(cursor.cursorOffset);
-                    this.dv1.multiplyScalar(-this.timeDelta);
+                    if (cursor.handScrollState.handPose == XRHandPoses.closed) {
+                        this.dv1.copy(cursor.cursorOffset);
+                        var scrollSpeed = -3.0;
+                        this.dv1.multiplyScalar(scrollSpeed * this.timeDelta);
+                    } else {
+                        this.dv1.copy(cursor.cursorOffsetDelta);
+                        var movementScale = 1;
+                        this.dv1.multiplyScalar(-movementScale);
+                    }
                     this.motionDir.add(this.dv1);
                 }
             }
@@ -672,6 +696,7 @@ class XRArmsScrollState {
         this.headUp = new THREE.Vector3(0,1,0);
         this.headRight = new THREE.Vector3(1,0,0);
         this.armPose = XRArmPoses.unknown;
+        this.armPoseChanged = false;
     }
 
     updateArmsFromSource() {
@@ -702,6 +727,7 @@ class XRArmsScrollState {
         var rightPose = this.handRight.handPose;
         var leftRelevant = handPoseRelevant(leftPose);
         var rightRelevant = handPoseRelevant(rightPose);
+        var armPosePrevious = this.armPose;
         this.armPose = XRArmPoses.unknown;
         if ((!leftRelevant) && (!rightRelevant)) {
             this.armPose = XRArmPoses.inactive;
@@ -710,6 +736,7 @@ class XRArmsScrollState {
         } else if (leftRelevant && rightRelevant) {
             this.armPose = handPosesPairing(leftPose, rightPose);
         }
+        this.armPoseChanged = (armPosePrevious != this.armPose);
 
         // then update scroller:
         this.scroller.updateScroller();
