@@ -460,6 +460,60 @@ class XRHandScrollCursor {
     }
 };
 
+class XRHandScroller {
+    constructor(arms, targetScene) {
+        // sources:
+        this.arms = arms;
+        this.target = targetScene;
+        this.cursors = [ this.arms.handLeft.cursor, this.arms.handRight.cursor ];
+        // state:
+        this.timeNow = new Date();
+        this.timePrev = this.timeNow;
+        this.timeDelta = 0.0;
+        this.motionDir = new THREE.Vector3();
+        this.debugTarget = null;
+        this.debugContent = null;
+
+        // temp vectors:
+        this.dv1 = new THREE.Vector3();
+        this.dv2 = new THREE.Vector3();
+        this.dv3 = new THREE.Vector3();
+    }
+
+    updateScroller() {
+        this.timeNow = new Date();
+        this.timeDelta = (this.timeNow - this.timePrev) / 1000.0; // to seconds
+        this.timePrev = this.timeNow;
+
+        this.motionDir.set(0,0,0);
+        for (var i in this.cursors) {
+            var cursor = this.cursors[i];
+            if (cursor.cursorOffsetShowing) {
+                this.dv1.copy(cursor.cursorOffset);
+                this.dv1.multiplyScalar(-this.timeDelta);
+                this.motionDir.add(this.dv1);
+            }
+        }
+        if (this.target && (this.motionDir.length() > 0)) {
+            this.target.position.add(this.motionDir);
+        }
+        this.updateDebugScroller();
+    }
+
+    updateDebugScroller() {
+        var tools = this.arms.debugTools;
+        if (!tools) return;
+        if (!this.debugTarget) {
+            this.debugTarget = new THREE.Group();
+            this.arms.debugTools.debugScene.add(this.debugTarget);
+            this.debugContent = this.arms.debugTools.createDebugBox(this.debugTarget); 
+        }
+        if (this.debugTarget && (this.motionDir.length() > 0)) {
+            this.debugTarget.position.add(this.motionDir);
+        }
+    }
+};
+
 class HandScrollDebugTools {
     constructor(armState, debugScene) {
         this.armState = armState;
@@ -473,21 +527,27 @@ class HandScrollDebugTools {
         this.commonBlue = new THREE.MeshPhysicalMaterial( {color: 0x0000FF} );
     }
 
-    createDebugBox() {
+    createDebugBox(customParent=null) {
         const cube = new THREE.Mesh( this.commonBoxGeo, this.commonMat );
-        this.debugScene.add(cube);
+        if (customParent) {
+            customParent.add(cube);
+        } else {
+            this.debugScene.add(cube);
+        }
         return cube;
     }
 };
 
 class XRArmsScrollState {
-    constructor(headSource, handSourceLeft, handSourceRight, debugScene) {
+
+    constructor(headSource, handSourceLeft, handSourceRight, debugScene, targetScroller) {
         // sources:
         this.head = headSource;
         this.debugTools = debugScene ? (new HandScrollDebugTools(this, debugScene)) : null;
         this.handLeft = new XRHandScrollState(this, handSourceLeft, false);
         this.handRight = new XRHandScrollState(this, handSourceRight, true);
         this.hands = [ this.handLeft, this.handRight ];
+        this.scroller = new XRHandScroller(this, targetScroller);
         // state:
         this.headForward = new THREE.Vector3(0,0,-1);
         this.headUp = new THREE.Vector3(0,1,0);
@@ -506,6 +566,10 @@ class XRArmsScrollState {
             hand.updateHandFromSource();
         }
         // update dual-hand arm pose:
+        
+
+        // then update scroller:
+        this.scroller.updateScroller();
     }
 };
 
