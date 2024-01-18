@@ -94,6 +94,7 @@
 			let controller1, controller2;
 			let controllerGrip1, controllerGrip2;
 			let scrollArms;
+			let scrollTarget;
 			var sampleDataRoot = null;
 
 			const handModels = {
@@ -130,6 +131,10 @@
 				floor.rotation.x = - Math.PI / 2;
 				floor.receiveShadow = true;
 				scene.add( floor );
+
+				scrollTarget = new THREE.Group();
+				scrollTarget.name = "scrollTarget";
+				scene.add( scrollTarget );
 
 				scene.add( new THREE.HemisphereLight( 0x808080, 0x606060 ) );
 
@@ -246,8 +251,17 @@
 					handDebugScene.name = "handDebuging";
 					scene.add(handDebugScene);
 
-					scrollArms = new XRArmsScrollState(headPos, leftSource, rightSource, handDebugScene);
+					scrollArms = new XRArmsScrollState(headPos,
+						leftSource, rightSource, handDebugScene, scrollTarget);
 					scrollArms.updateArmsFromSource();
+					
+					// demo scrollables:
+					/*
+					var demoBox = scrollArms.debugTools.createDebugBox();
+					demoBox.name = "demoBox";
+					scrollTarget.add(demoBox);
+					scrollArms.scrollable.target = scrollTarget;
+					*/
 				}
 				
 				function requestSampleHandData() {
