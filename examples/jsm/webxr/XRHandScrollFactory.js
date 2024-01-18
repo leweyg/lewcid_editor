@@ -169,6 +169,19 @@ class XRFingerState {
     }
 };
 
+var XRHandPoses = {
+    unknown:"unknown",
+    inactive:"inactive",
+    open:"open",
+    pointing:"pointing",
+    closed:"closed",
+    plane_down:"plane_down",
+    plane_side:"plane_side",
+    plane_away:"plane_away",
+    pinch_near:"pinch_near",
+    pinch_active:"pinch_active",
+};
+
 class XRHandScrollState {
 
     constructor(arms, handSource, isRightHand) {
@@ -185,18 +198,7 @@ class XRHandScrollState {
         this.fingers = [ this.fingerThumb, this.fingerIndex, this.fingerMiddle,
             this.fingerRing, this.fingerPinky ];
         // constants (better way?):
-        this.handPosesByName = {
-            unknown:"unknown",
-            inactive:"inactive",
-            open:"open",
-            pointing:"pointing",
-            closed:"closed",
-            plane_down:"plane_down",
-            plane_side:"plane_side",
-            plane_away:"plane_away",
-            pinch_near:"pinch_near",
-            pinch_active:"pinch_active",
-        };
+        this.handPosesByName = XRHandPoses;
         // state:
         this.handFound = false;
         this.palmAlong = new THREE.Vector3(); // along index finger
@@ -299,25 +301,91 @@ class XRHandScrollState {
 
 class XRHandScrollCursor {
     constructor(handScrollState) {
+        // sources:
         this.handScrollState = handScrollState;
+        // state:
         this.cursorShowing = false;
         this.cursorPosition = new THREE.Vector3();
         this.cursorForward = new THREE.Vector3(0,0,-1);
         this.cursorUp = new THREE.Vector3(0,1,0);
         this.cursorCubeCenter = new THREE.Vector3();
-        this.cursorCubeScale = new THREE.Vector3(0.02, 0.02, 0.02);
+        this.cursorScale = 0.02;
+        this.cursorCubeScale = new THREE.Vector3(this.cursorScale, this.cursorScale, this.cursorScale);
         this.cursorCubeRotation = new THREE.Euler();
+        
         this.debugCursor = null;
+        // temp vectors:
+        this.dv1 = new THREE.Vector3();
+        this.dv2 = new THREE.Vector3();
+        this.dv3 = new THREE.Vector3();
     }
 
     updateCursorFromSource() {
-        var found = this.handScrollState.handFound;
+        // basic state:
+        var hand = this.handScrollState;
+        var arms = hand.armState;
+        var found = hand.handFound;
         this.cursorShowing = found;
-        if (found) {
-            this.cursorPosition.copy(this.handScrollState.fingerIndex.jointTip.position);
-            this.cursorCubeCenter.copy(this.cursorPosition); // offset?
+        if (!found) {
+            this.updateDebugCursor();
+            return;
         }
+        
+        // cursor setup:
+        if ((hand.handPose == XRHandPoses.inactive) ||
+            (hand.handPose == XRHandPoses.unknown) ||
+            (hand.handPose == XRHandPoses.open))
+        {
+            this.cursorShowing = false;
+        } else if (hand.handPose == XRHandPoses.pointing) {
+            this.cursorPosition.copy(hand.fingerIndex.jointTip.position);
+            this.cursorCubeScale.set(1,1,1).multiplyScalar(this.cursorScale);
+        } else if ((hand.handPose == XRHandPoses.pinch_near) ||
+                (hand.handPose == XRHandPoses.pinch_active))
+        {
+            this.dv1.copy(hand.fingerIndex.jointTip.position);
+            this.dv2.copy(hand.fingerThumb.jointTip.position);
+            this.dv3.copy(this.dv1).add(this.dv2).multiplyScalar(0.5);
+            var scl = hand.pinchActive ? 0.05 : (hand.pinchDistance * 2.0);
 
+            this.cursorPosition.copy(this.dv3);
+            this.cursorCubeScale.set(1,1,1).multiplyScalar(scl);
+        } else if ((hand.handPose == XRHandPoses.plane_down) ||
+            (hand.handPose == XRHandPoses.plane_away) ||
+            (hand.handPose == XRHandPoses.plane_side))
+        {
+            this.cursorPosition.copy(hand.fingerIndex.jointProximal.position);
+            var planeAxis = "x";
+            switch (hand.handPose) {
+                case XRHandPoses.plane_down:
+                    planeAxis = "y";
+                    break;
+                case XRHandPoses.plane_side:
+                    planeAxis = "x";
+                    break;
+                case XRHandPoses.plane_away:
+                    planeAxis = "z";
+                    break;
+            }
+            var largeScale = 0.20;
+            this.dv1.set(1,1,1).multiplyScalar(largeScale);
+            this.dv1[planeAxis] = this.cursorScale;
+            this.cursorCubeScale.copy(this.dv1);
+        } else if (hand.handPose == XRHandPoses.closed) {
+            this.cursorPosition.copy(hand.fingerIndex.jointProximal.position);
+            var closedScale = 0.1;
+            this.cursorCubeScale.set(closedScale, closedScale, closedScale);
+        } else {
+            this.cursorPosition.copy(hand.fingerIndex.jointTip.position);
+            this.cursorCubeScale.set(1,this.cursorScale,this.cursorScale);
+        }
+        this.cursorCubeCenter.copy(this.cursorPosition); // offset?
+
+
+        this.cursorForward.copy(hand.palmAlong);
+        this.cursorUp.copy(hand.palmFacing);
+
+        // debug:
         this.updateDebugCursor();
     }
 
@@ -388,6 +456,7 @@ class XRArmsScrollState {
 export {
     XRArmsScrollState,
     XRHandScrollState,
+    XRHandPoses,
     XRFingerState,
     XRHandScrollCursor,
 };
