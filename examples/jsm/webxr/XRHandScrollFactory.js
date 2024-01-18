@@ -562,6 +562,7 @@ class XRArmScroller {
             this.debugTarget = new THREE.Group();
             this.arms.debugTools.debugScene.add(this.debugTarget);
             this.debugContent = this.arms.debugTools.createDebugBox(this.debugTarget); 
+            this.debugContent.material = this.arms.debugTools.commonScrollableMat;
         }
 
     }
@@ -575,6 +576,7 @@ class HandScrollDebugTools {
         var scl = 1.0;
         this.commonBoxGeo = new THREE.BoxGeometry( scl, scl, scl ); 
         this.commonCursorMat = new THREE.MeshStandardMaterial( {color: 0x00FF00,transparent:true,opacity:0.5});
+        this.commonScrollableMat = new THREE.MeshStandardMaterial( {color: 0x0000ff,transparent:true,opacity:0.5});
         this.commonMat = new THREE.MeshPhysicalMaterial( {color: 0x778877} );
         this.commonRed = new THREE.MeshPhysicalMaterial( {color: 0xFF0000} );
         this.commonBlue = new THREE.MeshPhysicalMaterial( {color: 0x0000FF} );
