@@ -175,9 +175,9 @@ var XRHandPoses = {
     open:"open",
     pointing:"pointing",
     closed:"closed",
-    plane_down:"plane_down",
+    plane_vertical:"plane_vertical",
     plane_side:"plane_side",
-    plane_away:"plane_away",
+    plane_facing:"plane_facing",
     pinch_near:"pinch_near",
     pinch_active:"pinch_active",
 };
@@ -260,11 +260,11 @@ class XRHandScrollState {
             } else if (ringIn && !indexIn) {
                 this.handPose = this.handPosesByName.pointing;
             } else if (ringOut && indexOut && this.palmIsDown) {
-                this.handPose = this.handPosesByName.plane_down;
+                this.handPose = this.handPosesByName.plane_vertical;
             } else if (ringOut && (!indexIn) && this.palmIsToSide) {
                 this.handPose = this.handPosesByName.plane_side;
             } else if (ringIn && indexIn && this.palmIsToSide) {
-                this.handPose = this.handPosesByName.plane_away;
+                this.handPose = this.handPosesByName.plane_facing;
             } else if (ringIn && indexIn && !this.palmIsToSide) {
                 this.handPose = this.handPosesByName.closed;
             } else if (ringIn && this.pinchNear) {
@@ -370,8 +370,8 @@ class XRHandScrollCursor {
 
             this.cursorPosition.copy(this.dv3);
             this.cursorCubeScale.set(1,1,1).multiplyScalar(scl);
-        } else if ((hand.handPose == XRHandPoses.plane_down) ||
-            (hand.handPose == XRHandPoses.plane_away) ||
+        } else if ((hand.handPose == XRHandPoses.plane_vertical) ||
+            (hand.handPose == XRHandPoses.plane_facing) ||
             (hand.handPose == XRHandPoses.plane_side))
         {
             this.cursorOffsetShowing = true;
@@ -379,13 +379,13 @@ class XRHandScrollCursor {
             this.cursorPosition.copy(hand.fingerIndex.jointProximal.position);
             var planeAxis = "x";
             switch (hand.handPose) {
-                case XRHandPoses.plane_down:
+                case XRHandPoses.plane_vertical:
                     planeAxis = "y";
                     break;
                 case XRHandPoses.plane_side:
                     planeAxis = "x";
                     break;
-                case XRHandPoses.plane_away:
+                case XRHandPoses.plane_facing:
                     planeAxis = "z";
                     break;
             }
@@ -460,7 +460,7 @@ class XRHandScrollCursor {
     }
 };
 
-class XRHandScroller {
+class XRArmScroller {
     constructor(arms, targetScene) {
         // sources:
         this.arms = arms;
@@ -538,6 +538,17 @@ class HandScrollDebugTools {
     }
 };
 
+
+var XRArmPoses = {
+    unknown : "unknown",
+    inactive : "inactive",
+    single_handed : "single_handed",
+    hands_indepenant : "indepenant",
+    planes_side : "planes_side",
+    planes_vertical : "planes_vertical",
+    planes_facing : "planes_facing",
+};
+
 class XRArmsScrollState {
 
     constructor(headSource, handSourceLeft, handSourceRight, debugScene, targetScroller) {
@@ -547,17 +558,12 @@ class XRArmsScrollState {
         this.handLeft = new XRHandScrollState(this, handSourceLeft, false);
         this.handRight = new XRHandScrollState(this, handSourceRight, true);
         this.hands = [ this.handLeft, this.handRight ];
-        this.scroller = new XRHandScroller(this, targetScroller);
+        this.scroller = new XRArmScroller(this, targetScroller);
         // state:
         this.headForward = new THREE.Vector3(0,0,-1);
         this.headUp = new THREE.Vector3(0,1,0);
         this.headRight = new THREE.Vector3(1,0,0);
-        this.armPoseIndex = 0;
-        this.armPosesByIndex = [
-            "unknown", "inactive", "indepenant",
-            "dual-side-zoom", "dual-down-balance", "dual-towards-turn"
-        ];
-        this.armPose = this.armPosesByIndex[ this.armPoseIndex ];
+        this.armPose = XRArmPoses.unknown;
     }
 
     updateArmsFromSource() {
@@ -566,7 +572,36 @@ class XRArmsScrollState {
             hand.updateHandFromSource();
         }
         // update dual-hand arm pose:
-        
+        function handPoseRelevant(handPose) {
+            switch (handPose) {
+                case XRHandPoses.unknown:
+                case XRHandPoses.inactive:
+                case XRHandPoses.open:
+                    return false;
+                default:
+                    return true;
+            }
+        }
+        function handPosesPairing(poseA,poseB) {
+            if (poseA == poseB) {
+                if (poseA == XRHandPoses.plane_side) return XRArmPoses.planes_side;
+                if (poseA == XRHandPoses.plane_vertical) return XRArmPoses.planes_vertical;
+                if (poseA == XRHandPoses.plane_facing) return XRArmPoses.planes_facing;
+            }
+            return XRArmPoses.hands_indepenant;
+        }
+        var leftPose = this.handLeft.handPose;
+        var rightPose = this.handRight.handPose;
+        var leftRelevant = handPoseRelevant(leftPose);
+        var rightRelevant = handPoseRelevant(rightPose);
+        this.armPose = XRArmPoses.unknown;
+        if ((!leftRelevant) && (!rightRelevant)) {
+            this.armPose = XRArmPoses.inactive;
+        } else if (leftRelevant != rightRelevant) {
+            this.armPose = XRArmPoses.single_handed;
+        } else if (leftRelevant && rightRelevant) {
+            this.armPose = handPosesPairing(leftPose, rightPose);
+        }
 
         // then update scroller:
         this.scroller.updateScroller();
@@ -575,6 +610,8 @@ class XRArmsScrollState {
 
 export {
     XRArmsScrollState,
+    XRArmScroller,
+
     XRHandScrollState,
     XRHandPoses,
     XRFingerState,
