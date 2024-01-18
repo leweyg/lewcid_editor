@@ -118,10 +118,11 @@
 				scene.background = new THREE.Color( 0x444444 );
 
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
-				camera.position.set( 0, 1.6, 3 );
+				camera.position.set( 0, 0.7, 1 );
+
 
 				controls = new OrbitControls( camera, container );
-				controls.target.set( 0, 1.6, 0 );
+				controls.target.set( 0, 0.7, 0 );
 				controls.update();
 
 				const floorGeometry = new THREE.PlaneGeometry( 4, 4 );

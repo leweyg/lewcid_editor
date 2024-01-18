@@ -473,6 +473,7 @@ class XRArmScroller {
         this.motionDir = new THREE.Vector3();
         this.debugTarget = null;
         this.debugContent = null;
+        this.debugContentPoints = [];
         this.zoomActive = false;
         this.zoomPrevious = 1.0;
         this.zoomLatest = new THREE.Vector3();
@@ -484,6 +485,10 @@ class XRArmScroller {
         this.dv1 = new THREE.Vector3();
         this.dv2 = new THREE.Vector3();
         this.dv3 = new THREE.Vector3();
+        this.dvCur = new THREE.Vector3();
+        this.dvMin = new THREE.Vector3(-1,-1,-1);
+        this.dvMax = new THREE.Vector3(1,1,1);
+        this.dvStep = new THREE.Vector3(0.5, 0.5, 0.5);
     }
 
     updateScroller() {
@@ -555,14 +560,62 @@ class XRArmScroller {
         this.updateDebugScroller();
     }
 
+    iterateVolume(vecCur, vecMin, vecMax, vecIter) {
+        vecCur.x += vecIter.x;
+        if (vecCur.x > vecMax.x) {
+            vecCur.x = vecMin.x;
+
+            vecCur.y += vecIter.y;
+            if (vecCur.y > vecMax.y) {
+                vecCur.y = vecMin.y;
+
+                vecCur.z += vecIter.z;
+                if (vecCur.z > vecMax.z) {
+                    vecCur.z = vecMin.z;
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    dvDoStep() {
+        return this.iterateVolume(this.dvCur, this.dvMin, this.dvMax, this.dvStep );
+    }
+
     updateDebugScroller() {
         var tools = this.arms.debugTools;
         if (!tools) return;
         if (!this.debugTarget) {
             this.debugTarget = new THREE.Group();
             this.arms.debugTools.debugScene.add(this.debugTarget);
-            this.debugContent = this.arms.debugTools.createDebugBox(this.debugTarget); 
-            this.debugContent.material = this.arms.debugTools.commonScrollableMat;
+
+            this.debugContent = new THREE.Group();
+            this.debugTarget.add(this.debugContent);
+
+            var writeBox = 0;
+            for (this.dvCur.copy(this.dvMin); this.dvDoStep(); ) {
+                var box = null;
+                if (writeBox == this.debugContentPoints.length) {
+                    box = this.arms.debugTools.createDebugBox(this.debugContent);
+                    var scl = 0.05;
+                    box.scale.set(1,1,1).multiplyScalar(scl);
+                    box.material = this.arms.debugTools.commonScrollableMat;
+                    this.debugContentPoints.push(box);
+                    this.debugContent.add(box);
+                    writeBox++;
+                } else {
+                    box = this.debugContentPoints[writeBox];
+                    box.visible = true;
+                    writeBox++;
+                }
+                box.position.copy(this.dvCur);
+            }
+            // hide unused boxes:
+            for ( ; writeBox < this.debugContentPoints.length; writeBox++) {
+                this.debugContentPoints[writeBox].visible = false;
+            }
+
         }
 
     }
@@ -598,7 +651,7 @@ var XRArmPoses = {
     unknown : "unknown",
     inactive : "inactive",
     single_handed : "single_handed",
-    hands_indepenant : "indepenant",
+    hands_indepenant : "hands_indepenant",
     planes_side : "planes_side",
     planes_vertical : "planes_vertical",
     planes_facing : "planes_facing",
