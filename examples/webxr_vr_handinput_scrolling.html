@@ -337,7 +337,9 @@
 			function updateDebugUI() {
 				var txt = "";
 				if (scrollArms) {
-					txt = scrollArms.handLeft.handPose + " - " + scrollArms.handRight.handPose;
+					txt = scrollArms.handLeft.handPose;
+					txt+= " - " + scrollArms.armPose + " - ";
+					txt+= scrollArms.handRight.handPose;
 					txt += " @" + Math.floor( timeScrubber.value );
 				}
 				debugHandStateSpan.innerText = txt;

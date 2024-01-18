@@ -473,6 +473,12 @@ class XRArmScroller {
         this.motionDir = new THREE.Vector3();
         this.debugTarget = null;
         this.debugContent = null;
+        this.zoomActive = false;
+        this.zoomPrevious = 1.0;
+        this.zoomLatest = new THREE.Vector3();
+        this.zoomCenter = new THREE.Vector3();
+        this.zoomMotion = new THREE.Vector3();
+        this.zoomScalarMotion = 1.0;
 
         // temp vectors:
         this.dv1 = new THREE.Vector3();
@@ -485,18 +491,67 @@ class XRArmScroller {
         this.timeDelta = (this.timeNow - this.timePrev) / 1000.0; // to seconds
         this.timePrev = this.timeNow;
 
+        var zoomWasActive = this.zoomActive;
+        if ((this.arms.armPose == XRArmPoses.planes_facing)
+            || (this.arms.armPose == XRArmPoses.planes_side)
+            || (this.arms.armPose == XRArmPoses.planes_vertical))
+        {
+            this.zoomActive = true;
+        } else {
+            this.zoomActive = false;
+        }
+        var anyHandsActive = false;
+        if ((this.arms.armPose == XRArmPoses.hands_indepenant)
+            || (this.arms.armPose == XRArmPoses.single_handed))
+        {
+            anyHandsActive = true;
+        }
+
         this.motionDir.set(0,0,0);
-        for (var i in this.cursors) {
-            var cursor = this.cursors[i];
-            if (cursor.cursorOffsetShowing) {
-                this.dv1.copy(cursor.cursorOffset);
-                this.dv1.multiplyScalar(-this.timeDelta);
-                this.motionDir.add(this.dv1);
+        if (this.zoomActive)
+        {
+            var leftCursor = this.arms.handLeft.cursor;
+            var rightCursor = this.arms.handRight.cursor;
+
+            this.zoomCenter.copy(rightCursor.cursorStartPosition);
+            this.zoomCenter.add(leftCursor.cursorStartPosition);
+            this.zoomCenter.multiplyScalar(0.5);
+
+            this.zoomMotion.set(0,0,0);
+            this.zoomMotion.add(rightCursor.cursorOffset);
+            this.zoomMotion.sub(leftCursor.cursorOffset);
+            this.zoomLatest = 1.0 + this.zoomMotion.length();
+            if (!zoomWasActive) {
+                this.zoomPrevious = this.zoomLatest;
+            }
+            this.zoomCurrent = (this.zoomLatest / this.zoomPrevious);
+            this.zoomPrevious = this.zoomLatest;
+            this.zoomScalarMotion = this.zoomCurrent;
+
+            if (this.debugTarget) {
+                //this.debugTarget.position.sub(this.zoomCenter);
+                this.debugTarget.scale.multiplyScalar(this.zoomScalarMotion);
+                //this.debugTarget.position.add(this.zoomCenter);
+            }
+
+        } else if (anyHandsActive) {
+            for (var i in this.cursors) {
+                var cursor = this.cursors[i];
+                if (cursor.cursorOffsetShowing) {
+                    this.dv1.copy(cursor.cursorOffset);
+                    this.dv1.multiplyScalar(-this.timeDelta);
+                    this.motionDir.add(this.dv1);
+                }
+            }
+            if (this.target && (this.motionDir.length() > 0)) {
+                this.target.position.add(this.motionDir);
+            }
+            if (this.debugTarget && (this.motionDir.length() > 0)) {
+                this.debugTarget.position.add(this.motionDir);
             }
         }
-        if (this.target && (this.motionDir.length() > 0)) {
-            this.target.position.add(this.motionDir);
-        }
+    
+        // end of update:
         this.updateDebugScroller();
     }
 
@@ -508,9 +563,7 @@ class XRArmScroller {
             this.arms.debugTools.debugScene.add(this.debugTarget);
             this.debugContent = this.arms.debugTools.createDebugBox(this.debugTarget); 
         }
-        if (this.debugTarget && (this.motionDir.length() > 0)) {
-            this.debugTarget.position.add(this.motionDir);
-        }
+
     }
 };
 
