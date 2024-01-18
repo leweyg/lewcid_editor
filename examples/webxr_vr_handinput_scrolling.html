@@ -283,13 +283,15 @@
 					});
 				}
 
-				var hostingUrl = document.URL;
-				var useLiveData = hostingUrl.startsWith("https:"); // false when on localhost
-				if (useLiveData) {
-					jointSourceReady( leftJoints, rightJoints );
-				} else {
-					requestSampleHandData();
-				}
+				navigator.xr.isSessionSupported( 'immersive-vr' ).then( function ( xrSupported ) {
+					var useLiveData = xrSupported;
+					if (useLiveData) {
+						jointSourceReady( leftJoints, rightJoints );
+					} else {
+						requestSampleHandData();
+					}
+				});
+
 
 				//
 
