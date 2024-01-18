@@ -306,6 +306,7 @@ class XRHandScrollCursor {
         // state:
         this.cursorShowing = false;
         this.cursorOffsetShowing = false;
+        this.cursorOffsetByAxis = false;
         this.cursorCurrentHandPose = XRHandPoses.unknown;
         this.cursorStartPosition = new THREE.Vector3();
         this.cursorPosition = new THREE.Vector3();
@@ -351,15 +352,17 @@ class XRHandScrollCursor {
         {
             this.cursorShowing = false;
             this.cursorOffsetShowing = false;
+            this.cursorOffsetByAxis = false;
         } else if (hand.handPose == XRHandPoses.pointing) {
             this.cursorOffsetShowing = false;
+            this.cursorOffsetByAxis = false;
             this.cursorPosition.copy(hand.fingerIndex.jointTip.position);
             this.cursorCubeScale.set(1,1,1).multiplyScalar(this.cursorScale);
         } else if ((hand.handPose == XRHandPoses.pinch_near) ||
                 (hand.handPose == XRHandPoses.pinch_active))
         {
             this.cursorOffsetShowing = true;
-            this.cursorAxes.set(1,1,1);
+            this.cursorOffsetByAxis = false;
             this.dv1.copy(hand.fingerIndex.jointTip.position);
             this.dv2.copy(hand.fingerThumb.jointTip.position);
             this.dv3.copy(this.dv1).add(this.dv2).multiplyScalar(0.5);
@@ -372,6 +375,7 @@ class XRHandScrollCursor {
             (hand.handPose == XRHandPoses.plane_side))
         {
             this.cursorOffsetShowing = true;
+            this.cursorOffsetByAxis = true;
             this.cursorPosition.copy(hand.fingerIndex.jointProximal.position);
             var planeAxis = "x";
             switch (hand.handPose) {
@@ -393,7 +397,7 @@ class XRHandScrollCursor {
             this.cursorAxes[planeAxis] = 1.0;
         } else if (hand.handPose == XRHandPoses.closed) {
             this.cursorOffsetShowing = true;
-            this.cursorAxes.set(1,0,1).normalize();
+            this.cursorOffsetByAxis = false;
             this.cursorPosition.copy(hand.fingerIndex.jointProximal.position);
             var closedScale = 0.1;
             this.cursorCubeScale.set(closedScale, closedScale, closedScale);
@@ -412,9 +416,14 @@ class XRHandScrollCursor {
         if (this.cursorOffsetShowing) {
             this.dv1.copy(this.cursorPosition);
             this.dv1.sub(this.cursorStartPosition);
-            var along = this.dv1.dot(this.cursorAxes);
-            this.cursorOffset.copy(this.cursorAxes);
-            this.cursorOffset.multiplyScalar(-along);
+            if (this.cursorOffsetByAxis) {
+                var along = this.dv1.dot(this.cursorAxes);
+                this.cursorOffset.copy(this.cursorAxes);
+                this.cursorOffset.multiplyScalar(-along);
+            } else {
+                this.dv1.multiplyScalar(-1.0);
+                this.cursorOffset.copy(this.dv1);
+            }
             this.cursorCubeOffset.copy(this.cursorCubeCenter);
             this.cursorCubeOffset.add(this.cursorOffset);
         }
