@@ -474,29 +474,56 @@ class XRHandScrollCursor {
 class Tiling3D {
     constructor() {
         // settings:
+        this.unitBox = new THREE.Box3(new THREE.Vector3(-1,-1,-1), new THREE.Vector3(1,1,1));
+        this.outputBox = this.unitBox.clone();
+        this.outputBox.min.y = 0;
+        this.outputBox.max.y = 2;
+
+        this.tilingStart = new THREE.Vector3(-1,-1,-1);
         this.tilingMin = new THREE.Vector3(-1,-1,-1);
         this.tilingMax = new THREE.Vector3(1,1,1);
-        this.tilingOffset = new THREE.Vector3(1,1,1);
         this.tilingStep = new THREE.Vector3(0.5, 0.5, 0.5);
 
+        this.dvIter = new THREE.Vector3();
         this.dvCur = new THREE.Vector3();
-
+        this.dv1 = new THREE.Vector3();
+        this.dv2 = new THREE.Vector3();
+        this.dv3 = new THREE.Vector3();
     }
 
     iterStart() {
-        this.dvCur.copy(this.tilingMin);
-        this.dvCur.add(this.tilingOffset);
-        return this.dvCur;
-    }
-
-    iterStartFor() {
-        this.iterStart();
-        this.dvCur.x - this.tilingStep.x;
-        return this.dvCur;
+        this.dvIter.copy(this.tilingStart);
+        return this.dvIter;
     }
 
     iterTryStep() {
-        return this.iterateVolume(this.dvCur, this.tilingMin, this.tilingMax, this.tilingStep );
+        var res = this.iterateVolume(this.dvIter, this.tilingMin, this.tilingMax, this.tilingStep );
+        return res;
+    }
+
+    vec3Floor(v) {
+        v.x = Math.floor(v.x);
+        v.y = Math.floor(v.y);
+        v.z = Math.floor(v.z);
+    }
+
+    roundDownToStep(pos) {
+        this.dv2.copy(pos);
+        this.dv2.divide(this.tilingStep);
+        this.vec3Floor(this.dv2);
+        this.dv2.multiply(this.tilingStep);
+
+        pos.copy(this.dv2);
+    }
+
+    updateTilingStart(offsetScene) {
+        this.tilingMin.copy(this.outputBox.min);
+        offsetScene.worldToLocal(this.tilingMin);
+        this.tilingMax.copy(this.outputBox.max);
+        offsetScene.worldToLocal(this.tilingMax);
+
+        this.roundDownToStep(this.tilingMin);
+        this.tilingStart.copy(this.tilingMin);
     }
 
     iterateVolume(vecCur, vecMin, vecMax, vecIter) {
@@ -611,11 +638,17 @@ class XRArmScroller {
                 if (cursor.cursorOffsetShowing) {
                     if (cursor.handScrollState.handPose == XRHandPoses.closed) {
                         this.dv1.copy(cursor.cursorOffset);
-                        var scrollSpeed = -0.0;
+                        var scrollSpeed = -3.0;
                         this.dv1.multiplyScalar(scrollSpeed * this.timeDelta);
                     } else {
                         this.dv1.copy(cursor.cursorOffsetDelta);
                         this.dv1.multiplyScalar(-cursor.cursorOffsetScale);
+
+                        // hack:
+                        this.dv2.copy(cursor.cursorOffset);
+                        var scrollSpeed = -2.0;
+                        this.dv2.multiplyScalar(scrollSpeed * this.timeDelta);
+                        this.dv1.add(this.dv2);
                     }
                     this.motionDir.add(this.dv1);
                 }
@@ -641,31 +674,33 @@ class XRArmScroller {
 
             this.debugContent = new THREE.Group();
             this.debugTarget.add(this.debugContent);
+        }
 
-            var writeBox = 0;
+        this.debugTiling.updateTilingStart(this.debugTarget);
 
-            for (var vecCur=this.debugTiling.iterStartFor(); this.debugTiling.iterTryStep(); ) {
-                var box = null;
-                if (writeBox == this.debugContentPoints.length) {
-                    box = this.arms.debugTools.createDebugBox(this.debugContent);
-                    var scl = 0.05;
-                    box.scale.set(1,1,1).multiplyScalar(scl);
-                    box.material = this.arms.debugTools.commonScrollableMat;
-                    this.debugContentPoints.push(box);
-                    this.debugContent.add(box);
-                    writeBox++;
-                } else {
-                    box = this.debugContentPoints[writeBox];
-                    box.visible = true;
-                    writeBox++;
-                }
-                box.position.copy(vecCur);
+        // update debug boxes:
+        var writeBox = 0;
+        for (var vecCur=this.debugTiling.iterStart(); this.debugTiling.iterTryStep(); ) {
+            var box = null;
+            if (writeBox == this.debugContentPoints.length) {
+                box = this.arms.debugTools.createDebugBox(this.debugContent);
+                var scl = 0.05;
+                box.scale.set(1,1,1).multiplyScalar(scl);
+                box.material = this.arms.debugTools.commonScrollableMat;
+                this.debugContentPoints.push(box);
+                this.debugContent.add(box);
+                writeBox++;
+            } else {
+                box = this.debugContentPoints[writeBox];
+                box.visible = true;
+                writeBox++;
             }
-            // hide unused boxes:
-            for ( ; writeBox < this.debugContentPoints.length; writeBox++) {
-                this.debugContentPoints[writeBox].visible = false;
-            }
-
+            box.position.copy(vecCur);
+        }
+        // hide unused boxes:
+        while (writeBox < this.debugContentPoints.length) {
+            this.debugContentPoints[writeBox].visible = false;
+            writeBox++;
         }
 
     }
