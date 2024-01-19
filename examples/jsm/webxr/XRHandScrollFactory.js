@@ -471,6 +471,54 @@ class XRHandScrollCursor {
     }
 };
 
+class Tiling3D {
+    constructor() {
+        // settings:
+        this.tilingMin = new THREE.Vector3(-1,-1,-1);
+        this.tilingMax = new THREE.Vector3(1,1,1);
+        this.tilingOffset = new THREE.Vector3(1,1,1);
+        this.tilingStep = new THREE.Vector3(0.5, 0.5, 0.5);
+
+        this.dvCur = new THREE.Vector3();
+
+    }
+
+    iterStart() {
+        this.dvCur.copy(this.tilingMin);
+        this.dvCur.add(this.tilingOffset);
+        return this.dvCur;
+    }
+
+    iterStartFor() {
+        this.iterStart();
+        this.dvCur.x - this.tilingStep.x;
+        return this.dvCur;
+    }
+
+    iterTryStep() {
+        return this.iterateVolume(this.dvCur, this.tilingMin, this.tilingMax, this.tilingStep );
+    }
+
+    iterateVolume(vecCur, vecMin, vecMax, vecIter) {
+        vecCur.x += vecIter.x;
+        if (vecCur.x > vecMax.x) {
+            vecCur.x = vecMin.x;
+
+            vecCur.y += vecIter.y;
+            if (vecCur.y > vecMax.y) {
+                vecCur.y = vecMin.y;
+
+                vecCur.z += vecIter.z;
+                if (vecCur.z > vecMax.z) {
+                    vecCur.z = vecMin.z;
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+};
+
 class XRArmScroller {
     constructor(arms, targetScene) {
         // sources:
@@ -485,6 +533,7 @@ class XRArmScroller {
         this.debugTarget = null;
         this.debugContent = null;
         this.debugContentPoints = [];
+        this.debugTiling = new Tiling3D();
         this.zoomActive = false;
         this.zoomPrevious = 1.0;
         this.zoomLatest = new THREE.Vector3();
@@ -496,10 +545,7 @@ class XRArmScroller {
         this.dv1 = new THREE.Vector3();
         this.dv2 = new THREE.Vector3();
         this.dv3 = new THREE.Vector3();
-        this.dvCur = new THREE.Vector3();
-        this.dvMin = new THREE.Vector3(-1,-1,-1);
-        this.dvMax = new THREE.Vector3(1,1,1);
-        this.dvStep = new THREE.Vector3(0.5, 0.5, 0.5);
+
     }
 
     updateScroller() {
@@ -586,29 +632,6 @@ class XRArmScroller {
         this.updateDebugScroller();
     }
 
-    iterateVolume(vecCur, vecMin, vecMax, vecIter) {
-        vecCur.x += vecIter.x;
-        if (vecCur.x > vecMax.x) {
-            vecCur.x = vecMin.x;
-
-            vecCur.y += vecIter.y;
-            if (vecCur.y > vecMax.y) {
-                vecCur.y = vecMin.y;
-
-                vecCur.z += vecIter.z;
-                if (vecCur.z > vecMax.z) {
-                    vecCur.z = vecMin.z;
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    dvDoStep() {
-        return this.iterateVolume(this.dvCur, this.dvMin, this.dvMax, this.dvStep );
-    }
-
     updateDebugScroller() {
         var tools = this.arms.debugTools;
         if (!tools) return;
@@ -620,7 +643,8 @@ class XRArmScroller {
             this.debugTarget.add(this.debugContent);
 
             var writeBox = 0;
-            for (this.dvCur.copy(this.dvMin); this.dvDoStep(); ) {
+
+            for (var vecCur=this.debugTiling.iterStartFor(); this.debugTiling.iterTryStep(); ) {
                 var box = null;
                 if (writeBox == this.debugContentPoints.length) {
                     box = this.arms.debugTools.createDebugBox(this.debugContent);
@@ -635,7 +659,7 @@ class XRArmScroller {
                     box.visible = true;
                     writeBox++;
                 }
-                box.position.copy(this.dvCur);
+                box.position.copy(vecCur);
             }
             // hide unused boxes:
             for ( ; writeBox < this.debugContentPoints.length; writeBox++) {
