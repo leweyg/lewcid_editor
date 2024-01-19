@@ -567,12 +567,33 @@ class XRArmScroller {
         this.zoomCenter = new THREE.Vector3();
         this.zoomMotion = new THREE.Vector3();
         this.zoomScalarMotion = 1.0;
+        this.zoomTargetMatrixInitial = new THREE.Matrix4();
 
         // temp vectors:
         this.dv1 = new THREE.Vector3();
         this.dv2 = new THREE.Vector3();
         this.dv3 = new THREE.Vector3();
+        this.dq1 = new THREE.Quaternion();
+        this.dm1 = new THREE.Matrix4();
+        this.dm2 = new THREE.Matrix4();
+        this.dm3 = new THREE.Matrix4();
+    }
 
+    matrixFromPoints(matInto, vecA, vecB)
+    {
+        this.dv1.copy(vecB);
+        this.dv1.sub(vecA);
+        this.dv1.y = 0; // for now
+        this.dv1.z = 0; // for now
+
+        var sclDir = this.dv1.length();
+        this.dv2.copy(this.dv1);
+        this.dv2.normalize();
+        this.dv3.set(0,0,-1);
+        this.dq1.setFromUnitVectors(this.dv3, this.dv2);
+        this.dv1.set(1,1,1).multiplyScalar(sclDir);
+
+        matInto.identity().compose(vecA, this.dq1, this.dv1);
     }
 
     updateScroller() {
@@ -589,6 +610,9 @@ class XRArmScroller {
         } else {
             this.zoomActive = false;
         }
+        if (this.zoomActive && !zoomWasActive) {
+            this.zoomTargetMatrixInitial.copy(this.debugTarget.matrixWorld);
+        }
         var anyHandsActive = false;
         if ((this.arms.armPose == XRArmPoses.hands_indepenant)
             || (this.arms.armPose == XRArmPoses.single_handed))
@@ -602,35 +626,23 @@ class XRArmScroller {
             var leftCursor = this.arms.handLeft.cursor;
             var rightCursor = this.arms.handRight.cursor;
 
-            this.zoomCenter.copy(rightCursor.cursorStartPosition);
-            this.zoomCenter.add(leftCursor.cursorStartPosition);
-            this.zoomCenter.multiplyScalar(0.5);
+            this.matrixFromPoints(this.dm1,
+                rightCursor.cursorStartPosition,
+                leftCursor.cursorStartPosition);
+            this.dm1.invert();
 
-            this.zoomMotion.set(0,0,0);
-            this.zoomMotion.add(rightCursor.cursorOffset);
-            this.zoomMotion.sub(leftCursor.cursorOffset);
-            this.zoomLatest = 1.0 + this.zoomMotion.length();
-            if (!zoomWasActive) {
-                this.zoomPrevious = this.zoomLatest;
-            }
-            this.zoomCurrent = (this.zoomLatest / this.zoomPrevious);
-            this.zoomPrevious = this.zoomLatest;
-            this.zoomScalarMotion = this.zoomCurrent;
+            this.matrixFromPoints(this.dm2,
+                rightCursor.cursorPosition,
+                leftCursor.cursorPosition);
 
-            if (this.debugTarget) {
-                this.debugTarget.worldToLocal(this.zoomCenter);
+            this.dm3.copy( this.zoomTargetMatrixInitial );
+            this.dm3.multiply(this.dm1);
+            this.dm3.multiply(this.dm2);
 
-                this.dv1.copy(this.zoomCenter);
-                this.debugTarget.localToWorld(this.dv1);
-
-                this.debugTarget.scale.multiplyScalar(this.zoomScalarMotion);
-
-                this.dv2.copy(this.zoomCenter);
-                this.debugTarget.localToWorld(this.dv2);
-
-                this.dv1.sub(this.dv2);
-                this.debugTarget.position.add(this.dv1);
-            }
+            this.dm1.copy(this.debugTarget.matrixWorld);
+            this.dm1.invert();
+            this.dm1.multiply(this.dm3);
+            this.debugTarget.applyMatrix4(this.dm1);
 
         } else if (anyHandsActive) {
             for (var i in this.cursors) {
