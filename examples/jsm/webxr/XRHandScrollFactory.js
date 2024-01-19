@@ -565,7 +565,7 @@ class XRArmScroller {
                 if (cursor.cursorOffsetShowing) {
                     if (cursor.handScrollState.handPose == XRHandPoses.closed) {
                         this.dv1.copy(cursor.cursorOffset);
-                        var scrollSpeed = -3.0;
+                        var scrollSpeed = -0.0;
                         this.dv1.multiplyScalar(scrollSpeed * this.timeDelta);
                     } else {
                         this.dv1.copy(cursor.cursorOffsetDelta);
