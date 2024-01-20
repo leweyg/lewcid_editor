@@ -414,7 +414,7 @@ class XRHandScrollCursor {
 
         // offset:
         if (poseChanged) {
-            this.cursorStartPosition.copy(this.cursorPosition);
+            this.resetCursorStartPosition();
         }
 
         if (this.cursorOffsetShowing) {
@@ -450,6 +450,10 @@ class XRHandScrollCursor {
 
         // debug:
         this.updateDebugCursor();
+    }
+
+    resetCursorStartPosition() {
+        this.cursorStartPosition.copy(this.cursorPosition);
     }
 
     updateDebugCursor() {
@@ -628,6 +632,7 @@ class XRArmScroller {
         this.timePrev = this.timeNow;
 
         var zoomWasActive = this.zoomActive;
+        var zoomStartedThisFrame = false;
         if (this.arms.armPose == XRArmPoses.pinching_pair)
         {
             this.zoomActive = true;
@@ -635,6 +640,7 @@ class XRArmScroller {
             this.zoomActive = false;
         }
         if (this.zoomActive && !zoomWasActive) {
+            zoomStartedThisFrame = true;
             this.zoomTargetMatrixInitial.copy(this.debugTarget.matrixWorld);
         }
         var anyHandsActive = false;
@@ -653,6 +659,11 @@ class XRArmScroller {
 
             this.zoomLatest.copy(keepPos);
             this.debugTarget.worldToLocal(this.zoomLatest);
+
+            if (zoomStartedThisFrame) {
+                rightCursor.resetCursorStartPosition();
+                leftCursor.resetCursorStartPosition();
+            }
 
             this.matrixFromPoints(this.dm1,
                 rightCursor.cursorStartPosition,
