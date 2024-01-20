@@ -12,8 +12,8 @@
 			LewcidEditor XR hand scrolling<br/>
 			(Oculus Browser 15.1+)<br/>
 			<input type="button" value="Test" id="testButtonExport" />
-			<input type="checkbox" id="enableExportCheckbox" />Export
-			<input type="range" id="timeScrubber" min="0" max="10" step="1" value="0">
+			<input type="checkbox" id="enableExportCheckbox" />Export |
+			Time=<input type="range" id="timeScrubber" min="0" max="10" step="1" value="0">
 			<br/>
 			<span id="debugHandStateSpan">loading...</span>
 			<br/>
@@ -102,6 +102,13 @@
 				right: null
 			};
 
+			function exportIsEnabled() {
+				if (!enableExportCheckbox.checked) {
+					return false;
+				}
+				return true;
+			}
+
 			let controls;
 
 			init();
@@ -180,7 +187,7 @@
 				scene.add( controllerGrip1 );
 
 				hand1 = renderer.xr.getHand( 0 );
-				hand1.userData.currentHandModel = 0;
+				hand1.userData.currentHandModel = 2;
 				hand1.name = "Hand1";
 				scene.add( hand1 );
 
@@ -194,16 +201,18 @@
 				for ( let i = 0; i < 3; i ++ ) {
 
 					const model = handModels.left[ i ];
-					model.visible = i == 0;
+					model.visible = false; //(i == 2);
 					hand1.add( model );
 
 				}
 
 				hand1.addEventListener( 'pinchend', function () {
 
-					handModels.left[ this.userData.currentHandModel ].visible = false;
-					this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
-					handModels.left[ this.userData.currentHandModel ].visible = true;
+					if (exportIsEnabled()) {
+						handModels.left[ this.userData.currentHandModel ].visible = false;
+						this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
+						handModels.left[ this.userData.currentHandModel ].visible = true;
+					}
 
 				} );
 
@@ -214,7 +223,7 @@
 				scene.add( controllerGrip2 );
 
 				hand2 = renderer.xr.getHand( 1 );
-				hand2.userData.currentHandModel = 0;
+				hand2.userData.currentHandModel = 2;
 				hand2.name = "Hand2";
 				scene.add( hand2 );
 
@@ -228,16 +237,18 @@
 				for ( let i = 0; i < 3; i ++ ) {
 
 					const model = handModels.right[ i ];
-					model.visible = i == 0;
+					model.visible = false;// (i == 2);
 					hand2.add( model );
 
 				}
 
 				hand2.addEventListener( 'pinchend', function () {
 
-					handModels.right[ this.userData.currentHandModel ].visible = false;
-					this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
-					handModels.right[ this.userData.currentHandModel ].visible = true;
+					if (exportIsEnabled()) {
+						handModels.right[ this.userData.currentHandModel ].visible = false;
+						this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
+						handModels.right[ this.userData.currentHandModel ].visible = true;
+					}
 
 					if (this.userData.currentHandModel == 0) {
 						exportToggle();
@@ -448,7 +459,7 @@
 
 			testButtonExport.onclick = function() {
 				if (!exportToggle()) {
-					alert("Exporting not enabled.");
+					alert("Use time scrubber to the right");
 				}
 			};
 
