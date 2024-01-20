@@ -602,7 +602,8 @@ class XRArmScroller {
         this.timePrev = this.timeNow;
 
         var zoomWasActive = this.zoomActive;
-        if ((this.arms.armPose == XRArmPoses.planes_facing)
+        if ((this.arms.armPose == XRArmPoses.pinching_pair)
+            || (this.arms.armPose == XRArmPoses.planes_facing)
             || (this.arms.armPose == XRArmPoses.planes_side)
             || (this.arms.armPose == XRArmPoses.planes_vertical))
         {
@@ -760,6 +761,7 @@ var XRArmPoses = {
     inactive : "inactive",
     single_handed : "single_handed",
     hands_indepenant : "hands_indepenant",
+    pinching_pair : "pinching_pair",
     planes_side : "planes_side",
     planes_vertical : "planes_vertical",
     planes_facing : "planes_facing",
@@ -801,6 +803,7 @@ class XRArmsScrollState {
         }
         function handPosesPairing(poseA,poseB) {
             if (poseA == poseB) {
+                if (poseA == XRHandPoses.pinch_active) return XRArmPoses.pinching_pair;
                 if (poseA == XRHandPoses.plane_side) return XRArmPoses.planes_side;
                 if (poseA == XRHandPoses.plane_vertical) return XRArmPoses.planes_vertical;
                 if (poseA == XRHandPoses.plane_facing) return XRArmPoses.planes_facing;
