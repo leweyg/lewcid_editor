@@ -625,6 +625,10 @@ class XRArmScroller {
         {
             var leftCursor = this.arms.handLeft.cursor;
             var rightCursor = this.arms.handRight.cursor;
+            var keepPos = leftCursor.cursorPosition;
+
+            this.zoomLatest.copy(keepPos);
+            this.debugTarget.worldToLocal(this.zoomLatest);
 
             this.matrixFromPoints(this.dm1,
                 rightCursor.cursorStartPosition,
@@ -643,6 +647,13 @@ class XRArmScroller {
             this.dm1.invert();
             this.dm1.multiply(this.dm3);
             this.debugTarget.applyMatrix4(this.dm1);
+            this.debugTarget.updateMatrixWorld();
+
+            this.dv2.copy(this.zoomLatest);
+            this.debugTarget.localToWorld(this.dv2);
+            this.dv2.sub(keepPos);
+            this.dv2.multiplyScalar(-1);
+            this.debugTarget.position.add(this.dv2);
 
         } else if (anyHandsActive) {
             for (var i in this.cursors) {
