@@ -492,6 +492,9 @@ class Tiling3D {
         this.tilingMin = new THREE.Vector3(-1,-1,-1);
         this.tilingMax = new THREE.Vector3(1,1,1);
         this.tilingStep = new THREE.Vector3(0.5, 0.5, 0.5);
+        this.tilingSpan1d = 0.5;
+        this.tilingSpan1dRaw = 0.5;
+        this.tilingSpanShowPct = 1.0
         this.tilingAxisResolution = 4;
 
         this.dvIter = new THREE.Vector3();
@@ -526,23 +529,39 @@ class Tiling3D {
         pos.copy(this.dv2);
     }
 
-    closestPowerOf2(v) {
+    lowerPowerOf2(v) {
         v = Math.abs(v);
+        if (v == 1) {
+            return 0.5;
+        }
         var goal = 1;
         var stepMax = 10;
         var stepCur = 0;
-        while ((v != goal) && (stepCur < stepMax)) {
+        while (stepCur < stepMax) {
             stepCur++;
-            if (v < goal) {
-                goal *= 0.5;
+            var next = goal;
+            if (v <= 1) {
+                if (next > v) {
+                    next *= 0.5;
+                } else {
+                    break;
+                }
             } else {
-                goal *= 2.0;
+                if (next < v) {
+                    next *= 2.0;
+                    if (next > v) {
+                        break;
+                    }
+                } else {
+                    break;
+                }
             }
+            goal = next;
         }
         return goal;
     }
 
-    updateTilingStart(offsetScene) {
+    updateTilingStart(offsetScene,resScale=1) {
         this.tilingMin.copy(this.outputBox.min);
         offsetScene.worldToLocal(this.tilingMin);
         this.tilingMax.copy(this.outputBox.max);
@@ -552,8 +571,11 @@ class Tiling3D {
         this.tilingStart.copy(this.tilingMin);
 
         var span = this.tilingMax.x - this.tilingMin.x;
-        span = this.closestPowerOf2( span / this.tilingAxisResolution );
-        this.tilingStep.set(span,span,span);
+        var rawStep = span / this.tilingAxisResolution;
+        var flooredStep = this.lowerPowerOf2( rawStep ) * resScale;
+        this.tilingSpan1d = flooredStep;
+        this.tilingSpan1dRaw = rawStep;
+        this.tilingStep.set(flooredStep,flooredStep,flooredStep);
     }
 
     iterateVolume(vecCur, vecMin, vecMax, vecIter) {
@@ -591,6 +613,8 @@ class XRArmScroller {
         this.debugContent = null;
         this.debugContentPoints = [];
         this.debugTiling = new Tiling3D();
+        this.debugTiling2 = new Tiling3D();
+        this.debugTilingsAll = [ this.debugTiling, this.debugTiling2 ];
         this.zoomActive = false;
         this.zoomPrevious = 1.0;
         this.zoomLatest = new THREE.Vector3();
@@ -735,29 +759,42 @@ class XRArmScroller {
         }
 
         this.debugTiling.updateTilingStart(this.debugTarget);
+        this.debugTiling2.updateTilingStart(this.debugTarget, 2.0);
+        this.debugTiling.tilingSpanShowPct = (
+            (Math.abs(this.debugTiling.tilingSpan1dRaw - this.debugTiling.tilingSpan1d)
+            / Math.abs(this.debugTiling2.tilingSpan1d - this.debugTiling.tilingSpan1d)));
+        this.debugTiling.tilingSpanShowPct = 1.0 - Math.min(1.0, this.debugTiling.tilingSpanShowPct);
+        this.debugTiling2.tilingSpanShowPct = 1.0 - this.debugTiling.tilingSpanShowPct;
 
         // update debug boxes:
         var writeBox = 0;
         var boxScaleToStep = 0.05;
-        this.dv3.copy(this.debugTiling.tilingStep);
-        this.dv3.multiplyScalar(boxScaleToStep);
-        for (var vecCur=this.debugTiling.iterStart(); this.debugTiling.iterTryStep(); ) {
-            var box = null;
-            if (writeBox == this.debugContentPoints.length) {
-                box = this.arms.debugTools.createDebugBox(this.debugContent);
-                var scl = 0.01;
-                box.scale.set(1,1,1).multiplyScalar(scl);
-                box.material = this.arms.debugTools.commonScrollableMat;
-                this.debugContentPoints.push(box);
-                this.debugContent.add(box);
-                writeBox++;
-            } else {
-                box = this.debugContentPoints[writeBox];
-                box.visible = true;
-                writeBox++;
+
+        for (var ti in this.debugTilingsAll) {
+            var tiling = this.debugTilingsAll[ti];
+            var mat = this.arms.debugTools.commonScrollableMats[ti];
+            mat.opacity = 0.5 * tiling.tilingSpanShowPct;
+            this.dv3.copy(tiling.tilingStep);
+            this.dv3.multiplyScalar(boxScaleToStep);
+            for (var vecCur=tiling.iterStart(); tiling.iterTryStep(); ) {
+                var box = null;
+                if (writeBox == this.debugContentPoints.length) {
+                    box = this.arms.debugTools.createDebugBox(this.debugContent);
+                    var scl = 0.01;
+                    box.scale.set(1,1,1).multiplyScalar(scl);
+                    box.material = this.arms.debugTools.commonScrollableMat;
+                    this.debugContentPoints.push(box);
+                    this.debugContent.add(box);
+                    writeBox++;
+                } else {
+                    box = this.debugContentPoints[writeBox];
+                    box.visible = true;
+                    writeBox++;
+                }
+                box.position.copy(vecCur);
+                box.scale.copy(this.dv3);
+                box.material = mat;
             }
-            box.position.copy(vecCur);
-            box.scale.copy(this.dv3);
         }
         // hide unused boxes:
         while (writeBox < this.debugContentPoints.length) {
@@ -777,6 +814,11 @@ class HandScrollDebugTools {
         this.commonBoxGeo = new THREE.BoxGeometry( scl, scl, scl ); 
         this.commonCursorMat = new THREE.MeshStandardMaterial( {color: 0x00FF00,transparent:true,opacity:0.5});
         this.commonScrollableMat = new THREE.MeshStandardMaterial( {color: 0x0000ff,transparent:true,opacity:0.5});
+        this.commonScrollableMatLower = new THREE.MeshStandardMaterial( {color: 0x0000ff,transparent:true,opacity:0.5});
+        this.commonScrollableMatUpper = new THREE.MeshStandardMaterial( {color: 0x0000ff,transparent:true,opacity:0.5});
+        this.commonScrollableMats = [
+            this.commonScrollableMatLower,
+            this.commonScrollableMatUpper ];
         this.commonMat = new THREE.MeshPhysicalMaterial( {color: 0x778877} );
         this.commonRed = new THREE.MeshPhysicalMaterial( {color: 0xFF0000} );
         this.commonBlue = new THREE.MeshPhysicalMaterial( {color: 0x0000FF} );
