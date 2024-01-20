@@ -355,6 +355,10 @@
 					txt+= " - " + scrollArms.armPose + " - ";
 					txt+= scrollArms.handRight.handPose;
 					txt += " @" + Math.floor( timeScrubber.value );
+					var d = scrollArms.scroller.debugTiling.tilingSpan1dRaw;
+					var scl = 1000;
+					d = Math.floor(d * scl) / scl;
+					txt += " d" + d;
 				}
 				debugHandStateSpan.innerText = txt;
 			}

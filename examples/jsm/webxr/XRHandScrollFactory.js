@@ -760,10 +760,10 @@ class XRArmScroller {
 
         this.debugTiling.updateTilingStart(this.debugTarget);
         this.debugTiling2.updateTilingStart(this.debugTarget, 2.0);
+        var midSpan = (this.debugTiling2.tilingSpan1d + this.debugTiling.tilingSpan1d) * 0.5;
         this.debugTiling.tilingSpanShowPct = (
-            (Math.abs(this.debugTiling.tilingSpan1dRaw - this.debugTiling.tilingSpan1d)
-            / Math.abs(this.debugTiling2.tilingSpan1d - this.debugTiling.tilingSpan1d)));
-        this.debugTiling.tilingSpanShowPct = 1.0 - Math.min(1.0, this.debugTiling.tilingSpanShowPct);
+            1.0 - (Math.abs(this.debugTiling.tilingSpan1dRaw - this.debugTiling.tilingSpan1d)
+            / Math.abs(1 * this.debugTiling.tilingSpan1d)));
         this.debugTiling2.tilingSpanShowPct = 1.0 - this.debugTiling.tilingSpanShowPct;
 
         // update debug boxes:
