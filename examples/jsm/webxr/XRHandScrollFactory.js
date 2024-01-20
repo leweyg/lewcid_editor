@@ -488,6 +488,7 @@ class Tiling3D {
         this.tilingMin = new THREE.Vector3(-1,-1,-1);
         this.tilingMax = new THREE.Vector3(1,1,1);
         this.tilingStep = new THREE.Vector3(0.5, 0.5, 0.5);
+        this.tilingAxisResolution = 4;
 
         this.dvIter = new THREE.Vector3();
         this.dvCur = new THREE.Vector3();
@@ -521,6 +522,22 @@ class Tiling3D {
         pos.copy(this.dv2);
     }
 
+    closestPowerOf2(v) {
+        v = Math.abs(v);
+        var goal = 1;
+        var stepMax = 10;
+        var stepCur = 0;
+        while ((v != goal) && (stepCur < stepMax)) {
+            stepCur++;
+            if (v < goal) {
+                goal *= 0.5;
+            } else {
+                goal *= 2.0;
+            }
+        }
+        return goal;
+    }
+
     updateTilingStart(offsetScene) {
         this.tilingMin.copy(this.outputBox.min);
         offsetScene.worldToLocal(this.tilingMin);
@@ -529,6 +546,10 @@ class Tiling3D {
 
         this.roundDownToStep(this.tilingMin);
         this.tilingStart.copy(this.tilingMin);
+
+        var span = this.tilingMax.x - this.tilingMin.x;
+        span = this.closestPowerOf2( span / this.tilingAxisResolution );
+        this.tilingStep.set(span,span,span);
     }
 
     iterateVolume(vecCur, vecMin, vecMax, vecIter) {
@@ -607,10 +628,7 @@ class XRArmScroller {
         this.timePrev = this.timeNow;
 
         var zoomWasActive = this.zoomActive;
-        if ((this.arms.armPose == XRArmPoses.pinching_pair)
-            || (this.arms.armPose == XRArmPoses.planes_facing)
-            || (this.arms.armPose == XRArmPoses.planes_side)
-            || (this.arms.armPose == XRArmPoses.planes_vertical))
+        if (this.arms.armPose == XRArmPoses.pinching_pair)
         {
             this.zoomActive = true;
         } else {
@@ -709,11 +727,14 @@ class XRArmScroller {
 
         // update debug boxes:
         var writeBox = 0;
+        var boxScaleToStep = 0.05;
+        this.dv3.copy(this.debugTiling.tilingStep);
+        this.dv3.multiplyScalar(boxScaleToStep);
         for (var vecCur=this.debugTiling.iterStart(); this.debugTiling.iterTryStep(); ) {
             var box = null;
             if (writeBox == this.debugContentPoints.length) {
                 box = this.arms.debugTools.createDebugBox(this.debugContent);
-                var scl = 0.05;
+                var scl = 0.01;
                 box.scale.set(1,1,1).multiplyScalar(scl);
                 box.material = this.arms.debugTools.commonScrollableMat;
                 this.debugContentPoints.push(box);
@@ -725,6 +746,7 @@ class XRArmScroller {
                 writeBox++;
             }
             box.position.copy(vecCur);
+            box.scale.copy(this.dv3);
         }
         // hide unused boxes:
         while (writeBox < this.debugContentPoints.length) {
@@ -809,9 +831,6 @@ class XRArmsScrollState {
         function handPosesPairing(poseA,poseB) {
             if (poseA == poseB) {
                 if (poseA == XRHandPoses.pinch_active) return XRArmPoses.pinching_pair;
-                if (poseA == XRHandPoses.plane_side) return XRArmPoses.planes_side;
-                if (poseA == XRHandPoses.plane_vertical) return XRArmPoses.planes_vertical;
-                if (poseA == XRHandPoses.plane_facing) return XRArmPoses.planes_facing;
             }
             return XRArmPoses.hands_indepenant;
         }
