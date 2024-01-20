@@ -64,12 +64,13 @@
 				return ans;
 			}
 			function reviewHandData() {
-				var handDataFile = "../editor/hands_long_motion.json";
+				var handDataFile = "../editor/hands.json";
+				alert("Converting=" + handDataFile);
 				FolderUtils.DownloadJSON(handDataFile, (jsonObject) => {
 					var reduced = reduceScene(jsonObject);
 					var str = JSON.stringify(reduced);
 					//textDebugArea.innerText = str;
-					FolderUtils.ShellSaveToFile("hands_scroll_motion.json", str, (res)=>{
+					FolderUtils.ShellSaveToFile("../examples/models/xr/hands_pinch_zoom.json", str, (res)=>{
 						alert("Saved=" + res);
 					}, "../editor/");
 				});
@@ -279,7 +280,8 @@
 				function requestSampleHandData() {
 					//var handDataFile = "models/xr/hands_frame.json";
 					//var handDataFile = "models/xr/hands_motion.json";
-					var handDataFile = "models/xr/hands_scroll_motion.json";
+					//var handDataFile = "models/xr/hands_scroll_motion.json";
+					var handDataFile = "models/xr/hands_pinch_zoom.json";
 					FolderUtils.DownloadJSON(handDataFile, (jsonObject) => {
 						sampleDataRoot = jsonObject;
 						function findNamed(ob, nm) {

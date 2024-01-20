@@ -315,6 +315,7 @@ class XRHandScrollCursor {
         this.cursorOffsetPrevious = new THREE.Vector3();
         this.cursorOffsetDelta = new THREE.Vector3();
         this.cursorOffsetScale = 1.0;
+        this.cursorOffsetMotion = 0.0;
         this.cursorForward = new THREE.Vector3(0,0,-1);
         this.cursorUp = new THREE.Vector3(0,1,0);
         this.cursorCubeCenter = new THREE.Vector3();
@@ -424,10 +425,14 @@ class XRHandScrollCursor {
                 this.cursorOffset.copy(this.cursorAxes);
                 this.cursorOffset.multiplyScalar(-along);
                 this.cursorOffsetScale = 2.0;
+                this.cursorOffsetMotion = 1.0;
             } else {
                 this.dv1.multiplyScalar(-1.0);
                 this.cursorOffset.copy(this.dv1);
                 this.cursorOffsetScale = 1.0;
+
+                var isPinch = (hand.handPose == XRHandPoses.pinch_active);
+                this.cursorOffsetMotion = (isPinch ? 0.0 : 1.0);
             }
             this.cursorCubeOffset.copy(this.cursorCubeCenter);
             this.cursorCubeOffset.add(this.cursorOffset);
@@ -670,7 +675,7 @@ class XRArmScroller {
 
                         // hack:
                         this.dv2.copy(cursor.cursorOffset);
-                        var scrollSpeed = -2.0;
+                        var scrollSpeed = -2.0 * cursor.cursorOffsetMotion;
                         this.dv2.multiplyScalar(scrollSpeed * this.timeDelta);
                         this.dv1.add(this.dv2);
                     }
