@@ -594,8 +594,8 @@ class XRArmScroller {
         this.zoomActive = false;
         this.zoomPrevious = 1.0;
         this.zoomLatest = new THREE.Vector3();
-        this.zoomCenter = new THREE.Vector3();
-        this.zoomMotion = new THREE.Vector3();
+        this.zoomKeepLocal = new THREE.Vector3();
+        this.zoomKeepWorld = new THREE.Vector3();
         this.zoomScalarMotion = 1.0;
         this.zoomTargetMatrixInitial = new THREE.Matrix4();
 
@@ -656,13 +656,13 @@ class XRArmScroller {
             var leftCursor = this.arms.handLeft.cursor;
             var rightCursor = this.arms.handRight.cursor;
             var keepPos = leftCursor.cursorPosition;
-
-            this.zoomLatest.copy(keepPos);
-            this.debugTarget.worldToLocal(this.zoomLatest);
-
+            
             if (zoomStartedThisFrame) {
                 rightCursor.resetCursorStartPosition();
                 leftCursor.resetCursorStartPosition();
+                this.zoomKeepWorld.copy(keepPos);
+                this.zoomKeepLocal.copy(this.zoomKeepWorld);
+                this.debugTarget.worldToLocal(this.zoomKeepLocal);
             }
 
             this.matrixFromPoints(this.dm1,
@@ -684,7 +684,7 @@ class XRArmScroller {
             this.debugTarget.applyMatrix4(this.dm1);
             this.debugTarget.updateMatrixWorld();
 
-            this.dv2.copy(this.zoomLatest);
+            this.dv2.copy(this.zoomKeepLocal);
             this.debugTarget.localToWorld(this.dv2);
             this.dv2.sub(keepPos);
             this.dv2.multiplyScalar(-1);
