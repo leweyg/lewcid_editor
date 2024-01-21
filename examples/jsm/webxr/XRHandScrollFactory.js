@@ -751,8 +751,13 @@ class XRArmScroller {
         var tools = this.arms.debugTools;
         if (!tools) return;
         if (!this.debugTarget) {
-            this.debugTarget = new THREE.Group();
-            this.arms.debugTools.debugScene.add(this.debugTarget);
+            
+            if (this.target) {
+                this.debugTarget = this.target;
+            } else {
+                this.debugTarget = new THREE.Group();
+                this.arms.debugTools.debugScene.add(this.debugTarget);
+            }
 
             this.debugContent = new THREE.Group();
             this.debugTarget.add(this.debugContent);

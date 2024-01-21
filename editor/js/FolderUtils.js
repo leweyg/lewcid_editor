@@ -18,8 +18,12 @@ var FolderUtils = {
     },
 
     EditorRefresh : function() {
-        if (editor && editor.viewport && editor.viewport.render) {
-            editor.viewport.render();
+        try {
+            if (editor && editor.viewport && editor.viewport.render) {
+                editor.viewport.render();
+            }
+        } catch(ex) {
+            console.log("No editor: " + ex.toString());
         }
     },
 
@@ -181,7 +185,7 @@ var FolderUtils = {
         FolderUtils.AddDefaultLight(editor);
     },
 
-    ImportByPath_OBJ : async function(path,callback_blob,parentScene=null) {
+    ImportByPath_OBJ : async function(path,callback_object,parentScene=null) {
         if (path.endsWith(".obj")) {
             const { MTLLoader } = await import( 'three/addons/loaders/MTLLoader.js' );
 			const { OBJLoader } = await import( 'three/addons/loaders/OBJLoader.js' );
@@ -209,7 +213,7 @@ var FolderUtils = {
                         parentScene.add(object);
                         FolderUtils.EditorRefresh();
                     }
-                    if (callback_blob) callback_blob(object);
+                    if (callback_object) callback_object(object);
                 });
             }
 

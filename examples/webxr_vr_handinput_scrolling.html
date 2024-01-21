@@ -145,6 +145,34 @@
 				scrollTarget.name = "scrollTarget";
 				scene.add( scrollTarget );
 
+				function setupScrollingEnvironment(scrollParent) {
+					var holder = new THREE.Group();
+					scrollParent.add(holder);
+					var scl = 2.0;
+					holder.position.set(0,0.5,-3);
+					holder.scale.set(scl,scl,scl);
+					holder.rotateOnAxis(new THREE.Vector3(0,1,0), -Math.PI/2);
+
+					var paths = [
+						"models/obj/ai_city/1n1e/model.obj",
+						"models/obj/ai_city/2n1e/model.obj",
+						"models/obj/ai_city/3n1e/model.obj",
+					];
+					function spawnAtIndex(path, offset) {
+						FolderUtils.ImportByPath(path, (obj)=>{
+							obj.position.set(0, 0, -offset);
+						}, holder);
+					}
+					for (var pi in paths) {
+						var ndx = 1 * pi;
+						var srcPath = paths[ndx];
+						spawnAtIndex(srcPath, ndx);
+					}
+
+
+				}
+				setupScrollingEnvironment(scrollTarget);
+
 				scene.add( new THREE.HemisphereLight( 0x808080, 0x606060 ) );
 
 				const light = new THREE.DirectionalLight( 0xffffff );
