@@ -230,6 +230,53 @@ var FolderUtils = {
         }
     },
 
+    ImportByPath_GLB : async function(path,callback_object,parentScene=null) {
+        if (path.endsWith(".glb")) {
+            const { MTLLoader } = await import( 'three/addons/loaders/MTLLoader.js' );
+			const { OBJLoader } = await import( 'three/addons/loaders/OBJLoader.js' );
+            const { GLTFLoader } = await import( 'three/addons/loaders/GLTFLoader.js' );
+
+            function loadObjWithMaterials(materials) {
+                var loader = new GLTFLoader();
+                if (materials) loader.setMaterials(materials);
+                loader.load(path, function (object) {
+                    object = object.scene;
+                    object.name = FolderUtils.PathDisplayName(path);
+                    object.userData = {
+                        source : FolderUtils.PathRelativeToCurrent(path)
+                    };
+                    if (!parentScene) {
+                        FolderUtils.EnsureMainSceneNode(editor,(parent)=>{
+                            parent.add(object);
+                        });
+                        if (editor.selected) {
+                            object.position.copy(editor.selected.position);
+                            object.rotation.copy(editor.selected.rotation);
+                            object.scale.copy(editor.selected.scale);
+                        }
+                        editor.selected = object;
+                        editor.signals.objectSelected.dispatch( object );
+                    } else {
+                        parentScene.add(object);
+                        FolderUtils.EditorRefresh();
+                    }
+                    if (callback_object) callback_object(object);
+                });
+            }
+
+            var mtlPath = path.replace(".obj",".mtl");
+            new MTLLoader()
+                .load(mtlPath, function (materials) {
+                    materials.preload();
+                    loadObjWithMaterials(materials);
+                }, () => {},
+                (errorInfo) => {
+                    loadObjWithMaterials(null);
+                });
+            return;
+        }
+    },
+
 
     ImportByPath_MTL : async function(path,callback_blob,noAutoEditorAdd=false) {
         const { MTLLoader } = await import( 'three/addons/loaders/MTLLoader.js' );
@@ -492,6 +539,9 @@ var FolderUtils = {
         var lpath = path.toLowerCase();
         if (lpath.endsWith(".obj")) {
             return await FolderUtils.ImportByPath_OBJ(path, callback_blob,parentScene);
+        }
+        if (lpath.endsWith(".glb")) {
+            return await FolderUtils.ImportByPath_GLB(path, callback_blob,parentScene);
         }
         if (lpath.endsWith(".mtl")) {
             return await FolderUtils.ImportByPath_MTL(path, callback_blob);
