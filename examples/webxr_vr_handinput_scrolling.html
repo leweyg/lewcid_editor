@@ -125,7 +125,7 @@
 				window.scene = scene;
 				scene.background = new THREE.Color( 0x444444 );
 
-				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 10 );
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 30 );
 				camera.position.set( 0, 0.7, 1 );
 
 
@@ -161,6 +161,9 @@
 					function spawnAtIndex(path, offset) {
 						FolderUtils.ImportByPath(path, (obj)=>{
 							obj.position.set(0, 0, -offset);
+							if (offset == 3) {
+								obj.position.set(0, 0.5, -offset);
+							}
 						}, holder);
 					}
 					for (var pi in paths) {
@@ -171,7 +174,7 @@
 
 
 				}
-				setupScrollingEnvironment(scrollTarget);
+				//setupScrollingEnvironment(scrollTarget);
 
 				scene.add( new THREE.HemisphereLight( 0x808080, 0x606060 ) );
 
@@ -308,8 +311,8 @@
 				function requestSampleHandData() {
 					//var handDataFile = "models/xr/hands_frame.json";
 					//var handDataFile = "models/xr/hands_motion.json";
-					//var handDataFile = "models/xr/hands_scroll_motion.json";
-					var handDataFile = "models/xr/hands_pinch_zoom.json";
+					var handDataFile = "models/xr/hands_scroll_motion.json";
+					//var handDataFile = "models/xr/hands_pinch_zoom.json";
 					FolderUtils.DownloadJSON(handDataFile, (jsonObject) => {
 						sampleDataRoot = jsonObject;
 						function findNamed(ob, nm) {
