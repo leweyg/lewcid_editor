@@ -82,6 +82,15 @@ function SidebarObject( editor ) {
 		editor.execute( new AddObjectCommand( editor, to, from.parent ) );
 	});
 	objectTypeRow.add(objectCloneButton);
+	var objectAddButton = new UIButton("Add");
+	objectAddButton.onClick(function(){
+		var from = editor.selected;
+		var to = new THREE.Group();
+		to.name = "just_added";
+		editor.execute( new AddObjectCommand( editor, to, from ) );
+	});
+	objectTypeRow.add(objectAddButton);
+	
 
 	container.add( objectTypeRow );
 

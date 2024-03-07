@@ -381,9 +381,10 @@ var FolderUtils = {
             el.name = jsonObj.name;
         }
         FolderUtils.lewcidObject_ApplyTransformToScene(el, jsonObj);
-        if (jsonObj.source) {
-            var url = folderPath + jsonObj.source;
-            FolderUtils.ImportByPath(url, (childObj) => {
+        var source = jsonObj.source ? jsonObj.source : (jsonObj.userData && jsonObj.userData.source);
+        if (source) {
+            var url = folderPath + source;
+                        FolderUtils.ImportByPath(url, (childObj) => {
                 if (!childObj.name) childObj.name = FolderUtils.PathDisplayName(jsonObj.source);
                 //el.add(childObj);
             }, el );
@@ -507,13 +508,34 @@ var FolderUtils = {
         var loader = (new THREE.TextureLoader());
         loader.load(path, texture => {
 
-            var material = new THREE.MeshLambertMaterial({ 
+            var material = new THREE.MeshBasicMaterial({ 
                 map : texture,
              });
+            material.side = THREE.DoubleSide;
             var plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
-            plane.material.side = THREE.DoubleSide;
+
+            var isTransparent = (path.toLowerCase().endsWith(".png"));
+            if (isTransparent) {
+                material.transparent = true;
+            }
+
+            var holder = new THREE.Group();
+            holder.name = FolderUtils.PathDisplayName(path);
+            holder.add(plane);
+            holder.source = path;
+            plane.name = "img_mesh";
     
-            var resultObj = plane;
+            texture.onUpdate = function() {
+                setTimeout(function(){
+                if (texture.image && texture.image.height != 0) {
+                    var aspect = texture.image.width / texture.image.height;
+                    plane.scale.set(aspect,1,1);
+                }
+                FolderUtils.EditorRefresh();
+                }, 0);
+            };
+
+            var resultObj = holder;
     
             if (parentScene) {
                 parentScene.add(resultObj);
