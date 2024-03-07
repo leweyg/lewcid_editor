@@ -176,6 +176,30 @@
 				}
 				//setupScrollingEnvironment(scrollTarget);
 
+				function setupForwardMarker() {
+
+					var material = new THREE.MeshBasicMaterial({ 
+						side : THREE.DoubleSide,
+						//transparent : true,
+					});
+					var plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
+					plane.position.set(0.0, 0.5, -2);
+					//plane.rotateOnAxis(new THREE.Vector3(0,0,1), -Math.PI/4.0);
+					scene.add(plane);
+
+					var loader = (new THREE.TextureLoader());
+					var pathToTexture = "textures/transition/transition6.png";
+					loader.load(pathToTexture, texture => {
+						material = new THREE.MeshBasicMaterial({ 
+							map : texture,
+							side : THREE.DoubleSide,
+							//transparent : true,
+						});
+						plane.material = material;
+					});
+				}
+				setupForwardMarker();
+
 				scene.add( new THREE.HemisphereLight( 0x808080, 0x606060 ) );
 
 				const light = new THREE.DirectionalLight( 0xffffff );
