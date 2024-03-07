@@ -485,6 +485,12 @@ class MaterialCreator {
 
 					break;
 
+				case 'alpha_test':
+					n = parseFloat( value );
+					params.transparent = false;
+					params.alphaTest = n;
+					break;
+
 				default:
 					break;
 
