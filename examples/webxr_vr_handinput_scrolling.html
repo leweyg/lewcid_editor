@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>LewcidEditor XR hand scrolling</title>
+		<title>XR Hands Gestures for Selection & Scrolling</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link type="text/css" rel="stylesheet" href="main.css">
@@ -9,11 +9,15 @@
 	<body>
 
 		<div id="info">
-			LewcidEditor XR hand scrolling<br/>
-			(Oculus Browser 15.1+)<br/>
-			<input type="button" value="Test" id="testButtonExport" />
-			<input type="checkbox" id="enableExportCheckbox" />Export |
+			XR Hand Gestures for Selection & Scrolling<br/>
+			<a href="https://lewcid.com/lg/articles/vol/hand_poses.html">open, point, pinch, plane (chop/flat/pull), fist, etc.</a><br/>
 			Time=<input type="range" id="timeScrubber" min="0" max="10" step="1" value="0">
+
+			<span style="display: none;">
+			<input type="checkbox" id="enableExportCheckbox" />Export |
+			<input type="button" value="Now" id="testButtonExport" />
+			</span>
+			
 			<br/>
 			<span id="debugHandStateSpan">loading...</span>
 			<br/>
