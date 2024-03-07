@@ -59,6 +59,7 @@ function MenubarView( editor ) {
 
 					const option = new UIRow();
 					option.setClass( 'option' );
+					title.setTextContent( "View / XR" );
 					option.setTextContent( 'VR' );
 					option.onClick( function () {
 
