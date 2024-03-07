@@ -343,14 +343,21 @@
 					});
 				}
 
-				navigator.xr.isSessionSupported( 'immersive-vr' ).then( function ( xrSupported ) {
-					var useLiveData = xrSupported;
-					if (useLiveData) {
-						jointSourceReady( leftJoints, rightJoints );
-					} else {
-						requestSampleHandData();
-					}
-				});
+				if (navigator.xr) {
+					navigator.xr.isSessionSupported( 'immersive-vr' ).then( function ( xrSupported ) {
+						var useLiveData = xrSupported;
+						if (useLiveData) {
+							jointSourceReady( leftJoints, rightJoints );
+						} else {
+							// XR not supported:
+							requestSampleHandData();
+						}
+					});
+				} else {
+					// Doesn't have XR API:
+					requestSampleHandData();
+
+				}
 
 
 				//
