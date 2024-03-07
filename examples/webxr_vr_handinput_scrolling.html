@@ -87,6 +87,7 @@
 			import * as THREE from 'three';
 			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 			import { VRButton } from 'three/addons/webxr/VRButton.js';
+			import { ARButton } from 'three/addons/webxr/ARButton.js';
 			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
 			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
 			import { XRArmsScrollState } from 'three/addons/webxr/XRHandScrollFactory.js';
@@ -127,7 +128,7 @@
 
 				scene = new THREE.Scene();
 				window.scene = scene;
-				scene.background = new THREE.Color( 0x444444 );
+				//scene.background = new THREE.Color( 0x444444 );
 
 				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 30 );
 				camera.position.set( 0, 0.7, 1 );
@@ -227,7 +228,10 @@
 
 				container.appendChild( renderer.domElement );
 
-				document.body.appendChild( VRButton.createButton( renderer ) );
+				var bottomLine = document.createElement( 'div' );
+				document.body.appendChild(bottomLine);
+				bottomLine.appendChild( VRButton.createButton( renderer ) );
+				bottomLine.appendChild( ARButton.createButton( renderer ) );
 
 				// controllers
 
