@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js seurat</title>
+		<title>three.js - example google seurat capture</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link type="text/css" rel="stylesheet" href="main.css">
@@ -9,7 +9,9 @@
 	<body>
 
 		<div id="info">
-			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> scan using <a href="https://developers.google.com/vr/discover/seurat">Google Seurat</a>
+			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> visualization of <a href="https://developers.google.com/vr/discover/seurat">Google Seurat</a>
+			capture <br/>from  
+			<a href="https://github.com/ChristophGeske/ARCoreInsideOutTrackingGearVr/tree/master/VikingVillage/Assets">Christoph Geske's test project<a/>. 
 		</div>
 
 		<!-- Import maps polyfill -->
@@ -29,7 +31,8 @@
 
 			import * as THREE from 'three';
 			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-			import { ARButton } from 'three/addons/webxr/ARButton.js';
+			//import { ARButton } from 'three/addons/webxr/ARButton.js';
+			import { VRButton } from 'three/addons/webxr/VRButton.js';
 			import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
 			import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 
@@ -141,7 +144,7 @@
 				renderer.xr.enabled = true;
 				container.appendChild( renderer.domElement );
 
-				document.body.appendChild( ARButton.createButton( renderer ) );
+				document.body.appendChild( VRButton.createButton( renderer ) );
 
 				// controllers
 
