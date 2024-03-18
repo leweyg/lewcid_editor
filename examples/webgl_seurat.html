@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js - example google seurat capture</title>
+		<title>three.js - webgl - google seurat scene</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link type="text/css" rel="stylesheet" href="main.css">
@@ -9,14 +9,16 @@
 	<body>
 
 		<div id="info">
-			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> visualization of <a href="https://developers.google.com/vr/discover/seurat">Google Seurat</a>
-			capture
+			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a>
+			rendering of <a href="https://developers.google.com/vr/discover/seurat">Google Seurat</a>
+			scene (VR supported)
 			<br/>
 			assets from  
 			<a href="https://github.com/ChristophGeske/ARCoreInsideOutTrackingGearVr/tree/master/VikingVillage/Assets">
 				Christoph Geske<a/>.
 			<br/>
 			<a href="../editor/index.html?file_path=../examples/models/obj/seurat/Village.obj">View mesh and RGBA texture in editor</a>.
+			<br><span id="main_loading">Loading...</span>
 		</div>
 
 		<!-- Import maps polyfill -->
@@ -56,6 +58,35 @@
 			init();
 			animate();
 
+			var prog_mat = 0;
+			var prog_mesh = 0;
+
+			function progress_total() {
+				var newDone = prog_mat * prog_mesh;
+				if (newDone < 1.0) {
+					main_loading.innerText = "Loading: " + (100*prog_mat) + "% " + (100*prog_mesh) + "% ";
+				} else {
+					main_loading.innerText = "";
+					render();
+				}
+			}
+			function decodeProgress(pct) {
+				if (pct.total) {
+					return (pct.loaded / pct.total);
+				}
+				return 0.0;
+			}
+
+			function progress_material(pct) {
+				prog_mat = decodeProgress(pct);
+				progress_total();
+			}
+
+			function progress_mesh(pct) {
+				prog_mesh = decodeProgress(pct);
+				progress_total();
+			}
+
 			async function loadSeuratScene(sceneParent) {
 				var mtlPath = "models/obj/seurat/Village.mtl";
 				var objPath = "models/obj/seurat/Village.obj";
@@ -66,14 +97,14 @@
 					loader.load(objPath, function (object) {
 						object.name = "Seurat";
 						sceneParent.add(object);
-					});
+					}, (pct) => {progress_mesh(pct);});
 				}
 
 				new MTLLoader()
 					.load(mtlPath, function (materials) {
 						materials.preload();
 						loadObjWithMaterials(materials);
-					}, () => {},
+					}, (pct) => {progress_material(pct);},
 					(errorInfo) => {
 						loadObjWithMaterials(null);
 					});
