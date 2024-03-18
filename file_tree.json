@@ -354,6 +354,13 @@
           "ninjaHead_Low.obj": 0,
           "normal.png": 0
         },
+        "seurat/": {
+          "LICENSE.txt": 0,
+          "Village.mtl": 0,
+          "Village.obj": 0,
+          "Village.png": 0,
+          "source.md": 0
+        },
         "spacekit/": {
           "a_spacekit_all.json": 0,
           "a_spacekit_minimal.json": 0,
@@ -809,6 +816,12 @@
         "cube_binary.vtp": 0,
         "cube_no_compression.vtp": 0,
         "liver.vtk": 0
+      },
+      "xr/": {
+        "hands_frame.json": 0,
+        "hands_motion.json": 0,
+        "hands_pinch_zoom.json": 0,
+        "hands_scroll_motion.json": 0
       },
       "xyz/": {
         "helix_201.xyz": 0
