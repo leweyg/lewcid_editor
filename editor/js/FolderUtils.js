@@ -351,6 +351,10 @@ var FolderUtils = {
             var s = 3.14159 / 180.0;
             el.rotation.set(p[0]*s,p[1]*s,p[2]*s);
         }
+        if (jsonObj.quaternion) {
+            var p = jsonObj.quaternion;
+            el.quaternion.set(p[0],p[1],p[2],p[3]);
+        }
     },
 
     lewcidObject_findChildToPatch : function(parentScene, childIndex, childData) {
