@@ -230,6 +230,55 @@ var FolderUtils = {
         }
     },
 
+
+    ImportByPath_STL : async function(path,callback_object,parentScene=null) {
+        if (path.endsWith(".stl")) {
+            const { STLLoader } = await import( 'three/addons/loaders/STLLoader.js' );
+
+            function sceneFromGeometry(geometry) {
+                const material = new THREE.MeshPhongMaterial({
+                    color: 0xff9c7c, 
+                    specular: 0x494949,
+                    shininess: 200 } );
+                const mesh = new THREE.Mesh( geometry, material );
+                mesh.castShadow = true;
+                mesh.receiveShadow = true;
+                return mesh;
+            }
+
+            function loadObjWithMaterials() {
+                var loader = new STLLoader();
+                loader.load(path, function (geometry) {
+                    var object = sceneFromGeometry(geometry);
+                    object.name = FolderUtils.PathDisplayName(path);
+                    object.userData = {
+                        source : FolderUtils.PathRelativeToCurrent(path)
+                    };
+                    if (!parentScene) {
+                        FolderUtils.EnsureMainSceneNode(editor,(parent)=>{
+                            parent.add(object);
+                        });
+                        if (editor.selected) {
+                            object.position.copy(editor.selected.position);
+                            object.rotation.copy(editor.selected.rotation);
+                            object.scale.copy(editor.selected.scale);
+                        }
+                        editor.selected = object;
+                        editor.signals.objectSelected.dispatch( object );
+                    } else {
+                        parentScene.add(object);
+                        FolderUtils.EditorRefresh();
+                    }
+                    if (callback_object) callback_object(object);
+                });
+            }
+
+            loadObjWithMaterials();
+
+            return;
+        }
+    },
+
     ImportByPath_GLB : async function(path,callback_object,parentScene=null) {
         if (path.endsWith(".glb")) {
             const { MTLLoader } = await import( 'three/addons/loaders/MTLLoader.js' );
@@ -571,6 +620,9 @@ var FolderUtils = {
         }
         if (lpath.endsWith(".mtl")) {
             return await FolderUtils.ImportByPath_MTL(path, callback_blob);
+        }
+        if (lpath.endsWith(".stl")) {
+            return await FolderUtils.ImportByPath_STL(path, callback_blob);
         }
         if (lpath.endsWith(".json") || lpath.endsWith(".path_scene")) {
             return FolderUtils.ImportByPath_lewcidJSON(path,callback_blob,parentScene);
