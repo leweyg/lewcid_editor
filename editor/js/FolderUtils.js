@@ -622,7 +622,7 @@ var FolderUtils = {
             return await FolderUtils.ImportByPath_MTL(path, callback_blob);
         }
         if (lpath.endsWith(".stl")) {
-            return await FolderUtils.ImportByPath_STL(path, callback_blob);
+            return await FolderUtils.ImportByPath_STL(path, callback_blob,parentScene);
         }
         if (lpath.endsWith(".json") || lpath.endsWith(".path_scene")) {
             return FolderUtils.ImportByPath_lewcidJSON(path,callback_blob,parentScene);

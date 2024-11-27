@@ -1,18 +1,36 @@
 {
   "name": "open_air_ships_base",
-  "rotation": [
-    -1.5707953886086055,
-    9.381850463731345e-7,
-    0.78539749999956
-  ],
   "userData": {},
-  "children":[
+  "children": [
     {
-      "name":"main_origin",
-      "children":[
+      "name": "main_origin",
+      "userData": {},
+      "children": [
         {
-        "name":"slice1",
-        "source":"open_air_ships_slice.stl"
+          "name": "slice1",
+          "userData": {},
+          "children": [
+            {
+              "name": "open_air_ships_slice",
+              "rotation": [
+                -1.5707953886086052,
+                9.381850463731345e-7,
+                0.78539749999956
+              ],
+              "userData": {},
+              "source": "open_air_ships_slice.stl"
+            },
+            {
+              "name": "open_air_ships_slice",
+              "rotation": [
+                -1.5707953886086052,
+                9.381850463731345e-7,
+                0
+              ],
+              "userData": {},
+              "source": "open_air_ships_slice.stl"
+            }
+          ]
         }
       ]
     }
@@ -22,14 +40,14 @@
     "type": "lewcid_object",
     "camera": {
       "position": [
-        -46.20652135682724,
-        149.9876046385972,
-        209.84930076204276
+        -149.25996856501828,
+        620.8394318705725,
+        437.0580054261866
       ],
       "rotation": [
-        -0.49766606418885373,
-        -0.3406003788779072,
-        -0.1795289774975993
+        -1.007490832331147,
+        -0.3132199543057705,
+        -0.4538997348498153
       ]
     }
   }
