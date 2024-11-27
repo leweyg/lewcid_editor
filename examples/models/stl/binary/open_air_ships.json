@@ -7,7 +7,100 @@
       "userData": {},
       "children": [
         {
-          "name": "slice1",
+          "name": "quater1",
+          "userData": {},
+          "children": [
+            {
+              "name": "open_air_ships_slice",
+              "rotation": [
+                -1.5707953886086052,
+                9.381850463731345e-7,
+                0.78539749999956
+              ],
+              "userData": {},
+              "source": "open_air_ships_slice.stl"
+            },
+            {
+              "name": "open_air_ships_slice",
+              "rotation": [
+                -1.5707953886086052,
+                9.381850463731345e-7,
+                0
+              ],
+              "userData": {},
+              "source": "open_air_ships_slice.stl"
+            }
+          ]
+        },
+        {
+          "name": "quater4",
+          "rotation": [
+            0,
+            1.5707963267948966,
+            0
+          ],
+          "userData": {},
+          "children": [
+            {
+              "name": "open_air_ships_slice",
+              "rotation": [
+                -1.5707953886086052,
+                9.381850463731345e-7,
+                0.78539749999956
+              ],
+              "userData": {},
+              "source": "open_air_ships_slice.stl"
+            },
+            {
+              "name": "open_air_ships_slice",
+              "rotation": [
+                -1.5707953886086052,
+                9.381850463731345e-7,
+                0
+              ],
+              "userData": {},
+              "source": "open_air_ships_slice.stl"
+            }
+          ]
+        },
+        {
+          "name": "quater2",
+          "rotation": [
+            0,
+            -1.5707963267948966,
+            0
+          ],
+          "userData": {},
+          "children": [
+            {
+              "name": "open_air_ships_slice",
+              "rotation": [
+                -1.5707953886086052,
+                9.381850463731345e-7,
+                0.78539749999956
+              ],
+              "userData": {},
+              "source": "open_air_ships_slice.stl"
+            },
+            {
+              "name": "open_air_ships_slice",
+              "rotation": [
+                -1.5707953886086052,
+                9.381850463731345e-7,
+                0
+              ],
+              "userData": {},
+              "source": "open_air_ships_slice.stl"
+            }
+          ]
+        },
+        {
+          "name": "quater3",
+          "rotation": [
+            0,
+            3.141592653589793,
+            0
+          ],
           "userData": {},
           "children": [
             {
@@ -40,14 +133,14 @@
     "type": "lewcid_object",
     "camera": {
       "position": [
-        -149.25996856501828,
-        620.8394318705725,
-        437.0580054261866
+        -227.63526454685413,
+        138.07466136620343,
+        250.51673475132685
       ],
       "rotation": [
-        -1.007490832331147,
-        -0.3132199543057705,
-        -0.4538997348498153
+        -0.646483668775002,
+        -0.6308247678857242,
+        -0.41878253753214095
       ]
     }
   }

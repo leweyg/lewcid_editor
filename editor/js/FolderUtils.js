@@ -17,7 +17,7 @@ var FolderUtils = {
         FolderUtils.DownloadText("php/shell_execute.php?cd=" + cd + "&cmd=" + encoded, callback);
     },
 
-    EditorRefresh : function() {
+    EditorRefreshNow : function() {
         try {
             if (editor && editor.viewport && editor.viewport.render) {
                 editor.viewport.render();
@@ -25,6 +25,12 @@ var FolderUtils = {
         } catch(ex) {
             console.log("No editor: " + ex.toString());
         }
+    },
+
+    EditorRefresh : function() {
+        var _this = this;
+        var delayMS = 10;
+        setTimeout(()=>{_this.EditorRefreshNow()}, delayMS);
     },
 
     IsLocalHost : function() {
@@ -265,6 +271,7 @@ var FolderUtils = {
                         }
                         editor.selected = object;
                         editor.signals.objectSelected.dispatch( object );
+                        FolderUtils.EditorRefresh();
                     } else {
                         parentScene.add(object);
                         FolderUtils.EditorRefresh();
