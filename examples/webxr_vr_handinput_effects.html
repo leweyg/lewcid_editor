@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>XR Hands Effects</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+
+		<div id="info">
+			XR Hand Effects<br/>
+			<a href="https://lewcid.com/lg/articles/vol/hand_poses.html">open, point, pinch, plane (chop/flat/pull), fist, etc.</a><br/>
+			Time=<input type="range" id="timeScrubber" min="0" max="10" step="1" value="0">
+
+			<span style="display: none;">
+			<input type="checkbox" id="enableExportCheckbox" />Export |
+			<input type="button" value="Now" id="testButtonExport" />
+			</span>
+			
+			<br/>
+			<span id="debugHandStateSpan">loading...</span>
+			<br/>
+				<code id="textDebugArea"></code>
+		</div>
+
+		<!-- Import maps polyfill -->
+		<!-- Remove this when import maps will be widely supported -->
+		<script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "../build/three.module.js",
+					"three/addons/": "./jsm/"
+				}
+			}
+		</script>
+
+		<script type="module">
+			import * as THREE from 'three';
+			import { FolderUtils } from './../editor/js/FolderUtils.js';
+
+			function reduceScene(from) {
+				var ans = {};
+				if (from.children) {
+					ans.children = [];
+					for (var i in from.children) {
+						var s = from.children[i];
+						if (s.name && s.name.startsWith("Hand")) {
+							var arm = {
+								name : s.name,
+								children : [ s.children[2] ],
+							};
+							ans.children.push(arm);
+						}
+					}
+				}
+				if (from.userData) {
+					ans.userData = from.userData;
+					if (ans.userData.frames) {
+						for (var i in ans.userData.frames) {
+							var frame = ans.userData.frames[i];
+							frame.value = reduceScene(frame.value);
+						}
+					}
+				}
+				return ans;
+			}
+			function reviewHandData() {
+				var handDataFile = "../editor/hands.json";
+				alert("Converting=" + handDataFile);
+				FolderUtils.DownloadJSON(handDataFile, (jsonObject) => {
+					var reduced = reduceScene(jsonObject);
+					var str = JSON.stringify(reduced);
+					//textDebugArea.innerText = str;
+					FolderUtils.ShellSaveToFile("../examples/models/xr/hands_pinch_zoom.json", str, (res)=>{
+						alert("Saved=" + res);
+					}, "../editor/");
+				});
+			}
+			//reviewHandData();
+		</script>
+
+		<script type="module">
+
+			import * as THREE from 'three';
+			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+			import { VRButton } from 'three/addons/webxr/VRButton.js';
+			import { ARButton } from 'three/addons/webxr/ARButton.js';
+			import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
+			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
+			import { XRArmsScrollState } from 'three/addons/webxr/XRHandScrollFactory.js';
+			import { SceneJson } from 'three/addons/exporters/SceneJson.js';
+			import { FolderUtils } from './../editor/js/FolderUtils.js';
+			import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+
+			let container;
+			let camera, scene, renderer;
+			let hand1, hand2;
+			let controller1, controller2;
+			let controllerGrip1, controllerGrip2;
+			let scrollArms;
+			let scrollTarget;
+			var sampleDataRoot = null;
+
+			const handModels = {
+				left: null,
+				right: null
+			};
+
+			function exportIsEnabled() {
+				if (!enableExportCheckbox.checked) {
+					return false;
+				}
+				return true;
+			}
+
+			let controls;
+
+			init();
+			animate();
+
+			let sharedHandMeshScene = null;
+			let sharedOutlineInfo = {
+				geometry:null,
+				mesh:null,
+				shader:null,
+			}
+			function updateHandOutline() {
+				if (!sharedHandMeshScene) {
+					return;
+				}
+			}
+
+			function initHandModel(sceneRoot) {
+				const loader = new FBXLoader();
+				const path = "models/fbx/arms_low_poly.fbx";
+
+				loader.load( path, function ( modelScene ) {
+
+					const scl = 0.5
+					const meshScene = modelScene.children[0]
+					meshScene.scale.set(scl,scl,scl);
+					modelScene.position.set(0,0.25,0)
+					sharedHandMeshScene = modelScene;
+					sceneRoot.add( modelScene );
+
+					updateHandOutline();
+
+				}, undefined, function ( error ) {
+
+					console.error( error );
+
+				} );
+			}
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				scene = new THREE.Scene();
+				window.scene = scene;
+				//scene.background = new THREE.Color( 0x444444 );
+
+				camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 30 );
+				camera.position.set( 0, 0.7, 1 );
+
+
+				controls = new OrbitControls( camera, container );
+				controls.target.set( 0, 0.7, 0 );
+				controls.update();
+
+				const floorGeometry = new THREE.PlaneGeometry( 4, 4 );
+				const floorMaterial = new THREE.MeshStandardMaterial( { color: 0x222222 } );
+				const floor = new THREE.Mesh( floorGeometry, floorMaterial );
+				floor.name = "floor";
+				floor.rotation.x = - Math.PI / 2;
+				floor.receiveShadow = true;
+				scene.add( floor );
+
+				scrollTarget = new THREE.Group();
+				scrollTarget.name = "scrollTarget";
+				scene.add( scrollTarget );
+
+				function setupScrollingEnvironment(scrollParent) {
+					var holder = new THREE.Group();
+					scrollParent.add(holder);
+					var scl = 2.0;
+					holder.position.set(0,0.5,-3);
+					holder.scale.set(scl,scl,scl);
+					holder.rotateOnAxis(new THREE.Vector3(0,1,0), -Math.PI/2);
+
+					var paths = [
+						"models/obj/ai_city/1n1e_v2/model.obj",
+						"models/obj/ai_city/2n1e/model.obj",
+						"models/obj/ai_city/3n1e/model.obj",
+					];
+					function spawnAtIndex(path, offset) {
+						FolderUtils.ImportByPath(path, (obj)=>{
+							obj.position.set(0, 0, -offset);
+							if (offset == 3) {
+								obj.position.set(0, 0.5, -offset);
+							}
+						}, holder);
+					}
+					for (var pi in paths) {
+						var ndx = 1 * pi;
+						var srcPath = paths[ndx];
+						spawnAtIndex(srcPath, ndx);
+					}
+
+
+				}
+				//setupScrollingEnvironment(scrollTarget);
+
+				function setupForwardMarker() {
+
+					var material = new THREE.MeshBasicMaterial({ 
+						side : THREE.DoubleSide,
+						//transparent : true,
+					});
+					var plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), material);
+					plane.position.set(0.0, 0.5, -2);
+					//plane.rotateOnAxis(new THREE.Vector3(0,0,1), -Math.PI/4.0);
+					scene.add(plane);
+
+					var loader = (new THREE.TextureLoader());
+					var pathToTexture = "textures/transition/transition6.png";
+					loader.load(pathToTexture, texture => {
+						material = new THREE.MeshBasicMaterial({ 
+							map : texture,
+							side : THREE.DoubleSide,
+							//transparent : true,
+						});
+						plane.material = material;
+					});
+				}
+				setupForwardMarker();
+
+				scene.add( new THREE.HemisphereLight( 0x808080, 0x606060 ) );
+
+				const light = new THREE.DirectionalLight( 0xffffff );
+				light.position.set( 0, 6, 0 );
+				light.castShadow = true;
+				light.shadow.camera.top = 2;
+				light.shadow.camera.bottom = - 2;
+				light.shadow.camera.right = 2;
+				light.shadow.camera.left = - 2;
+				light.shadow.mapSize.set( 4096, 4096 );
+				scene.add( light );
+
+				//
+
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.outputEncoding = THREE.sRGBEncoding;
+				renderer.shadowMap.enabled = true;
+				renderer.xr.enabled = true;
+
+				container.appendChild( renderer.domElement );
+
+				var bottomLine = document.createElement( 'div' );
+				document.body.appendChild(bottomLine);
+				bottomLine.appendChild( VRButton.createButton( renderer ) );
+				bottomLine.appendChild( ARButton.createButton( renderer ) );
+
+				initHandModel(scene);
+
+				// controllers
+
+				controller1 = renderer.xr.getController( 0 );
+				scene.add( controller1 );
+
+				controller2 = renderer.xr.getController( 1 );
+				scene.add( controller2 );
+
+				const controllerModelFactory = new XRControllerModelFactory();
+				const handModelFactory = new XRHandModelFactory();
+
+				// Hand 1
+
+				controllerGrip1 = renderer.xr.getControllerGrip( 0 );
+				controllerGrip1.add( controllerModelFactory.createControllerModel( controllerGrip1 ) );
+				scene.add( controllerGrip1 );
+
+				hand1 = renderer.xr.getHand( 0 );
+				hand1.userData.currentHandModel = 2;
+				hand1.name = "Hand1";
+				scene.add( hand1 );
+
+				handModels.left = [
+					handModelFactory.createHandModel( hand1, 'boxes' ),
+					handModelFactory.createHandModel( hand1, 'spheres' ),
+					handModelFactory.createHandModel( hand1, 'mesh' )
+				];
+				var leftJoints = handModels.left[2];
+
+				for ( let i = 0; i < 3; i ++ ) {
+
+					const model = handModels.left[ i ];
+					model.visible = false; //(i == 2);
+					hand1.add( model );
+
+				}
+
+				hand1.addEventListener( 'pinchend', function () {
+
+					if (exportIsEnabled()) {
+						handModels.left[ this.userData.currentHandModel ].visible = false;
+						this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
+						handModels.left[ this.userData.currentHandModel ].visible = true;
+					}
+
+				} );
+
+				// Hand 2
+
+				controllerGrip2 = renderer.xr.getControllerGrip( 1 );
+				controllerGrip2.add( controllerModelFactory.createControllerModel( controllerGrip2 ) );
+				scene.add( controllerGrip2 );
+
+				hand2 = renderer.xr.getHand( 1 );
+				hand2.userData.currentHandModel = 2;
+				hand2.name = "Hand2";
+				scene.add( hand2 );
+
+				handModels.right = [
+					handModelFactory.createHandModel( hand2, 'boxes' ),
+					handModelFactory.createHandModel( hand2, 'spheres' ),
+					handModelFactory.createHandModel( hand2, 'mesh' )
+				];
+				var rightJoints = handModels.right[2];
+
+				for ( let i = 0; i < 3; i ++ ) {
+
+					const model = handModels.right[ i ];
+					model.visible = false;// (i == 2);
+					hand2.add( model );
+
+				}
+
+				hand2.addEventListener( 'pinchend', function () {
+
+					if (exportIsEnabled()) {
+						handModels.right[ this.userData.currentHandModel ].visible = false;
+						this.userData.currentHandModel = ( this.userData.currentHandModel + 1 ) % 3;
+						handModels.right[ this.userData.currentHandModel ].visible = true;
+					}
+
+					if (this.userData.currentHandModel == 0) {
+						exportToggle();
+					}
+
+				} );
+
+				// set up scrolling:
+				function jointSourceReady(leftSource, rightSource) {
+					var headPos = scene; // todo
+					var handDebugScene = new THREE.Group();
+					handDebugScene.name = "handDebuging";
+					scene.add(handDebugScene);
+
+					scrollArms = new XRArmsScrollState(headPos,
+						leftSource, rightSource, handDebugScene, scrollTarget);
+					scrollArms.updateArmsFromSource();
+					
+					// demo scrollables:
+					/*
+					var demoBox = scrollArms.debugTools.createDebugBox();
+					demoBox.name = "demoBox";
+					scrollTarget.add(demoBox);
+					scrollArms.scrollable.target = scrollTarget;
+					*/
+				}
+				
+				function requestSampleHandData() {
+					//var handDataFile = "models/xr/hands_frame.json";
+					//var handDataFile = "models/xr/hands_motion.json";
+					var handDataFile = "models/xr/hands_scroll_motion.json";
+					//var handDataFile = "models/xr/hands_pinch_zoom.json";
+					FolderUtils.DownloadJSON(handDataFile, (jsonObject) => {
+						sampleDataRoot = jsonObject;
+						function findNamed(ob, nm) {
+							if (ob.name == nm) {
+								return ob;
+							}
+							if (ob.children) {
+								for (var i in ob.children) {
+									var c = ob.children[i];
+									if (c.name == nm) {
+										return c;
+									}
+								}
+							}
+							return null;
+						}
+						var hand1Data = findNamed(jsonObject, "Hand1");
+						var subIndex = (hand1Data.children.length == 1) ? 0 : 2;
+						var srcLeft = hand1Data.children[subIndex].children[0];
+						var srcRight = findNamed(jsonObject, "Hand2").children[subIndex].children[0];
+						jointSourceReady(srcLeft, srcRight);
+
+						if (jsonObject.userData && jsonObject.userData.frames) {
+							timeScrubber.max = jsonObject.userData.frames.length;
+						} else {
+							timeScrubber.style.display = "none";
+						}
+					});
+				}
+
+				if (navigator.xr) {
+					navigator.xr.isSessionSupported( 'immersive-vr' ).then( function ( xrSupported ) {
+						var useLiveData = xrSupported;
+						if (useLiveData) {
+							jointSourceReady( leftJoints, rightJoints );
+						} else {
+							// XR not supported:
+							requestSampleHandData();
+						}
+					});
+				} else {
+					// Doesn't have XR API:
+					requestSampleHandData();
+
+				}
+
+
+				//
+
+				const geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
+
+				const line = new THREE.Line( geometry );
+				line.name = 'line';
+				line.scale.z = 5;
+
+				controller1.add( line.clone() );
+				controller2.add( line.clone() );
+
+				//
+
+				window.addEventListener( 'resize', onWindowResize );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function updateDebugUI() {
+				var txt = "";
+				if (scrollArms) {
+					txt = scrollArms.handLeft.handPose;
+					txt+= " - " + scrollArms.armPose + " - ";
+					txt+= scrollArms.handRight.handPose;
+					txt += " @" + Math.floor( timeScrubber.value );
+					var d = scrollArms.scroller.debugTiling.tilingSpan1dRaw;
+					var scl = 1000;
+					d = Math.floor(d * scl) / scl;
+					txt += " d" + d;
+				}
+				debugHandStateSpan.innerText = txt;
+			}
+			//
+
+			function animate() {
+
+				renderer.setAnimationLoop( render );
+
+			}
+
+			function render() {
+
+				// State management:
+				if (scrollArms) {
+					scrollArms.updateArmsFromSource();
+					updateDebugUI();
+				}
+
+				// Core Render:
+				renderer.render( scene, camera );
+
+				// Custom:
+				exportUpdate();
+
+			}
+
+			var exportState = {
+				active : false,
+				root : null,
+				startTime : new Date(),
+				latestTime : new Date(),
+			}
+
+			export function exportToggle() {
+				if (!enableExportCheckbox.checked) {
+					return false;
+				}
+
+				if (!exportState.active) {
+					exportState.active = true;
+					exportStart();
+				} else {
+					exportState.active = false;
+					exportEndAndSend();
+				}
+				return true;
+			}
+
+			function timeDiffSecond(before,after) {
+				return Math.abs( (after - before) / 1000.0 );
+			}
+
+			export function exportUpdate() {
+				if (!exportState.active) {
+					return;
+				}
+
+				var timeNow = (new Date());
+				var sinceLast = timeDiffSecond(timeNow, exportState.latestTime);
+				var sampleFrequency = 0.1; // seconds
+				if (sinceLast < sampleFrequency) {
+					return;
+				}
+
+				var sinceStart = timeDiffSecond(timeNow, exportState.startTime);
+				var frame = {
+					time :  sinceStart,
+					value :  SceneJson.objFromScene(scene),
+				};
+				exportState.root.userData.frames.push(frame);
+				exportStart.latestTime = timeNow;
+			}
+
+			function exportStart() {
+				scene.background = new THREE.Color( 0x004400 );
+
+				var data = SceneJson.objFromScene(scene);
+				data.userData = {
+					duration : 10.0,
+					frames : [],
+				};
+
+				exportState.root = data;
+				exportState.startTime = new Date();
+				exportStart.latestTime = exportState.startTime;
+			}
+
+
+			function exportEndAndSend() {
+				scene.background = new THREE.Color( 0x440000 );
+
+				var res = exportState.root;
+				var txt = JSON.stringify(res);
+				
+				FolderUtils.ShellSaveToFile("hands.json", txt, (res) => {
+					exportDoneSending();
+				}, "../editor/");
+			}
+
+			function exportDoneSending() {
+				scene.background = new THREE.Color( 0x000044 );
+			}
+
+			testButtonExport.onclick = function() {
+				if (!exportToggle()) {
+					alert("Use time scrubber to the right");
+				}
+			};
+
+			function updateSampleRecursive(to, from) {
+				if (from.position) {
+					to.position = from.position;
+				}
+				if (from.rotation) {
+					to.rotation = from.rotation;
+				}
+				if (from.children) {
+					console.assert(from.children.length == to.children.length);
+					for (var i in from.children) {
+						updateSampleRecursive(to.children[i], from.children[i]);
+					}
+				}
+			}
+
+			timeScrubber.oninput = function() {
+				var frameIndex = Math.floor(1* timeScrubber.value);
+				var frame = sampleDataRoot.userData.frames[frameIndex];
+				if (frame) {
+					updateSampleRecursive(sampleDataRoot, frame.value);
+				}
+			}
+
+		</script>
+	</body>
+</html>
