@@ -221,6 +221,7 @@
 
 			let sharedHandMeshScene = null;
 			let sharedOutlineInfo = {
+				holder:null,
 				geometry:null,
 				mesh:null,
 				shader:null,
@@ -231,31 +232,37 @@
 				if (!sharedHandMeshScene) {
 					return;
 				}
-				if (!shared.geometry) {
+				if (!shared.holder) {
 					// create the outline geo:
 					const srcPos = sharedHandMeshScene.geometry.attributes.position.array;
 					const normals = sharedHandMeshScene.geometry.attributes.normal.array;
 					const indices = inferIndexBuffer(srcPos);
 					const edges = inferEdgesFromTriangles(indices);
 
+					shared.holder = new THREE.Group();
+					shared.holder.position.set(0,0.25,0.0);
+					shared.holder.quaternion.copy(sharedHandMeshScene.quaternion)
+					shared.holder.rotateOnAxis(new THREE.Vector3(0,0,1), Math.PI)
+					sharedHandMeshScene.parent.add(shared.holder);
+					sharedHandMeshScene.visible = false; // hide original
 					
 					shared.geometry = new THREE.BufferGeometry();
 					shared.geometry.setAttribute('position',new THREE.BufferAttribute(srcPos, 3, false));
 					shared.geometry.setAttribute('normal',new THREE.BufferAttribute(normals, 3, false))
 					shared.geometry.setIndex(indices);
 
-					shared.material = new THREE.MeshStandardMaterial({color:'#777'});
+					shared.material = new THREE.MeshStandardMaterial({
+						color:'#777',
+						side: THREE.DoubleSide // no backface culling
+					});
 
 					shared.model = new THREE.Mesh(shared.geometry, shared.material);
-					shared.model.position.set(0,0.25,0.0);
-					shared.model.quaternion.copy(sharedHandMeshScene.quaternion)
-					shared.model.rotateOnAxis(new THREE.Vector3(0,0,1), Math.PI)
-					sharedHandMeshScene.parent.add(shared.model);
-					//sharedHandMeshScene.visible = false;
+					shared.holder.add( shared.model );
+					shared.model.visible = false; // hide the reference hand
 
-					const testGeo = extrudeEdgesAsGeo(edges, srcPos, normals);
-					const testModel = new THREE.Mesh(testGeo, shared.material);
-					shared.model.add(testModel);
+					const outlineGeo = extrudeEdgesAsGeo(edges, srcPos, normals);
+					const outlineModel = new THREE.Mesh(outlineGeo, shared.material);
+					shared.holder.add(outlineModel);
 				}
 			}
 
