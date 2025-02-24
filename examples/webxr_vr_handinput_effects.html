@@ -231,6 +231,7 @@
 					"varying vec2 vUv;\n" +
 					"void main() {"+
 					"vUv = uv;\n" +
+					"vec3 modelNorm = normal.xyz;\n" +
 					"vec4 modelPos = vec4( position.xyz, 1.0 );\n" +
 					"vec4 projPos = projectionMatrix * modelViewMatrix * modelPos;\n" +
 					"gl_Position = projPos;\n" +
@@ -238,7 +239,10 @@
 				const fragCode = "" +
 					"varying vec2 vUv;" +
 					"\n void main() {" +
-						"gl_FragColor = vec4( 0, vUv.x, vUv.y, 1);" +
+						"float f = (vUv.x - 0.5) * 2.0;\n"+
+						"float s = 1.0 - abs(f);\n"+
+						"s = s * s;\n"+
+						"gl_FragColor = vec4( 1, 1, 1, s);" +
 					"\n}";
 				const material = new THREE.ShaderMaterial( {
 					uniforms: {
@@ -246,7 +250,8 @@
 						resolution: { value: new THREE.Vector2() }
 					},
 					vertexShader: vertexCode,
-					fragmentShader: fragCode
+					fragmentShader: fragCode,
+					transparent : true,
 				} );
 				return material;
 			}
