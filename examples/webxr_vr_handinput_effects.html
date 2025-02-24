@@ -121,6 +121,38 @@
 			init();
 			animate();
 
+			function inferIndexBuffer(ar) {
+				const outIndices = [];
+				const s = 3;
+				var countMatches = 0;
+				for (var i=0; i<ar.length; i+=s) {
+					var found = false;
+					for (var j=0; (j<i) && (found===false); j+=s) {
+						var match = true;
+						for (var d=0; d<s; d++) {
+							if (ar[i+d]!=ar[j+d]) {
+								match = false;
+								break;
+							}
+						}
+						if (match) {
+							found = j;
+							countMatches ++;
+							continue;
+						}
+					}
+					var foundIndex = i / 3;
+					if (found !== false) {
+						console.assert((found % 3) == 0);
+						foundIndex = (found / 3);
+					}
+					outIndices.push(foundIndex);
+				}
+				console.assert(countMatches != 0);
+				console.assert(outIndices.length*3 == ar.length);
+				return outIndices;
+			}
+
 			let sharedHandMeshScene = null;
 			let sharedOutlineInfo = {
 				geometry:null,
@@ -130,6 +162,12 @@
 			function updateHandOutline() {
 				if (!sharedHandMeshScene) {
 					return;
+				}
+				if (!sharedOutlineInfo.geometry) {
+					// create the outline geo:
+					const srcPos = sharedHandMeshScene.geometry.attributes.position.array;
+					const indices = inferIndexBuffer(srcPos);
+					
 				}
 			}
 
@@ -143,7 +181,7 @@
 					const meshScene = modelScene.children[0]
 					meshScene.scale.set(scl,scl,scl);
 					modelScene.position.set(0,0.25,0)
-					sharedHandMeshScene = modelScene;
+					sharedHandMeshScene = meshScene;
 					sceneRoot.add( modelScene );
 
 					updateHandOutline();
