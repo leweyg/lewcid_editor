@@ -37,8 +37,15 @@
 			}
 		</script>
 
+		<script>
+			// If using a local clone, enable this stuff:
+			// replacement for: import { FolderUtils } from './../editor/js/FolderUtils.js';
+			//var FolderUtils = { nothing: true, };
+		</script>
+
 		<script type="module">
 			import * as THREE from 'three';
+			// possibly comment this out:
 			import { FolderUtils } from './../editor/js/FolderUtils.js';
 
 			function reduceScene(from) {
@@ -92,6 +99,7 @@
 			import { XRHandModelFactory } from 'three/addons/webxr/XRHandModelFactory.js';
 			import { XRArmsScrollState } from 'three/addons/webxr/XRHandScrollFactory.js';
 			import { SceneJson } from 'three/addons/exporters/SceneJson.js';
+			// possibly comment this out:
 			import { FolderUtils } from './../editor/js/FolderUtils.js';
 			import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
@@ -569,6 +577,9 @@
 				}
 				
 				function requestSampleHandData() {
+					if (!FolderUtils.DownloadJSON) {
+						return; // not actually loaded
+					}
 					//var handDataFile = "models/xr/hands_frame.json";
 					//var handDataFile = "models/xr/hands_motion.json";
 					var handDataFile = "models/xr/hands_scroll_motion.json";
