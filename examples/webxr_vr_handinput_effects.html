@@ -154,7 +154,69 @@
 			}
 
 			function inferEdgesFromTriangles(triIndices) {
+				const outEdges = [];
+				const s = 3
+				function isEdgeInList(from,to) {
+					const ar = outEdges;
+					for (var i=0; i<ar.length; i+=2) {
+						if ((ar[i]==from) && (ar[i+1]==to)) {
+							return true;
+						}
+						if ((ar[i]==to) && (ar[i+1]==from)) {
+							return true;
+						}
+					}
+					return false;
+				}
+				for (var ti=0; ti<triIndices.length; ti+=3) {
+					for (var oi=0; oi<3; oi++) {
+						var from = triIndices[ti+((oi+0)%3)];
+						var to = triIndices[ti+((oi+1)%3)];
+						if (!isEdgeInList(from,to)) {
+							outEdges.push(from);
+							outEdges.push(to);
+						}
+					}
+				}
+				return outEdges;
+			}
 
+			function extrudeEdgesAsGeo(edges, oldPos, srcNormals) {
+				const poses = new Float32Array(oldPos.length * 2)
+				const normals = new Float32Array(oldPos.length * 2)
+				const distOut = 0.025;
+				const distIn = -0.025
+				const s = oldPos.length;
+				for (var v=0; v<oldPos.length; v+=3) {
+					for (var d=0; d<3; d++) {
+						poses[v+d  ] = oldPos[v+d] + (srcNormals[v+d] * distOut)
+						poses[v+d+s] = oldPos[v+d] + (srcNormals[v+d] * distIn)
+
+						normals[v+d+0] = srcNormals[v+d]
+						normals[v+d+s] = srcNormals[v+d]
+					}
+				}
+
+				const indices = [];
+				const si = s / 3;
+				for (var ei=0; ei<edges.length; ei+=2) {
+					const a = edges[ei+0]
+					const b = edges[ei+1]
+
+					indices.push(a)
+					indices.push(a+si);
+					indices.push(b+si);
+
+					indices.push(b+si);
+					indices.push(b);
+					indices.push(a);
+				}
+
+				const geometry = new THREE.BufferGeometry();
+				geometry.setAttribute('position',new THREE.BufferAttribute(poses, 3, false));
+				geometry.setAttribute('normal',new THREE.BufferAttribute(normals, 3, false))
+				geometry.setIndex(indices);
+				return geometry;
 			}
 
 			let sharedHandMeshScene = null;
@@ -174,6 +236,8 @@
 					const srcPos = sharedHandMeshScene.geometry.attributes.position.array;
 					const normals = sharedHandMeshScene.geometry.attributes.normal.array;
 					const indices = inferIndexBuffer(srcPos);
+					const edges = inferEdgesFromTriangles(indices);
+
 					
 					shared.geometry = new THREE.BufferGeometry();
 					shared.geometry.setAttribute('position',new THREE.BufferAttribute(srcPos, 3, false));
@@ -188,6 +252,10 @@
 					shared.model.rotateOnAxis(new THREE.Vector3(0,0,1), Math.PI)
 					sharedHandMeshScene.parent.add(shared.model);
 					//sharedHandMeshScene.visible = false;
+
+					const testGeo = extrudeEdgesAsGeo(edges, srcPos, normals);
+					const testModel = new THREE.Mesh(testGeo, shared.material);
+					shared.model.add(testModel);
 				}
 			}
 
