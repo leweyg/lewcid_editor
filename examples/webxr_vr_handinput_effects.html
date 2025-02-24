@@ -153,21 +153,41 @@
 				return outIndices;
 			}
 
+			function inferEdgesFromTriangles(triIndices) {
+
+			}
+
 			let sharedHandMeshScene = null;
 			let sharedOutlineInfo = {
 				geometry:null,
 				mesh:null,
 				shader:null,
+				material:null,
 			}
 			function updateHandOutline() {
+				const shared = sharedOutlineInfo;
 				if (!sharedHandMeshScene) {
 					return;
 				}
-				if (!sharedOutlineInfo.geometry) {
+				if (!shared.geometry) {
 					// create the outline geo:
 					const srcPos = sharedHandMeshScene.geometry.attributes.position.array;
+					const normals = sharedHandMeshScene.geometry.attributes.normal.array;
 					const indices = inferIndexBuffer(srcPos);
 					
+					shared.geometry = new THREE.BufferGeometry();
+					shared.geometry.setAttribute('position',new THREE.BufferAttribute(srcPos, 3, false));
+					shared.geometry.setAttribute('normal',new THREE.BufferAttribute(normals, 3, false))
+					shared.geometry.setIndex(indices);
+
+					shared.material = new THREE.MeshStandardMaterial({color:'#777'});
+
+					shared.model = new THREE.Mesh(shared.geometry, shared.material);
+					shared.model.position.set(0,0.25,0.0);
+					shared.model.quaternion.copy(sharedHandMeshScene.quaternion)
+					shared.model.rotateOnAxis(new THREE.Vector3(0,0,1), Math.PI)
+					sharedHandMeshScene.parent.add(shared.model);
+					//sharedHandMeshScene.visible = false;
 				}
 			}
 
@@ -177,10 +197,11 @@
 
 				loader.load( path, function ( modelScene ) {
 
-					const scl = 0.5
+					const scl = 1.0
 					const meshScene = modelScene.children[0]
 					meshScene.scale.set(scl,scl,scl);
 					modelScene.position.set(0,0.25,0)
+					modelScene.scale.set(0.5,0.5,0.5);
 					sharedHandMeshScene = meshScene;
 					sceneRoot.add( modelScene );
 
