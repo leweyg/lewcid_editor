@@ -184,8 +184,9 @@
 			function extrudeEdgesAsGeo(edges, oldPos, srcNormals) {
 				const poses = new Float32Array(oldPos.length * 2)
 				const normals = new Float32Array(oldPos.length * 2)
-				const distOut = 0.025;
-				const distIn = -0.025
+				const uvs = new Float32Array((oldPos.length/3)*2 * 2)
+				const distOut = 0.0125;
+				const distIn = -0.0125
 				const s = oldPos.length;
 				for (var v=0; v<oldPos.length; v+=3) {
 					for (var d=0; d<3; d++) {
@@ -194,7 +195,12 @@
 
 						normals[v+d+0] = srcNormals[v+d]
 						normals[v+d+s] = srcNormals[v+d]
+
 					}
+					uvs[((v+0)/3)*2 + 0] = 0;
+					uvs[((v+0)/3)*2 + 1] = 0;
+					uvs[((v+s)/3)*2 + 0] = 1;
+					uvs[((v+s)/3)*2 + 1] = 1;
 				}
 
 				const indices = [];
@@ -215,8 +221,34 @@
 				const geometry = new THREE.BufferGeometry();
 				geometry.setAttribute('position',new THREE.BufferAttribute(poses, 3, false));
 				geometry.setAttribute('normal',new THREE.BufferAttribute(normals, 3, false))
+				geometry.setAttribute('uv',new THREE.BufferAttribute(uvs, 2, false))
 				geometry.setIndex(indices);
 				return geometry;
+			}
+
+			function extrusionShaderMaterial() {
+				const vertexCode = "" + 
+					"varying vec2 vUv;\n" +
+					"void main() {"+
+					"vUv = uv;\n" +
+					"vec4 modelPos = vec4( position.xyz, 1.0 );\n" +
+					"vec4 projPos = projectionMatrix * modelViewMatrix * modelPos;\n" +
+					"gl_Position = projPos;\n" +
+					"}";
+				const fragCode = "" +
+					"varying vec2 vUv;" +
+					"\n void main() {" +
+						"gl_FragColor = vec4( 0, vUv.x, vUv.y, 1);" +
+					"\n}";
+				const material = new THREE.ShaderMaterial( {
+					uniforms: {
+						time: { value: 1.0 },
+						resolution: { value: new THREE.Vector2() }
+					},
+					vertexShader: vertexCode,
+					fragmentShader: fragCode
+				} );
+				return material;
 			}
 
 			let sharedHandMeshScene = null;
@@ -261,7 +293,8 @@
 					shared.model.visible = false; // hide the reference hand
 
 					const outlineGeo = extrudeEdgesAsGeo(edges, srcPos, normals);
-					const outlineModel = new THREE.Mesh(outlineGeo, shared.material);
+					const outlineMat = extrusionShaderMaterial();
+					const outlineModel = new THREE.Mesh(outlineGeo, outlineMat);
 					shared.holder.add(outlineModel);
 				}
 			}
