@@ -185,8 +185,8 @@
 				const poses = new Float32Array(oldPos.length * 2)
 				const normals = new Float32Array(oldPos.length * 2)
 				const uvs = new Float32Array((oldPos.length/3)*2 * 2)
-				const distOut = 0.0125;
-				const distIn = -0.0125
+				const distOut = 0; //0.0125;
+				const distIn = 0; //-0.0125;
 				const s = oldPos.length;
 				for (var v=0; v<oldPos.length; v+=3) {
 					for (var d=0; d<3; d++) {
@@ -229,20 +229,39 @@
 			function extrusionShaderMaterial() {
 				const vertexCode = "" + 
 					"varying vec2 vUv;\n" +
+					"varying float vOpac;\n"+
 					"void main() {"+
 					"vUv = uv;\n" +
+					"float f = (uv.x - 0.5) * 2.0;\n"+
 					"vec3 modelNorm = normal.xyz;\n" +
+					"vec3 worldNorm = normalize((modelMatrix * vec4(modelNorm,0)).xyz);\n"+
 					"vec4 modelPos = vec4( position.xyz, 1.0 );\n" +
-					"vec4 projPos = projectionMatrix * modelViewMatrix * modelPos;\n" +
+					"vec3 worldPos = (modelMatrix * modelPos).xyz;\n" +
+					//"vec3 cameraPos = vec3(viewMatrix[3][0], viewMatrix[3][1], viewMatrix[3][2]);\n"+
+					"vec3 cameraPos = cameraPosition;\n"+
+					"vec3 toCamera = normalize(cameraPos - worldPos);\n"+
+					"vec3 alongNorm = cross(toCamera, worldNorm);\n"+
+					"float pctEdge = 1.0 - abs(dot(toCamera, worldNorm));\n"+
+					"vOpac = pctEdge;\n"+
+					"vec3 outNorm = normalize( cross(toCamera, alongNorm) );\n"+
+					"float extrudeDist = 0.0025 * pctEdge;\n"+
+					"float widthScale = length( cameraPos - modelPos.xyz ) * extrudeDist;"+
+
+					"vec3 worldOffset = worldPos + ( outNorm * f * widthScale);\n"+
+					
+					"vec4 projPos = projectionMatrix * viewMatrix * vec4(worldOffset,1);\n" +
 					"gl_Position = projPos;\n" +
 					"}";
 				const fragCode = "" +
 					"varying vec2 vUv;" +
+					"varying float vOpac;\n"+
 					"\n void main() {" +
 						"float f = (vUv.x - 0.5) * 2.0;\n"+
 						"float s = 1.0 - abs(f);\n"+
 						"s = s * s;\n"+
-						"gl_FragColor = vec4( 1, 1, 1, s);" +
+						"float fd = vOpac;\n"+
+						"float a = s * (fd * fd * fd);\n"+
+						"gl_FragColor = vec4( 1, 1, 1, a );" +
 					"\n}";
 				const material = new THREE.ShaderMaterial( {
 					uniforms: {
@@ -252,6 +271,7 @@
 					vertexShader: vertexCode,
 					fragmentShader: fragCode,
 					transparent : true,
+					depthWrite : false,
 				} );
 				return material;
 			}
